@@ -1,0 +1,33 @@
+{
+    "name": "governify-gateway",
+    "version": "0.0.1",
+    "description": "Gatway for control APIs by SLA",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node ."
+    },
+    "keywords": [
+        "gateway",
+        "proxy",
+        "sla",
+        "api",
+        "sla4oai",
+        "governify"
+    ],
+    "author": "ISA group (isagroup.us@gmail.com)",
+    "license": "ISC",
+    "dependencies": {
+        "bluebird": "^3.4.6",
+        "body-parser": "^1.15.2",
+        "cors": "^2.8.1",
+        "express": "^4.14.0",
+        "governify-agreement-manager": "0.0.8",
+        "js-yaml": "^3.6.1",
+        "moment": "^2.15.1",
+        "request": "^2.75.0",
+        "sla4oai-tools": "^1.1.0",
+        "swagger-tools": "^0.10.1",
+        "winston": "^2.2.0"
+    }
+}

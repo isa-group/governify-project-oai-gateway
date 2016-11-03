@@ -1,0 +1,89 @@
+swagger: '2.0'
+info:
+  description: >-
+    API Gateway
+  version: 1.0.0
+  title: Governify Gateway
+  termsOfService: 'http://gateway.governify.io/terms/'
+  contact:
+    name: ISA Group
+    url: 'http://governify.io'
+    email: isagroup.us@gmail.com
+  license:
+    name: Apache License 2.0
+    url: 'http://www.apache.org/licenses/'
+basePath: /gateway/api/v1
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /services:
+    post:
+      tags:
+        - services
+      description: Create new pipe to an existing server.
+      operationId: servicesPOST
+      parameters:
+        - in: body
+          name: serviceInfo
+          description: Information for deploy the new pipe.
+          required: true
+          schema:
+            $ref: '#/definitions/newServiceInfo'
+      responses:
+        '201':
+          description: New pipe has been created
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/errorModel'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+      x-swagger-router-controller: Services
+
+definitions:
+
+  serviceInfo:
+    type: object
+    required:
+      - url
+      - swagger_url
+    properties:
+      _id:
+        type: string
+      name:
+        type: string
+      url:
+        type: string
+      swagger_url:
+        type: string
+
+  newServiceInfo:
+    type: object
+    required:
+      - url
+      - swagger_url
+    properties:
+      name:
+        type: string
+      url:
+        type: string
+      swagger_url:
+        type: string
+
+  errorModel:
+    type: object
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
