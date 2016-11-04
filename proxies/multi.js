@@ -69,7 +69,7 @@ module.exports = function (req, res, next) {
             logger.info("bypassing body" + chunk);
         });
 
-        proxiedRequest.write(JSON.stringify(req.body));
+        //proxiedRequest.write(JSON.stringify(req.body));
 
 
         req.pipe(proxiedRequest);

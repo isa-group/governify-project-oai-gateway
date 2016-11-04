@@ -34,9 +34,7 @@ module.exports = function (req, res, next) {
         req.pipe(request({
             method: req.method,
             url: proxiedServer + path,
-            headers: newHeaders,
-            json: true,
-            body: req.body
+            headers: newHeaders
         }, function (err, response) {
             if (err) {
                 logger.info("error from proxy: " + JSON.stringify(err, null, 2));
@@ -46,8 +44,8 @@ module.exports = function (req, res, next) {
         })).pipe(res);
 
     } catch (e) {
-
-        res.status(503)
+        console.log(e);
+        res.status(503);
         res.send("Proxied server unreachable:" + e);
 
     }
