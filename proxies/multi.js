@@ -28,16 +28,22 @@ module.exports = function (req, res, next) {
         var proxiedServer = {
             hostname: 'localhost',
             port: serviceInfo.port,
-            path: req.originalUrl.replace('/' + serviceInfo.name, '')
+            path: req.originalUrl.replace('/' + serviceInfo.name, ''),
+            method: req.method
         }
 
         logger.info("Sending to: %s", JSON.stringify(proxiedServer));
         res.setHeader("host", req.headers.host);
+        logger.info("preheader: (multi) " + JSON.stringify(req.headers));
+        var newHeaders = {}
+        for (var h in req.headers) {
+            if (h === 'authorization' || h === 'content-type') {
+                newHeaders[h] = req.headers[h];
+            }
+        }
+        proxiedServer.headers = newHeaders;
 
-        //crear un objeto que contiene todas las cabeceras de la request (req)
-        //y añadir a la opciones del
-        //setear la opcion para https
-
+        logger.info("Bypassed headers from (multi): " + JSON.stringify(newHeaders));
         var proxiedRequest = http.request(proxiedServer, function (response) {
             if (response.statusCode === 404) {
                 return next();
@@ -61,6 +67,7 @@ module.exports = function (req, res, next) {
             res.status(500).end(err.toString());
         });
 
+        proxiedRequest.write(JSON.stringify(req.body));
         req.pipe(proxiedRequest);
 
     } catch (e) {

@@ -21,14 +21,20 @@ module.exports = function (req, res, next) {
     try {
         var renameHost = services[req.serviceProxied].url.split('//')[1];
         res.setHeader("host", renameHost);
-        //construir un objecto con todas las cabeceras del request (req) y pasar
-        //en las opciones del nuevo request
-        //setear la opcion para https
-        req.pipe(request({
-            url: proxiedServer + path,
-            headers: {
-                host: renameHost
+        var newHeaders = {}
+            //newHeaders.host = renameHost;
+        logger.info("preheader (single): " + JSON.stringify(req.headers));
+        for (var h in req.headers) {
+            if (h === 'authorization' || h === 'content-type') {
+                newHeaders[h] = req.headers[h];
             }
+        }
+        logger.info("Bypassed headers from (single): " + JSON.stringify(newHeaders));
+        req.pipe(request({
+            method: req.method,
+            url: proxiedServer + path,
+            headers: newHeaders,
+            body: JSON.stringify(req.body)
         }, function (err, response) {
             if (err) {
                 res.sendStatus(503);
