@@ -22,7 +22,8 @@ module.exports = function (req, res, next) {
         var renameHost = services[req.serviceProxied].url.split('//')[1];
         res.setHeader("host", renameHost);
         var newHeaders = {}
-            //newHeaders.host = renameHost;
+        console.log(req.body);
+        //newHeaders.host = renameHost;
         logger.info("preheader (single): " + JSON.stringify(req.headers));
         for (var h in req.headers) {
             if (h === 'authorization' || h === 'content-type') {
@@ -34,12 +35,14 @@ module.exports = function (req, res, next) {
             method: req.method,
             url: proxiedServer + path,
             headers: newHeaders,
-            body: JSON.stringify(req.body)
+            json: true,
+            body: req.body
         }, function (err, response) {
             if (err) {
+                logger.info("error from proxy: " + JSON.stringify(err, null, 2));
                 res.sendStatus(503);
             }
-            logger.info("Response from server: " + response.statusCode);
+            logger.info("Response from server: " + JSON.stringify(response));
         })).pipe(res);
 
     } catch (e) {

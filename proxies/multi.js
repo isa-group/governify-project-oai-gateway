@@ -65,9 +65,13 @@ module.exports = function (req, res, next) {
         }).on('error', (err, ress) => {
             logger.info(err, ress);
             res.status(500).end(err.toString());
+        }).on('data', (chunk) => {
+            logger.info("bypassing body" + chunk);
         });
 
         proxiedRequest.write(JSON.stringify(req.body));
+
+
         req.pipe(proxiedRequest);
 
     } catch (e) {
