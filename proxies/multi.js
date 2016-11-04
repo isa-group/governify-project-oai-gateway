@@ -33,7 +33,10 @@ module.exports = function (req, res, next) {
 
       logger.info("Sending to: %s",  JSON.stringify(proxiedServer));
       res.setHeader("host", req.headers.host);
-      var proxiedRequest = http.request(proxiedServer, function(response){
+      var newHeaders = req.headers;
+        logger.info("Headers bypassed (multi) to new request: " + JSON.stringify(newHeaders));
+        
+      var proxiedRequest = http.request({uri: proxiedServer, headers: {"authorization": newHeaders.authorization, "host": newHeaders.host}}, function(response){
         if(response.statusCode === 404){
             return next();
         }
@@ -61,7 +64,7 @@ module.exports = function (req, res, next) {
     }catch(e){
 
       res.status(503)
-      res.send("Proxied server unreachable:" + e);
+      res.send("Proxied server (multi) unreachable: " + e);
 
     }
 
