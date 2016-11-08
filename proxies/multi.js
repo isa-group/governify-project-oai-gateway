@@ -64,7 +64,8 @@ module.exports = function (originalRequest, originalResponse, next) {
             }
 
         }).on('error', function (err, ress) {
-            logger.warning(err, ress);
+            logger.warning("Error in request", requestToSingleProxyOptions);
+            logger.warning("Details: ", err, ress);
             originalResponse.status(500).end(err.toString());
         });
         
