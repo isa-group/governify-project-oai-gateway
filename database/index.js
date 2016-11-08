@@ -1,10 +1,9 @@
 'use strict';
 
 module.exports.data = {
-    services: {},
-
+    services: {}
 };
 
-module.exports.addService = function (newServiceInfo){
+module.exports.addService = function (newServiceInfo) {
     this.data.services[newServiceInfo.name] = newServiceInfo;
-}
+};
