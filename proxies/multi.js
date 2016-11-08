@@ -67,8 +67,11 @@ module.exports = function (originalRequest, originalResponse, next) {
             logger.warning(err, ress);
             originalResponse.status(500).end(err.toString());
         });
-
-        requestToSingleProxy.write(JSON.stringify(originalRequest.body));
+        
+        if (!/\/docs\/?|\/plans\/?|\/api-docs\/?/.test(originalRequest.originalUrl)) {
+            logger.debug("Proxing ",originalRequest.originalUrl);
+            requestToSingleProxy.write(JSON.stringify(originalRequest.body));
+        }
         originalRequest.pipe(requestToSingleProxy);
 
     } catch (e) {
