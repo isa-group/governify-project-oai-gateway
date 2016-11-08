@@ -9,8 +9,8 @@ module.exports = jsyaml.safeLoad(configString)[process.env.NODE_ENV ? process.en
 
 // CHECKING ENV VARS
 // multiproxy
-process.env.MULTIPROXY ?  module.exports.multiproxy = process.env.MULTIPROXY
-                       :  null;
+process.env.MULTIPROXY ? module.exports.multiproxy = process.env.MULTIPROXY
+        : null;
 
 
 // WINSTON CONFIGURATION

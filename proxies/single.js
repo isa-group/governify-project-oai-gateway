@@ -1,53 +1,60 @@
 'use strict';
 
-var request = require('request'),
-    http = require('http'),
-    url = require('url'),
-    services = require('../database').data.services;
+var request = require('request');
+var services = require('../database').data.services;
 
-var config = require('../config'),
-    services = require('../database').data.services,
-    logger = config.logger;
+var config = require('../config');
+var services = require('../database').data.services;
+var logger = config.logger;
 
-module.exports = function (req, res, next) {
+module.exports = function (singleProxyRequest, singleProxyResponse, next) {
 
-    if (req.originalUrl.indexOf('plans') !== -1 || req.originalUrl.indexOf('docs') !== -1) return next();
+    if (singleProxyRequest.originalUrl.indexOf('plans') !== -1 || singleProxyRequest.originalUrl.indexOf('docs') !== -1)
+        return next();
 
-    var proxiedServer = services[req.serviceProxied].url;
-    var path = req.originalUrl;
+    var proxiedServer = services[singleProxyRequest.serviceProxied].url;
+    var path = singleProxyRequest.originalUrl;
 
     logger.info("Sending to server: " + proxiedServer + path + "...");
 
     try {
-        var renameHost = services[req.serviceProxied].url.split('//')[1];
-        res.setHeader("host", renameHost);
-        var newHeaders = {}
-        console.log(req.body);
-        //newHeaders.host = renameHost;
-        logger.info("preheader (single): " + JSON.stringify(req.headers));
-        for (var h in req.headers) {
+        var renameHost = services[singleProxyRequest.serviceProxied].url.split('//')[1];
+        singleProxyResponse.setHeader("host", renameHost);
+        var newHeaders = {};
+        console.log(singleProxyRequest.body);
+        logger.debug("preheader (single): " + JSON.stringify(singleProxyRequest.headers));
+        for (var h in singleProxyRequest.headers) {
             if (h === 'authorization' || h === 'content-type') {
-                newHeaders[h] = req.headers[h];
+                newHeaders[h] = singleProxyRequest.headers[h];
             }
         }
-        logger.info("Bypassed headers from (single): " + JSON.stringify(newHeaders));
-        req.pipe(request({
-            method: req.method,
+        var requestBody = JSON.stringify(singleProxyRequest.body);
+        logger.debug("Bypassed headers from (single): " + JSON.stringify(newHeaders));
+        logger.debug("Bypassed body from (single): " + requestBody);
+        var requestToRealServer = request({
+            method: singleProxyRequest.method,
             url: proxiedServer + path,
-            headers: newHeaders
-        }, function (err, response) {
+            headers: newHeaders,
+            body: requestBody
+        }, function (err, realServerResponse) {
             if (err) {
-                logger.info("error from proxy: " + JSON.stringify(err, null, 2));
-                res.sendStatus(503);
+                logger.info("error from proxy: " + err);
+                singleProxyResponse.status(503).send(err);
+            } else {
+                logger.debug("Response from server: " + JSON.stringify(realServerResponse));
+                singleProxyResponse.setHeader("content-type", realServerResponse.headers["content-type"]);
+                singleProxyResponse.send(realServerResponse.body);
             }
-            logger.info("Response from server: " + JSON.stringify(response));
-        })).pipe(res);
+        });
+
+
+//        singleProxyRequest.pipe(requestToRealServer);
 
     } catch (e) {
         console.log(e);
-        res.status(503);
-        res.send("Proxied server unreachable:" + e);
+        singleProxyResponse.status(503);
+        singleProxyResponse.send("Proxied server unreachable:" + e);
 
     }
 
-}
+};

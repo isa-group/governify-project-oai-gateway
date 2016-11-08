@@ -4,16 +4,17 @@ var config = require('../../config');
 var logger = require('../../config').logger;
 var pipeBuilder = require('../../pipeBuilder');
 
-exports.servicesPOST = function(req, res, next) {
+exports.servicesPOST = function (req, res, next) {
     /**
      * parameters expected in the args:
-    *  ServiceInfo (RequestInfo)
-    **/
+     *  ServiceInfo (RequestInfo)
+     **/
 
     var args = req.swagger.params;
 
-    pipeBuilder.generate(args.serviceInfo.value, (err, data)=>{
-        if(!err) return res.status(201).end("Created.");
+    pipeBuilder.generate(args.serviceInfo.value, function (err, data) {
+        if (!err)
+            return res.status(201).end("Created.");
 
         return res.json(err);
     });

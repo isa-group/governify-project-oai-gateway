@@ -2,7 +2,7 @@
 production:
   multiproxy: true
   port: 80
-  logger: 'debug'
+  logger: 'info'
 
 development:
   multiproxy: true
