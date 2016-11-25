@@ -69,7 +69,7 @@ exports.servicesIdPUT = function(req, res, next) {
 
     var args = req.swagger.params;
 
-    db.updateServiceById(args.id.value);
+    db.updateServiceById(args.id.value, args.serviceInfo.value);
 
     res.end();
 
