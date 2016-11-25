@@ -28,23 +28,24 @@ module.exports = function (originalRequest, originalResponse, next) {
         var requestToSingleProxyOptions = {
             hostname: 'localhost',
             port: serviceInfo.port,
-            path: originalRequest.originalUrl.replace('/' + serviceInfo.name, ''),
+            path: (originalRequest.originalUrl.replace('/' + serviceInfo.name, '')).replace(/([^:]\/)\/+/g, "$1"),
             method: originalRequest.method
         };
 
-        logger.debug("Sending to: %s", JSON.stringify(requestToSingleProxyOptions));
         originalResponse.setHeader("host", originalRequest.headers.host);
         logger.debug("preheader: (multi) " + JSON.stringify(originalRequest.headers));
-        var newHeaders = {};
+        var newHeaders = originalRequest.headers;
         for (var h in originalRequest.headers) {
             if (h === 'authorization' || h === 'content-type') {
                 newHeaders[h] = originalRequest.headers[h];
             }
         }
-        ;
+
         requestToSingleProxyOptions.headers = newHeaders;
 
         logger.debug("Bypassed headers from (multi): " + JSON.stringify(newHeaders));
+
+        logger.debug("Sending to: %s", JSON.stringify(requestToSingleProxyOptions));
         var requestToSingleProxy = http.request(requestToSingleProxyOptions, function (singleProxyResponse) {
             if (singleProxyResponse.statusCode === 404) {
                 return next();
@@ -63,15 +64,16 @@ module.exports = function (originalRequest, originalResponse, next) {
                 singleProxyResponse.pipe(originalResponse);
             }
 
-        }).on('error', function (err, ress) {
+        }).on('error', function (err) {
             logger.warning("Error in request", requestToSingleProxyOptions);
-            logger.warning("Details: ", err, ress);
+            logger.warning("Details: ", err.message);
+            logger.warning("Service info: ", serviceInfo);
             originalResponse.status(500).end(err.toString());
         });
-        
-        if (!/\/docs\/?|\/plans\/?|\/api-docs\/?/.test(originalRequest.originalUrl)) {
-            logger.debug("Proxing ",originalRequest.originalUrl);
-            requestToSingleProxy.write(JSON.stringify(originalRequest.body));
+
+        if (!(Object.keys(originalRequest.body).length === 0 && originalRequest.body.constructor === Object) && !/\/docs\/?|\/plans\/?|\/api-docs\/?/.test(originalRequest.originalUrl)) {
+            logger.debug("Proxing ", originalRequest.originalUrl);
+//            requestToSingleProxy.write(JSON.stringify(originalRequest.body));
         }
         originalRequest.pipe(requestToSingleProxy);
 

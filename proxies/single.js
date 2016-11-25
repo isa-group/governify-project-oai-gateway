@@ -14,8 +14,10 @@ module.exports = function (singleProxyRequest, singleProxyResponse, next) {
 
     var proxiedServer = services[singleProxyRequest.serviceProxied].url;
     var path = singleProxyRequest.originalUrl;
+    
+    var builtURL = proxiedServer.replace(/\/?$/, '/') + path.replace(/^\/|\/$/g, '');
 
-    logger.info("Sending to server: " + proxiedServer + path + "...");
+    logger.info("Sending to server: " + builtURL + "...");
 
     try {
         var renameHost = services[singleProxyRequest.serviceProxied].url.split('//')[1];
@@ -33,7 +35,7 @@ module.exports = function (singleProxyRequest, singleProxyResponse, next) {
         logger.debug("Bypassed body from (single): " + requestBody);
         var requestToRealServer = request({
             method: singleProxyRequest.method,
-            url: proxiedServer + path,
+            url: builtURL,
             headers: newHeaders,
             body: requestBody
         }, function (err, realServerResponse) {
