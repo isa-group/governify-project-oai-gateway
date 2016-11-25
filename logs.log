@@ -1,0 +1,50 @@
+2016-11-25T09:48:45.728Z - info: Your server is listening  on port 8888 (http://localhost:8888/api/v1)
+2016-11-25T09:48:45.748Z - info: Swagger-ui is available on http://localhost:8888/api/v1/docs
+2016-11-25T09:48:52.438Z - info: Referer from: undefined as service: No referer 
+2016-11-25T09:48:52.439Z - info: Proxing internal /api/v1/docs ...
+2016-11-25T09:48:52.439Z - info: There is not service registered for name api
+2016-11-25T09:48:52.545Z - info: Referer from: http://localhost:8888/api/v1/docs as service: api 
+2016-11-25T09:48:52.547Z - info: Proxing internal /favicon.ico ...
+2016-11-25T09:48:52.547Z - info: There is not service registered for name favicon.ico
+2016-11-25T09:50:10.517Z - info: Your server is listening  on port 8888 (http://localhost:8888/garteway/api/v1/services)
+2016-11-25T09:50:10.519Z - info: Swagger-ui is available on http://localhost:8888/garteway/api/v1/docs
+2016-11-25T09:50:44.282Z - info: Referer from: undefined as service: No referer 
+2016-11-25T09:50:44.283Z - info: Proxing internal /garteway/api/v1/docs ...
+2016-11-25T09:50:44.283Z - info: There is not service registered for name garteway
+2016-11-25T09:50:44.360Z - info: Referer from: http://localhost:8888/garteway/api/v1/docs as service: garteway 
+2016-11-25T09:50:44.361Z - info: Proxing internal /favicon.ico ...
+2016-11-25T09:50:44.362Z - info: There is not service registered for name favicon.ico
+2016-11-25T09:51:03.174Z - info: Your server is listening  on port 8888 (http://localhost:8888/gateway/api/v1/services)
+2016-11-25T09:51:03.177Z - info: Swagger-ui is available on http://localhost:8888/gateway/api/v1/docs
+2016-11-25T09:54:54.359Z - info: Your server is listening  on port 8888 (http://localhost:8888/gateway/api/v1/services)
+2016-11-25T09:54:54.362Z - info: Swagger-ui is available on http://localhost:8888/gateway/api/v1/docs
+2016-11-25T09:56:53.282Z - info: Your server is listening  on port 8888 (http://localhost:8888/gateway/api/v1/services)
+2016-11-25T09:56:53.285Z - info: Swagger-ui is available on http://localhost:8888/gateway/api/v1/docs
+2016-11-25T10:00:23.007Z - info: Your server is listening  on port 8888 (http://localhost:8888/gateway/api/v1/services)
+2016-11-25T10:00:23.010Z - info: Swagger-ui is available on http://localhost:8888/gateway/api/v1/docs
+2016-11-25T10:12:21.744Z - info: Your server is listening  on port 8888 (http://localhost:8888/gateway/api/v1/services)
+2016-11-25T10:12:21.747Z - info: Swagger-ui is available on http://localhost:8888/gateway/api/v1/docs
+2016-11-25T10:12:32.577Z - info: Error while it was retrieving swaggerDoc from string. {}
+2016-11-25T10:32:19.114Z - info: Your server is listening  on port 8888 (http://localhost:8888/gateway/api/v1/services)
+2016-11-25T10:32:19.116Z - info: Swagger-ui is available on http://localhost:8888/gateway/api/v1/docs
+2016-11-25T10:32:53.749Z - info: Initialize slaManager from: "https://designer.governify.io:10843/dani8art/gtwDemo/sla4oai/petstore-plans.oai-at?accessToken=962b9d32-c615-498b-91d7-9e374d3a94d4"
+2016-11-25T10:32:54.127Z - info: Create {
+  "name": "pets",
+  "url": "http://192.168.99.100/api/pets",
+  "swagger_url": "https://designer.governify.io:10843/dani8art/gtwDemo/sla4oai/swagger.ag?accessToken=962b9d32-c615-498b-91d7-9e374d3a94d4",
+  "port": 8889
+}
+2016-11-25T10:33:52.655Z - info: Initialize slaManager from: "https://designer.governify.io:10843/dani8art/gtwDemo/sla4oai/petstore-plans.oai-at?accessToken=962b9d32-c615-498b-91d7-9e374d3a94d4"
+2016-11-25T10:33:53.014Z - info: Create {
+  "name": "pets",
+  "url": "http://192.168.99.100/api/pets",
+  "swagger_url": "https://designer.governify.io:10843/dani8art/gtwDemo/sla4oai/swagger.ag?accessToken=962b9d32-c615-498b-91d7-9e374d3a94d4",
+  "port": 8890
+}
+2016-11-25T10:34:35.836Z - info: Initialize slaManager from: "https://designer.governify.io:10843/dani8art/gtwDemo/sla4oai/petstore-plans.oai-at?accessToken=962b9d32-c615-498b-91d7-9e374d3a94d4"
+2016-11-25T10:34:36.188Z - info: Create {
+  "name": "pets",
+  "url": "http://192.168.99.100/api/pets",
+  "swagger_url": "https://designer.governify.io:10843/dani8art/gtwDemo/sla4oai/swagger.ag?accessToken=962b9d32-c615-498b-91d7-9e374d3a94d4",
+  "port": 8891
+}
