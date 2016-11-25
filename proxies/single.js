@@ -7,14 +7,14 @@ var config = require('../config');
 var services = require('../database').data.services;
 var logger = config.logger;
 
-module.exports = function (singleProxyRequest, singleProxyResponse, next) {
+module.exports = function(singleProxyRequest, singleProxyResponse, next) {
 
     if (singleProxyRequest.originalUrl.indexOf('plans') !== -1 || singleProxyRequest.originalUrl.indexOf('docs') !== -1)
         return next();
 
     var proxiedServer = services[singleProxyRequest.serviceProxied].url;
     var path = singleProxyRequest.originalUrl;
-    
+
     var builtURL = proxiedServer.replace(/\/?$/, '/') + path.replace(/^\/|\/$/g, '');
 
     logger.info("Sending to server: " + builtURL + "...");
@@ -23,22 +23,22 @@ module.exports = function (singleProxyRequest, singleProxyResponse, next) {
         var renameHost = services[singleProxyRequest.serviceProxied].url.split('//')[1];
         singleProxyResponse.setHeader("host", renameHost);
         var newHeaders = {};
-        console.log(singleProxyRequest.body);
-        logger.debug("preheader (single): " + JSON.stringify(singleProxyRequest.headers));
+        //console.log(singleProxyRequest.body);
+        //logger.debug("preheader (single): " + JSON.stringify(singleProxyRequest.headers));
         for (var h in singleProxyRequest.headers) {
             if (h === 'authorization' || h === 'content-type') {
                 newHeaders[h] = singleProxyRequest.headers[h];
             }
         }
         var requestBody = JSON.stringify(singleProxyRequest.body);
-        logger.debug("Bypassed headers from (single): " + JSON.stringify(newHeaders));
-        logger.debug("Bypassed body from (single): " + requestBody);
+        //logger.debug("Bypassed headers from (single): " + JSON.stringify(newHeaders));
+        // logger.debug("Bypassed body from (single): " + requestBody);
         var requestToRealServer = request({
             method: singleProxyRequest.method,
             url: builtURL,
             headers: newHeaders,
             body: requestBody
-        }, function (err, realServerResponse) {
+        }, function(err, realServerResponse) {
             if (err) {
                 logger.info("error from proxy: " + err);
                 singleProxyResponse.status(503).send(err);
@@ -50,7 +50,7 @@ module.exports = function (singleProxyRequest, singleProxyResponse, next) {
         });
 
 
-//        singleProxyRequest.pipe(requestToRealServer);
+        //        singleProxyRequest.pipe(requestToRealServer);
 
     } catch (e) {
         console.log(e);
