@@ -1,7 +1,7 @@
 'use strict';
 
 var http = require('http');
-var services = require('../database').data.services;
+var services = require('../database');
 var request = require('request');
 
 var config = require('../config');
@@ -17,8 +17,8 @@ module.exports = function(originalRequest, originalResponse, next) {
 
     logger.info("Proxing internal %s ...", originalRequest.originalUrl);
     var servicePath = originalRequest.originalUrl.split('/')[1];
-    var serviceInfo = services[servicePath] ||
-        services[(originalRequest.headers['referer'] ? originalRequest.headers['referer'].split('/')[3] : 'No referer')];
+    var serviceInfo = services.data.services[servicePath] ||
+        services.data.services[(originalRequest.headers['referer'] ? originalRequest.headers['referer'].split('/')[3] : 'No referer')];
 
     if (!serviceInfo) {
         logger.info('There is not service registered for name %s', servicePath);
@@ -27,13 +27,14 @@ module.exports = function(originalRequest, originalResponse, next) {
 
     try {
         var originalRequestBody = JSON.stringify(originalRequest.body);
-
+        console.log(Object.keys(originalRequestBody));
         var requestToSingleProxyOptions = {
             followRedirect: false,
             method: originalRequest.method,
             url: "http://localhost:" + serviceInfo.port + (originalRequest.originalUrl.replace('/' + serviceInfo.name, '')).replace(/([^:]\/)\/+/g, "$1"),
             body: originalRequestBody
         };
+        if (requestToSingleProxyOptions.method === 'HEAD') delete requestToSingleProxyOptions.body;
 
         originalResponse.setHeader("host", originalRequest.headers.host);
         //logger.debug("preheader: (multi) " + JSON.stringify(originalRequest.headers));
@@ -88,6 +89,7 @@ module.exports = function(originalRequest, originalResponse, next) {
         //originalRequest.pipe(requestToSingleProxy);
 
     } catch (e) {
+        console.log(e);
         originalResponse.status(503);
         originalResponse.send("Proxied server unreachable:" + e);
     }

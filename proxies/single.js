@@ -33,12 +33,15 @@ module.exports = function(singleProxyRequest, singleProxyResponse, next) {
         var requestBody = JSON.stringify(singleProxyRequest.body);
         //logger.debug("Bypassed headers from (single): " + JSON.stringify(newHeaders));
         // logger.debug("Bypassed body from (single): " + requestBody);
-        var requestToRealServer = request({
+        var realServerRequestOptions = {
             method: singleProxyRequest.method,
             url: builtURL,
             headers: newHeaders,
             body: requestBody
-        }, function(err, realServerResponse) {
+        }
+
+        if (realServerRequestOptions.method === 'HEAD') delete realServerRequestOptions.body;
+        var requestToRealServer = request(realServerRequestOptions, function(err, realServerResponse) {
             if (err) {
                 logger.info("error from proxy: " + err);
                 singleProxyResponse.status(503).send(err);
