@@ -20,10 +20,10 @@ module.exports = function (originalRequest, originalResponse, next) {
     var servicePath = originalRequest.originalUrl.split('/')[1];
 
     logger.multiproxy("Using path: %s", servicePath);
-    services.getServiceById(servicePath, function(err, service)  {
-        if (err) {
+    services.getServiceById(servicePath, function (err, service) {
+        if (err || !service) {
             logger.multiproxy("Not found service. Using refererFrom: %s", refererFrom);
-            services.getServiceById(refererFrom, function(err, service)  {
+            services.getServiceById(refererFrom, function (err, service) {
                 if (err) {
                     logger.multiproxy('There is not service registered for name %s', servicePath);
                     return originalResponse.status(405).end("Method Not Allowed");
@@ -35,7 +35,7 @@ module.exports = function (originalRequest, originalResponse, next) {
                     }
                     doProxy(serviceInfo, originalRequest, originalResponse, next);
                 }
-            }, originalRequest.userID);
+            });
         } else {
             var serviceInfo = service;
             if (!serviceInfo) {
@@ -44,7 +44,7 @@ module.exports = function (originalRequest, originalResponse, next) {
             }
             doProxy(serviceInfo, originalRequest, originalResponse, next);
         }
-    }, originalRequest.userID);
+    });
 
 };
 
@@ -59,7 +59,8 @@ function doProxy(serviceInfo, originalRequest, originalResponse, next) {
             url: "http://localhost:" + serviceInfo.port + (originalRequest.originalUrl.replace('/' + serviceInfo.name, '')).replace(/([^:]\/)\/+/g, "$1"),
             body: originalRequestBody
         };
-        if (requestToSingleProxyOptions.method === 'HEAD') delete requestToSingleProxyOptions.body;
+        if (requestToSingleProxyOptions.method === 'HEAD')
+            delete requestToSingleProxyOptions.body;
 
         originalResponse.setHeader("host", originalRequest.headers.host);
         var newHeaders = {};
