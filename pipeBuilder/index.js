@@ -1,16 +1,16 @@
 'use strict';
 
 var database = require('../database'),
-        express = require('express'),
-        swaggerTools = require('swagger-tools'),
-        bodyParser = require('body-parser'),
-        jsyaml = require('js-yaml'),
-        request = require('request'),
-        slaManager = require('sla4oai-tools');
+    express = require('express'),
+    swaggerTools = require('swagger-tools'),
+    bodyParser = require('body-parser'),
+    jsyaml = require('js-yaml'),
+    request = require('request'),
+    slaManager = require('sla4oai-tools');
 
 var config = require('../config'),
-        logger = config.logger,
-        singleProxy = require('../proxies/single');
+    logger = config.logger,
+    singleProxy = require('../proxies/single');
 
 module.exports.generate = function (newServiceInfo, callback) {
     //create the new serverWith express
@@ -34,7 +34,7 @@ module.exports.generate = function (newServiceInfo, callback) {
             //prepend the service pathName
             var docsPath = (swaggerDoc.basePath ? swaggerDoc.basePath : '') + '/docs'; //"/" + newServiceInfo.name +
             var apidocsPath = (swaggerDoc.basePath ? swaggerDoc.basePath : '') + '/api-docs'; // "/" + newServiceInfo.name +
-            logger.info("Initialize slaManager from: %s", JSON.stringify(swaggerDoc.info['x-sla']));
+            logger.pipeBuilder("Initialize slaManager from: %s", JSON.stringify(swaggerDoc.info['x-sla']));
             slaManager.initialize(app, {
                 sla4oai: swaggerDoc.info['x-sla'],
                 sla4oaiUI: {
@@ -54,19 +54,16 @@ module.exports.generate = function (newServiceInfo, callback) {
                     }));
 
                     app.listen(newServiceInfo.port, function () {
-                        logger.info("Create %s", JSON.stringify(newServiceInfo, null, 2));
-                        database.addService(newServiceInfo);
-                        return callback(null);
+                        logger.pipeBuilder("Created %s", JSON.stringify(newServiceInfo, null, 2));
+                        var toSave = newServiceInfo;
+                        callback(null, toSave);
                     });
                 });
 
             });
 
-
-
-
         } else {
-            logger.info("Error while it was retrieving swaggerDoc from %s. %s", newServiceInfo.swagger_url, JSON.stringify(err, null, 2));
+            logger.error("Error while it was retrieving swaggerDoc from %s. %s", newServiceInfo.swagger_url, JSON.stringify(err, null, 2));
             return callback(err, null);
         }
 

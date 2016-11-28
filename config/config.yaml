@@ -3,8 +3,14 @@ production:
   multiproxy: true
   port: 80
   logger: 'info'
+  database:
+    url: mongodb://mongo
+    db_name: gateway
 
 development:
   multiproxy: true
   port: 8888
   logger: 'debug'
+  database:
+    url: mongodb://localhost
+    db_name: gateway

@@ -1,36 +1,106 @@
 'use strict';
+var mongoose = require('mongoose'),
+    config = require('../config'),
+    bluebird = require('bluebird'),
+    logger = config.logger;
 
-module.exports.data = {
-    services: {}
+mongoose.Promise = bluebird;
+module.exports = {
+    connectDB: _connectDB
+}
+
+function _connectDB(callback) {
+    var database = this;
+    mongoose.connect(config.database.url + "/" + config.database.db_name, (err) => {
+        if (err) {
+            callback(err);
+            logger.error(err.toString());
+        } else {
+            callback(null);
+            logger.info("Database connection has been stablished!!");
+            database.serviceModel = mongoose.model('Service', new mongoose.Schema(require('./serviceSchema.json'), {
+                minimize: false,
+                versionKey: false,
+                timestamps: {
+                    createdAt: 'created_at',
+                    updatedAt: 'updated_at'
+                }
+            }));
+        }
+    });
+}
+
+module.exports.addService = function (newServiceInfo, callback) {
+    new this.serviceModel(newServiceInfo).save((err, result) => {
+        if (err) {
+            logger.db("Error while saving service: %s", JSON.stringify(err.toString()));
+            callback(err, null);
+        } else {
+            logger.db("Service has been saved successfully");
+            callback(null, result);
+        }
+    });
 };
 
-module.exports.addService = function(newServiceInfo) {
-    this.data.services[newServiceInfo.name] = newServiceInfo;
+module.exports.getServices = function (callback) {
+    this.serviceModel.find({}, (err, services) => {
+        if (err) {
+            logger.db("Error while retrieving services: %s", JSON.stringify(err.toString()));
+            callback(err, null);
+        } else {
+            logger.db("%d have been found.", services.length);
+            callback(null, services);
+        }
+    });
 };
 
-module.exports.getServices = function() {
-    var ret = [];
-    for (var s in this.data.services) {
-        ret.push(this.data.services[s]);
-    }
-    return ret;
+module.exports.getServiceById = function (id, callback) {
+    this.serviceModel.findOne({
+        name: id
+    }, (err, service) => {
+        if (err) {
+            logger.db("Error while retrieving services: %s", JSON.stringify(err.toString()));
+            callback(err, null);
+        } else {
+            logger.db("Found: %s", JSON.stringify(service, null, 2));
+            callback(null, service);
+        }
+    });
 };
 
-module.exports.getServiceById = function(id) {
-    return this.data.services[id];
+module.exports.deleteAllServices = function (callback) {
+    this.serviceModel.remove({}, (err, result) => {
+        if (err) {
+            logger.db("Error while removing services: %s", JSON.stringify(err.toString()));
+            callback(err, null);
+        } else {
+            callback(null);
+        }
+    });
 };
 
-module.exports.deleteAllServices = function() {
-    this.data.services = {};
-    return true;
+module.exports.deleteServiceById = function (id, callback) {
+    this.serviceModel.remove({
+        name: id
+    }, (err, result) => {
+        if (err) {
+            logger.db("Error while removing a service: %s", JSON.stringify(err.toString()));
+            callback(err, null);
+        } else {
+            callback(null);
+        }
+    });
 };
 
-module.exports.deleteServiceById = function(id) {
-    delete this.data.services[id];
-    return true;
-};
-
-module.exports.updateServiceById = function(id, serviceInfo) {
-    this.data.services[id] = serviceInfo;
-    return true;
+module.exports.updateServiceById = function (id, serviceInfo, callback) {
+    this.serviceModel.update({
+        name: id
+    }, serviceInfo, (err, result) => {
+        if (err) {
+            logger.db("Error while updating services: %s", JSON.stringify(err.toString()));
+            callback(err, null);
+        } else {
+            callback(result);
+        }
+    });
 };

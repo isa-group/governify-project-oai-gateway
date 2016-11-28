@@ -9,8 +9,8 @@ module.exports = jsyaml.safeLoad(configString)[process.env.NODE_ENV ? process.en
 
 // CHECKING ENV VARS
 // multiproxy
-process.env.MULTIPROXY ? module.exports.multiproxy = process.env.MULTIPROXY
-        : null;
+process.env.MULTIPROXY ? module.exports.multiproxy = process.env.MULTIPROXY :
+    null;
 
 
 // WINSTON CONFIGURATION
@@ -20,18 +20,18 @@ var logConfig = {
     levels: {
         error: 7,
         warning: 8,
-        checkCtl: 9,
-        tenantsCtl: 9,
-        slaCtl: 9,
+        pipeBuilder: 9,
+        servicesCtl: 9,
+        db: 9,
         info: 10,
         debug: 11
     },
     colors: {
         error: 'red',
         warning: 'yellow',
-        checkCtl: 'green',
-        tenantsCtl: 'cyan',
-        slaCtl: 'magenta',
+        pipeBuilder: 'green',
+        servicesCtl: 'cyan',
+        db: 'magenta',
         info: 'white',
         debug: 'grey'
     }

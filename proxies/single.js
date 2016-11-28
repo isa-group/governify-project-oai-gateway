@@ -1,13 +1,12 @@
 'use strict';
 
 var request = require('request');
-var services = require('../database').data.services;
+var services = require('../database').serviceModel;
 
 var config = require('../config');
-var services = require('../database').data.services;
 var logger = config.logger;
 
-module.exports = function(singleProxyRequest, singleProxyResponse, next) {
+module.exports = function (singleProxyRequest, singleProxyResponse, next) {
 
     if (singleProxyRequest.originalUrl.indexOf('plans') !== -1 || singleProxyRequest.originalUrl.indexOf('docs') !== -1)
         return next();
@@ -41,7 +40,7 @@ module.exports = function(singleProxyRequest, singleProxyResponse, next) {
         }
 
         if (realServerRequestOptions.method === 'HEAD') delete realServerRequestOptions.body;
-        var requestToRealServer = request(realServerRequestOptions, function(err, realServerResponse) {
+        var requestToRealServer = request(realServerRequestOptions, function (err, realServerResponse) {
             if (err) {
                 logger.info("error from proxy: " + err);
                 singleProxyResponse.status(503).send(err);
