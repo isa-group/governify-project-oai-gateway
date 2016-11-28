@@ -17,7 +17,7 @@ exports.servicesPOST = function(req, res, next) {
         if (!err)
             return res.status(201).end("Created.");
 
-        return res.json(err);
+        return res.status(400).json(err);
     });
 }
 

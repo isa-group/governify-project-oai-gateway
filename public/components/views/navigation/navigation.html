@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">Governify gateway portal</a>
+    </div>
+    <div class="collapse navbar-collapse" id="top-navbar-1">
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <span class="li-text">
+                    by <a href="http://www.isa.us.es" target="_blank"><strong>ISA Research Group</strong></a> 
+                </span> 
+                <span class="li-social">
+                    <a href="http://www.isa.us.es" target="_blank"><i class="fa fa-globe"></i></a> 
+                    <a href="https://github.com/isa-group" target="_blank"><i class="fa fa-github"></i></a>
+                    <a href="https://www.facebook.com/isaresearchgroup" target="_blank"><i class="fa fa-facebook"></i></a> 
+                </span>
+                <span>
+                    <a ng-cloak ng-if="!isAuthenticated" ui-sref="home" ng-click="authService.login()">Log In</a>
+                    <a ng-cloak ng-if="isAuthenticated" ng-click="logoutFromAuth0()">Log Out</a>
+                    <div ng-cloak ng-if="isAuthenticated" class="login-photo">
+                        <img ng-src="{{profile.picture}}">
+                    </div>
+                </span>
+        </ul>
+    </div>
+</div>
