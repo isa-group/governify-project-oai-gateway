@@ -22,7 +22,7 @@ module.exports = function (originalRequest, originalResponse, next) {
 
     logger.multiproxy("Using path: %s", servicePath);
     services.getServiceById(servicePath, (err, service) => {
-        if (err) {
+        if (err || !service) {
             logger.multiproxy("Not found service. Using refererFrom: %s", refererFrom);
             services.getServiceById(refererFrom, (err, service) => {
                 if (err) {
@@ -36,7 +36,7 @@ module.exports = function (originalRequest, originalResponse, next) {
                     }
                     doProxy(serviceInfo, originalRequest, originalResponse, next);
                 }
-            }, req.userID);
+            });
         } else {
             var serviceInfo = service;
             if (!serviceInfo) {
@@ -45,7 +45,7 @@ module.exports = function (originalRequest, originalResponse, next) {
             }
             doProxy(serviceInfo, originalRequest, originalResponse, next);
         }
-    }, originalRequest.userID);
+    });
 
 };
 
