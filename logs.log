@@ -1,304 +1,50 @@
-2016-11-04T12:56:52.482Z - info: Your server is listening  on port 8888 (http://localhost:8888/api/v1)
-2016-11-04T12:56:52.484Z - info: Swagger-ui is available on http://localhost:8888/api/v1/docs
-2016-11-04T12:57:03.248Z - info: Initialize slaManager from: "https://designer.governify.io:10843/rcis-unex/rcis/nimBees/plans.oai-at?accessToken=962b9d32-c615-498b-91d7-9e374d3a94d4"
-2016-11-04T12:57:03.670Z - info: Create {
-  "name": "nimbees1",
-  "url": "https://api.nimbees.com/nimbees_platform_server_api",
-  "swagger_url": "https://designer.governify.io:10843/rcis-unex/rcis/nimBees/swagger.yaml?accessToken=962b9d32-c615-498b-91d7-9e374d3a94d4",
+2016-11-25T09:48:45.728Z - info: Your server is listening  on port 8888 (http://localhost:8888/api/v1)
+2016-11-25T09:48:45.748Z - info: Swagger-ui is available on http://localhost:8888/api/v1/docs
+2016-11-25T09:48:52.438Z - info: Referer from: undefined as service: No referer 
+2016-11-25T09:48:52.439Z - info: Proxing internal /api/v1/docs ...
+2016-11-25T09:48:52.439Z - info: There is not service registered for name api
+2016-11-25T09:48:52.545Z - info: Referer from: http://localhost:8888/api/v1/docs as service: api 
+2016-11-25T09:48:52.547Z - info: Proxing internal /favicon.ico ...
+2016-11-25T09:48:52.547Z - info: There is not service registered for name favicon.ico
+2016-11-25T09:50:10.517Z - info: Your server is listening  on port 8888 (http://localhost:8888/garteway/api/v1/services)
+2016-11-25T09:50:10.519Z - info: Swagger-ui is available on http://localhost:8888/garteway/api/v1/docs
+2016-11-25T09:50:44.282Z - info: Referer from: undefined as service: No referer 
+2016-11-25T09:50:44.283Z - info: Proxing internal /garteway/api/v1/docs ...
+2016-11-25T09:50:44.283Z - info: There is not service registered for name garteway
+2016-11-25T09:50:44.360Z - info: Referer from: http://localhost:8888/garteway/api/v1/docs as service: garteway 
+2016-11-25T09:50:44.361Z - info: Proxing internal /favicon.ico ...
+2016-11-25T09:50:44.362Z - info: There is not service registered for name favicon.ico
+2016-11-25T09:51:03.174Z - info: Your server is listening  on port 8888 (http://localhost:8888/gateway/api/v1/services)
+2016-11-25T09:51:03.177Z - info: Swagger-ui is available on http://localhost:8888/gateway/api/v1/docs
+2016-11-25T09:54:54.359Z - info: Your server is listening  on port 8888 (http://localhost:8888/gateway/api/v1/services)
+2016-11-25T09:54:54.362Z - info: Swagger-ui is available on http://localhost:8888/gateway/api/v1/docs
+2016-11-25T09:56:53.282Z - info: Your server is listening  on port 8888 (http://localhost:8888/gateway/api/v1/services)
+2016-11-25T09:56:53.285Z - info: Swagger-ui is available on http://localhost:8888/gateway/api/v1/docs
+2016-11-25T10:00:23.007Z - info: Your server is listening  on port 8888 (http://localhost:8888/gateway/api/v1/services)
+2016-11-25T10:00:23.010Z - info: Swagger-ui is available on http://localhost:8888/gateway/api/v1/docs
+2016-11-25T10:12:21.744Z - info: Your server is listening  on port 8888 (http://localhost:8888/gateway/api/v1/services)
+2016-11-25T10:12:21.747Z - info: Swagger-ui is available on http://localhost:8888/gateway/api/v1/docs
+2016-11-25T10:12:32.577Z - info: Error while it was retrieving swaggerDoc from string. {}
+2016-11-25T10:32:19.114Z - info: Your server is listening  on port 8888 (http://localhost:8888/gateway/api/v1/services)
+2016-11-25T10:32:19.116Z - info: Swagger-ui is available on http://localhost:8888/gateway/api/v1/docs
+2016-11-25T10:32:53.749Z - info: Initialize slaManager from: "https://designer.governify.io:10843/dani8art/gtwDemo/sla4oai/petstore-plans.oai-at?accessToken=962b9d32-c615-498b-91d7-9e374d3a94d4"
+2016-11-25T10:32:54.127Z - info: Create {
+  "name": "pets",
+  "url": "http://192.168.99.100/api/pets",
+  "swagger_url": "https://designer.governify.io:10843/dani8art/gtwDemo/sla4oai/swagger.ag?accessToken=962b9d32-c615-498b-91d7-9e374d3a94d4",
   "port": 8889
 }
-2016-11-04T12:57:06.130Z - info: Referer from: undefined as service: No referer 
-2016-11-04T12:57:06.132Z - info: Proxing internal /nimbees1/sendNotification/?apikey=e010f506e405 ...
-2016-11-04T12:57:06.132Z - info: Sending to: {"hostname":"localhost","port":8889,"path":"/sendNotification/?apikey=e010f506e405","method":"POST"}
-2016-11-04T12:57:06.134Z - info: preheader: (multi) {"host":"localhost:8888","connection":"keep-alive","content-length":"956","authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","postman-token":"be43fbfb-d19d-0db9-7a18-def5fad0da39","cache-control":"no-cache","origin":"chrome-extension://aicmkgpgakddgnaphhhpliifpcfhicfo","user-agent":"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36","content-type":"application/json","accept":"*/*","accept-encoding":"gzip, deflate, br","accept-language":"es-ES,es;q=0.8,en;q=0.6"}
-2016-11-04T12:57:06.139Z - info: Bypassed headers from (multi): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json"}
-2016-11-04T12:57:06.835Z - info: Sending to server: https://api.nimbees.com/nimbees_platform_server_api/sendNotification/?apikey=e010f506e405...
-2016-11-04T12:57:06.836Z - info: preheader (single): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json","host":"localhost:8889","connection":"close","content-length":"0"}
-2016-11-04T12:57:06.837Z - info: Bypassed headers from (single): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json"}
-2016-11-04T12:57:06.860Z - error: uncaughtException: Cannot read property 'statusCode' of undefined date=Fri Nov 04 2016 13:57:06 GMT+0100 (Hora estándar romance), pid=12936, uid=null, gid=null, cwd=C:\Users\isa-tecnico\Documents\workspaces\governify\governify-gateway, execPath=C:\Program Files\nodejs\node.exe, version=v6.5.0, argv=[C:\Program Files\nodejs\node.exe, C:\Users\isa-tecnico\Documents\workspaces\governify\governify-gateway], rss=71815168, heapTotal=62758912, heapUsed=32931376, loadavg=[0, 0, 0], uptime=97434.3571374, trace=[column=60, file=C:\Users\isa-tecnico\Documents\workspaces\governify\governify-gateway\proxies\single.js, function=Request._callback, line=42, method=_callback, native=false, column=22, file=C:\Users\isa-tecnico\Documents\workspaces\governify\governify-gateway\node_modules\request\request.js, function=self.callback, line=187, method=callback, native=false, column=20, file=events.js, function=emitOne, line=101, method=null, native=false, column=7, file=events.js, function=Request.emit, line=188, method=emit, native=false, column=8, file=C:\Users\isa-tecnico\Documents\workspaces\governify\governify-gateway\node_modules\request\request.js, function=Request.onRequestError, line=813, method=onRequestError, native=false, column=13, file=events.js, function=emitOne, line=96, method=null, native=false, column=7, file=events.js, function=ClientRequest.emit, line=188, method=emit, native=false, column=8, file=_http_outgoing.js, function=writeAfterEndNT, line=487, method=null, native=false, column=11, file=internal/process/next_tick.js, function=_combinedTickCallback, line=77, method=null, native=false, column=9, file=internal/process/next_tick.js, function=process._tickCallback, line=98, method=_tickCallback, native=false], stack=[TypeError: Cannot read property 'statusCode' of undefined,     at Request._callback (C:\Users\isa-tecnico\Documents\workspaces\governify\governify-gateway\proxies\single.js:42:60),     at self.callback (C:\Users\isa-tecnico\Documents\workspaces\governify\governify-gateway\node_modules\request\request.js:187:22),     at emitOne (events.js:101:20),     at Request.emit (events.js:188:7),     at Request.onRequestError (C:\Users\isa-tecnico\Documents\workspaces\governify\governify-gateway\node_modules\request\request.js:813:8),     at emitOne (events.js:96:13),     at ClientRequest.emit (events.js:188:7),     at writeAfterEndNT (_http_outgoing.js:487:8),     at _combinedTickCallback (internal/process/next_tick.js:77:11),     at process._tickCallback (internal/process/next_tick.js:98:9)]
-2016-11-04T12:57:06.899Z - info: Status from proxied server: 503
-2016-11-04T12:57:06.899Z - info: Piping response...
-2016-11-04T12:57:27.228Z - error: uncaughtException: write after end date=Fri Nov 04 2016 13:57:27 GMT+0100 (Hora estándar romance), pid=12936, uid=null, gid=null, cwd=C:\Users\isa-tecnico\Documents\workspaces\governify\governify-gateway, execPath=C:\Program Files\nodejs\node.exe, version=v6.5.0, argv=[C:\Program Files\nodejs\node.exe, C:\Users\isa-tecnico\Documents\workspaces\governify\governify-gateway], rss=72839168, heapTotal=63807488, heapUsed=33769720, loadavg=[0, 0, 0], uptime=97454.7260496, trace=[column=15, file=_http_outgoing.js, function=ServerResponse.OutgoingMessage.write, line=427, method=OutgoingMessage.write, native=false, column=26, file=stream.js, function=Request.ondata, line=31, method=ondata, native=false, column=20, file=events.js, function=emitOne, line=101, method=null, native=false, column=7, file=events.js, function=Request.emit, line=188, method=emit, native=false, column=12, file=C:\Users\isa-tecnico\Documents\workspaces\governify\governify-gateway\node_modules\request\request.js, function=, line=966, method=null, native=false, column=13, file=events.js, function=emitOne, line=96, method=null, native=false, column=7, file=events.js, function=IncomingMessage.emit, line=188, method=emit, native=false, column=10, file=_stream_readable.js, function=IncomingMessage.Readable.read, line=381, method=Readable.read, native=false, column=34, file=_stream_readable.js, function=flow, line=761, method=null, native=false, column=3, file=_stream_readable.js, function=resume_, line=743, method=null, native=false], stack=[Error: write after end,     at ServerResponse.OutgoingMessage.write (_http_outgoing.js:427:15),     at Request.ondata (stream.js:31:26),     at emitOne (events.js:101:20),     at Request.emit (events.js:188:7),     at IncomingMessage.<anonymous> (C:\Users\isa-tecnico\Documents\workspaces\governify\governify-gateway\node_modules\request\request.js:966:12),     at emitOne (events.js:96:13),     at IncomingMessage.emit (events.js:188:7),     at IncomingMessage.Readable.read (_stream_readable.js:381:10),     at flow (_stream_readable.js:761:34),     at resume_ (_stream_readable.js:743:3)]
-2016-11-04T12:58:32.357Z - info: Your server is listening  on port 8888 (http://localhost:8888/api/v1)
-2016-11-04T12:58:32.359Z - info: Swagger-ui is available on http://localhost:8888/api/v1/docs
-2016-11-04T12:58:36.408Z - info: Referer from: undefined as service: No referer 
-2016-11-04T12:58:36.409Z - info: Proxing internal /nimbees1/sendNotification/?apikey=e010f506e405 ...
-2016-11-04T12:58:36.409Z - info: There is not service registered for name nimbees1
-2016-11-04T12:58:40.904Z - info: Initialize slaManager from: "https://designer.governify.io:10843/rcis-unex/rcis/nimBees/plans.oai-at?accessToken=962b9d32-c615-498b-91d7-9e374d3a94d4"
-2016-11-04T12:58:41.290Z - info: Create {
-  "name": "nimbees1",
-  "url": "https://api.nimbees.com/nimbees_platform_server_api",
-  "swagger_url": "https://designer.governify.io:10843/rcis-unex/rcis/nimBees/swagger.yaml?accessToken=962b9d32-c615-498b-91d7-9e374d3a94d4",
-  "port": 8889
-}
-2016-11-04T12:58:46.192Z - info: Referer from: undefined as service: No referer 
-2016-11-04T12:58:46.194Z - info: Proxing internal /nimbees1/sendNotification/?apikey=e010f506e405 ...
-2016-11-04T12:58:46.195Z - info: Sending to: {"hostname":"localhost","port":8889,"path":"/sendNotification/?apikey=e010f506e405","method":"POST"}
-2016-11-04T12:58:46.196Z - info: preheader: (multi) {"host":"localhost:8888","connection":"keep-alive","content-length":"956","authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","postman-token":"8ba91f80-66fb-f473-7220-3efc1155a730","cache-control":"no-cache","origin":"chrome-extension://aicmkgpgakddgnaphhhpliifpcfhicfo","user-agent":"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36","content-type":"application/json","accept":"*/*","accept-encoding":"gzip, deflate, br","accept-language":"es-ES,es;q=0.8,en;q=0.6"}
-2016-11-04T12:58:46.199Z - info: Bypassed headers from (multi): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json"}
-2016-11-04T12:58:46.837Z - info: Sending to server: https://api.nimbees.com/nimbees_platform_server_api/sendNotification/?apikey=e010f506e405...
-2016-11-04T12:58:46.840Z - info: preheader (single): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json","host":"localhost:8889","connection":"close","content-length":"0"}
-2016-11-04T12:58:46.843Z - info: Bypassed headers from (single): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json"}
-2016-11-04T12:58:46.853Z - info: error from proxy: {}
-2016-11-04T12:58:46.884Z - error: uncaughtException: Cannot read property 'statusCode' of undefined date=Fri Nov 04 2016 13:58:46 GMT+0100 (Hora estándar romance), pid=13488, uid=null, gid=null, cwd=C:\Users\isa-tecnico\Documents\workspaces\governify\governify-gateway, execPath=C:\Program Files\nodejs\node.exe, version=v6.5.0, argv=[C:\Program Files\nodejs\node.exe, C:\Users\isa-tecnico\Documents\workspaces\governify\governify-gateway], rss=72175616, heapTotal=63807488, heapUsed=32922000, loadavg=[0, 0, 0], uptime=97534.3792827, trace=[column=60, file=C:\Users\isa-tecnico\Documents\workspaces\governify\governify-gateway\proxies\single.js, function=Request._callback, line=43, method=_callback, native=false, column=22, file=C:\Users\isa-tecnico\Documents\workspaces\governify\governify-gateway\node_modules\request\request.js, function=self.callback, line=187, method=callback, native=false, column=20, file=events.js, function=emitOne, line=101, method=null, native=false, column=7, file=events.js, function=Request.emit, line=188, method=emit, native=false, column=8, file=C:\Users\isa-tecnico\Documents\workspaces\governify\governify-gateway\node_modules\request\request.js, function=Request.onRequestError, line=813, method=onRequestError, native=false, column=13, file=events.js, function=emitOne, line=96, method=null, native=false, column=7, file=events.js, function=ClientRequest.emit, line=188, method=emit, native=false, column=8, file=_http_outgoing.js, function=writeAfterEndNT, line=487, method=null, native=false, column=11, file=internal/process/next_tick.js, function=_combinedTickCallback, line=77, method=null, native=false, column=9, file=internal/process/next_tick.js, function=process._tickCallback, line=98, method=_tickCallback, native=false], stack=[TypeError: Cannot read property 'statusCode' of undefined,     at Request._callback (C:\Users\isa-tecnico\Documents\workspaces\governify\governify-gateway\proxies\single.js:43:60),     at self.callback (C:\Users\isa-tecnico\Documents\workspaces\governify\governify-gateway\node_modules\request\request.js:187:22),     at emitOne (events.js:101:20),     at Request.emit (events.js:188:7),     at Request.onRequestError (C:\Users\isa-tecnico\Documents\workspaces\governify\governify-gateway\node_modules\request\request.js:813:8),     at emitOne (events.js:96:13),     at ClientRequest.emit (events.js:188:7),     at writeAfterEndNT (_http_outgoing.js:487:8),     at _combinedTickCallback (internal/process/next_tick.js:77:11),     at process._tickCallback (internal/process/next_tick.js:98:9)]
-2016-11-04T12:58:46.914Z - info: Status from proxied server: 503
-2016-11-04T12:58:46.915Z - info: Piping response...
-2016-11-04T12:59:07.184Z - error: uncaughtException: write after end date=Fri Nov 04 2016 13:59:07 GMT+0100 (Hora estándar romance), pid=13488, uid=null, gid=null, cwd=C:\Users\isa-tecnico\Documents\workspaces\governify\governify-gateway, execPath=C:\Program Files\nodejs\node.exe, version=v6.5.0, argv=[C:\Program Files\nodejs\node.exe, C:\Users\isa-tecnico\Documents\workspaces\governify\governify-gateway], rss=73220096, heapTotal=63807488, heapUsed=33756560, loadavg=[0, 0, 0], uptime=97554.6864161, trace=[column=15, file=_http_outgoing.js, function=ServerResponse.OutgoingMessage.write, line=427, method=OutgoingMessage.write, native=false, column=26, file=stream.js, function=Request.ondata, line=31, method=ondata, native=false, column=20, file=events.js, function=emitOne, line=101, method=null, native=false, column=7, file=events.js, function=Request.emit, line=188, method=emit, native=false, column=12, file=C:\Users\isa-tecnico\Documents\workspaces\governify\governify-gateway\node_modules\request\request.js, function=, line=966, method=null, native=false, column=13, file=events.js, function=emitOne, line=96, method=null, native=false, column=7, file=events.js, function=IncomingMessage.emit, line=188, method=emit, native=false, column=10, file=_stream_readable.js, function=IncomingMessage.Readable.read, line=381, method=Readable.read, native=false, column=34, file=_stream_readable.js, function=flow, line=761, method=null, native=false, column=3, file=_stream_readable.js, function=resume_, line=743, method=null, native=false], stack=[Error: write after end,     at ServerResponse.OutgoingMessage.write (_http_outgoing.js:427:15),     at Request.ondata (stream.js:31:26),     at emitOne (events.js:101:20),     at Request.emit (events.js:188:7),     at IncomingMessage.<anonymous> (C:\Users\isa-tecnico\Documents\workspaces\governify\governify-gateway\node_modules\request\request.js:966:12),     at emitOne (events.js:96:13),     at IncomingMessage.emit (events.js:188:7),     at IncomingMessage.Readable.read (_stream_readable.js:381:10),     at flow (_stream_readable.js:761:34),     at resume_ (_stream_readable.js:743:3)]
-2016-11-04T12:59:26.206Z - info: Your server is listening  on port 8888 (http://localhost:8888/api/v1)
-2016-11-04T12:59:26.209Z - info: Swagger-ui is available on http://localhost:8888/api/v1/docs
-2016-11-04T12:59:33.407Z - info: Initialize slaManager from: "https://designer.governify.io:10843/rcis-unex/rcis/nimBees/plans.oai-at?accessToken=962b9d32-c615-498b-91d7-9e374d3a94d4"
-2016-11-04T12:59:33.875Z - info: Create {
-  "name": "nimbees1",
-  "url": "https://api.nimbees.com/nimbees_platform_server_api",
-  "swagger_url": "https://designer.governify.io:10843/rcis-unex/rcis/nimBees/swagger.yaml?accessToken=962b9d32-c615-498b-91d7-9e374d3a94d4",
-  "port": 8889
-}
-2016-11-04T12:59:37.889Z - info: Referer from: undefined as service: No referer 
-2016-11-04T12:59:37.890Z - info: Proxing internal /nimbees1/sendNotification/?apikey=e010f506e405 ...
-2016-11-04T12:59:37.891Z - info: Sending to: {"hostname":"localhost","port":8889,"path":"/sendNotification/?apikey=e010f506e405","method":"POST"}
-2016-11-04T12:59:37.892Z - info: preheader: (multi) {"host":"localhost:8888","connection":"keep-alive","content-length":"956","authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","postman-token":"c8fa27f7-bfed-8195-4841-f62e39cc072a","cache-control":"no-cache","origin":"chrome-extension://aicmkgpgakddgnaphhhpliifpcfhicfo","user-agent":"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36","content-type":"application/json","accept":"*/*","accept-encoding":"gzip, deflate, br","accept-language":"es-ES,es;q=0.8,en;q=0.6"}
-2016-11-04T12:59:37.895Z - info: Bypassed headers from (multi): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json"}
-2016-11-04T12:59:38.656Z - info: Sending to server: https://api.nimbees.com/nimbees_platform_server_api/sendNotification/?apikey=e010f506e405...
-2016-11-04T12:59:38.658Z - info: preheader (single): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json","host":"localhost:8889","connection":"close","content-length":"0"}
-2016-11-04T12:59:38.661Z - info: Bypassed headers from (single): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json"}
-2016-11-04T12:59:38.664Z - info: error from proxy: {}
-2016-11-04T12:59:38.689Z - info: Status from proxied server: 503
-2016-11-04T12:59:38.691Z - info: Piping response...
-2016-11-04T13:01:58.549Z - info: Your server is listening  on port 8888 (http://localhost:8888/api/v1)
-2016-11-04T13:01:58.552Z - info: Swagger-ui is available on http://localhost:8888/api/v1/docs
-2016-11-04T13:01:59.549Z - info: Initialize slaManager from: "https://designer.governify.io:10843/rcis-unex/rcis/nimBees/plans.oai-at?accessToken=962b9d32-c615-498b-91d7-9e374d3a94d4"
-2016-11-04T13:01:59.952Z - info: Create {
-  "name": "nimbees1",
-  "url": "https://api.nimbees.com/nimbees_platform_server_api",
-  "swagger_url": "https://designer.governify.io:10843/rcis-unex/rcis/nimBees/swagger.yaml?accessToken=962b9d32-c615-498b-91d7-9e374d3a94d4",
-  "port": 8889
-}
-2016-11-04T13:02:03.099Z - info: Referer from: undefined as service: No referer 
-2016-11-04T13:02:03.099Z - info: Proxing internal /nimbees1/sendNotification/?apikey=e010f506e405 ...
-2016-11-04T13:02:03.100Z - info: Sending to: {"hostname":"localhost","port":8889,"path":"/sendNotification/?apikey=e010f506e405","method":"POST"}
-2016-11-04T13:02:03.101Z - info: preheader: (multi) {"host":"localhost:8888","connection":"keep-alive","content-length":"956","authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","postman-token":"84c61dab-c2e6-188c-e9c1-591aac03e34e","cache-control":"no-cache","origin":"chrome-extension://aicmkgpgakddgnaphhhpliifpcfhicfo","user-agent":"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36","content-type":"application/json","accept":"*/*","accept-encoding":"gzip, deflate, br","accept-language":"es-ES,es;q=0.8,en;q=0.6"}
-2016-11-04T13:02:03.105Z - info: Bypassed headers from (multi): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json"}
-2016-11-04T13:02:03.819Z - info: Sending to server: https://api.nimbees.com/nimbees_platform_server_api/sendNotification/?apikey=e010f506e405...
-2016-11-04T13:02:03.822Z - info: preheader (single): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json","host":"localhost:8889","connection":"close","content-length":"0"}
-2016-11-04T13:02:03.825Z - info: Bypassed headers from (single): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json"}
-2016-11-04T13:02:03.829Z - info: error from proxy: {}
-2016-11-04T13:02:03.836Z - info: Response from server: undefined
-2016-11-04T13:02:03.858Z - info: Status from proxied server: 503
-2016-11-04T13:02:03.858Z - info: Piping response...
-2016-11-04T13:05:48.062Z - info: Your server is listening  on port 8888 (http://localhost:8888/api/v1)
-2016-11-04T13:05:48.065Z - info: Swagger-ui is available on http://localhost:8888/api/v1/docs
-2016-11-04T13:05:51.796Z - info: Referer from: undefined as service: No referer 
-2016-11-04T13:05:51.797Z - info: Proxing internal /nimbees1/sendNotification/?apikey=e010f506e405 ...
-2016-11-04T13:05:51.798Z - info: There is not service registered for name nimbees1
-2016-11-04T13:05:55.049Z - info: Initialize slaManager from: "https://designer.governify.io:10843/rcis-unex/rcis/nimBees/plans.oai-at?accessToken=962b9d32-c615-498b-91d7-9e374d3a94d4"
-2016-11-04T13:05:55.436Z - info: Create {
-  "name": "nimbees1",
-  "url": "https://api.nimbees.com/nimbees_platform_server_api",
-  "swagger_url": "https://designer.governify.io:10843/rcis-unex/rcis/nimBees/swagger.yaml?accessToken=962b9d32-c615-498b-91d7-9e374d3a94d4",
-  "port": 8889
-}
-2016-11-04T13:05:58.833Z - info: Referer from: undefined as service: No referer 
-2016-11-04T13:05:58.834Z - info: Proxing internal /nimbees1/sendNotification/?apikey=e010f506e405 ...
-2016-11-04T13:05:58.835Z - info: Sending to: {"hostname":"localhost","port":8889,"path":"/sendNotification/?apikey=e010f506e405","method":"POST"}
-2016-11-04T13:05:58.837Z - info: preheader: (multi) {"host":"localhost:8888","connection":"keep-alive","content-length":"956","authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","postman-token":"4bd8b8f2-b6f0-3797-35ad-f986675f2d3c","cache-control":"no-cache","origin":"chrome-extension://aicmkgpgakddgnaphhhpliifpcfhicfo","user-agent":"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36","content-type":"application/json","accept":"*/*","accept-encoding":"gzip, deflate, br","accept-language":"es-ES,es;q=0.8,en;q=0.6"}
-2016-11-04T13:05:58.841Z - info: Bypassed headers from (multi): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json"}
-2016-11-04T13:05:59.667Z - info: Sending to server: https://api.nimbees.com/nimbees_platform_server_api/sendNotification/?apikey=e010f506e405...
-2016-11-04T13:05:59.694Z - info: preheader (single): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json","host":"localhost:8889","connection":"close","content-length":"0"}
-2016-11-04T13:05:59.696Z - info: Bypassed headers from (single): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json"}
-2016-11-04T13:05:59.698Z - info: error from proxy: {}
-2016-11-04T13:05:59.700Z - info: Response from server: undefined
-2016-11-04T13:05:59.711Z - info: Status from proxied server: 503
-2016-11-04T13:05:59.711Z - info: Piping response...
-2016-11-04T13:07:35.938Z - info: Your server is listening  on port 8888 (http://localhost:8888/api/v1)
-2016-11-04T13:07:35.942Z - info: Swagger-ui is available on http://localhost:8888/api/v1/docs
-2016-11-04T13:07:38.126Z - info: Initialize slaManager from: "https://designer.governify.io:10843/rcis-unex/rcis/nimBees/plans.oai-at?accessToken=962b9d32-c615-498b-91d7-9e374d3a94d4"
-2016-11-04T13:07:38.523Z - info: Create {
-  "name": "nimbees1",
-  "url": "https://api.nimbees.com/nimbees_platform_server_api",
-  "swagger_url": "https://designer.governify.io:10843/rcis-unex/rcis/nimBees/swagger.yaml?accessToken=962b9d32-c615-498b-91d7-9e374d3a94d4",
-  "port": 8889
-}
-2016-11-04T13:07:44.144Z - info: Referer from: undefined as service: No referer 
-2016-11-04T13:07:44.144Z - info: Proxing internal /nimbees1/sendNotification/?apikey=e010f506e405 ...
-2016-11-04T13:07:44.145Z - info: Sending to: {"hostname":"localhost","port":8889,"path":"/sendNotification/?apikey=e010f506e405","method":"POST"}
-2016-11-04T13:07:44.147Z - info: preheader: (multi) {"host":"localhost:8888","connection":"keep-alive","content-length":"956","authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","postman-token":"ae647aaf-26e7-70cf-3758-a55bd0b73b47","cache-control":"no-cache","origin":"chrome-extension://aicmkgpgakddgnaphhhpliifpcfhicfo","user-agent":"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36","content-type":"application/json","accept":"*/*","accept-encoding":"gzip, deflate, br","accept-language":"es-ES,es;q=0.8,en;q=0.6"}
-2016-11-04T13:07:44.150Z - info: Bypassed headers from (multi): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json"}
-2016-11-04T13:07:44.922Z - info: Sending to server: https://api.nimbees.com/nimbees_platform_server_api/sendNotification/?apikey=e010f506e405...
-2016-11-04T13:07:44.936Z - info: preheader (single): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json","host":"localhost:8889","connection":"close","transfer-encoding":"chunked"}
-2016-11-04T13:07:44.937Z - info: Bypassed headers from (single): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json"}
-2016-11-04T13:07:44.939Z - info: error from proxy: {}
-2016-11-04T13:07:44.941Z - info: Response from server: undefined
-2016-11-04T13:07:44.951Z - info: Status from proxied server: 503
-2016-11-04T13:07:44.951Z - info: Piping response...
-2016-11-04T13:08:24.797Z - info: Your server is listening  on port 8888 (http://localhost:8888/api/v1)
-2016-11-04T13:08:24.799Z - info: Swagger-ui is available on http://localhost:8888/api/v1/docs
-2016-11-04T13:08:27.723Z - info: Referer from: undefined as service: No referer 
-2016-11-04T13:08:27.723Z - info: Proxing internal /nimbees1/sendNotification/?apikey=e010f506e405 ...
-2016-11-04T13:08:27.724Z - info: There is not service registered for name nimbees1
-2016-11-04T13:08:31.281Z - info: Initialize slaManager from: "https://designer.governify.io:10843/rcis-unex/rcis/nimBees/plans.oai-at?accessToken=962b9d32-c615-498b-91d7-9e374d3a94d4"
-2016-11-04T13:08:31.662Z - info: Create {
-  "name": "nimbees1",
-  "url": "https://api.nimbees.com/nimbees_platform_server_api",
-  "swagger_url": "https://designer.governify.io:10843/rcis-unex/rcis/nimBees/swagger.yaml?accessToken=962b9d32-c615-498b-91d7-9e374d3a94d4",
-  "port": 8889
-}
-2016-11-04T13:08:34.606Z - info: Referer from: undefined as service: No referer 
-2016-11-04T13:08:34.607Z - info: Proxing internal /nimbees1/sendNotification/?apikey=e010f506e405 ...
-2016-11-04T13:08:34.608Z - info: Sending to: {"hostname":"localhost","port":8889,"path":"/sendNotification/?apikey=e010f506e405","method":"POST"}
-2016-11-04T13:08:34.609Z - info: preheader: (multi) {"host":"localhost:8888","connection":"keep-alive","content-length":"956","authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","postman-token":"d648b14f-2f1a-24b9-716d-0c5d7ccb9440","cache-control":"no-cache","origin":"chrome-extension://aicmkgpgakddgnaphhhpliifpcfhicfo","user-agent":"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36","content-type":"application/json","accept":"*/*","accept-encoding":"gzip, deflate, br","accept-language":"es-ES,es;q=0.8,en;q=0.6"}
-2016-11-04T13:08:34.612Z - info: Bypassed headers from (multi): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json"}
-2016-11-04T13:08:35.320Z - info: Sending to server: https://api.nimbees.com/nimbees_platform_server_api/sendNotification/?apikey=e010f506e405...
-2016-11-04T13:08:35.335Z - info: preheader (single): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json","host":"localhost:8889","connection":"close","transfer-encoding":"chunked"}
-2016-11-04T13:08:35.336Z - info: Bypassed headers from (single): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json"}
-2016-11-04T13:08:35.339Z - info: error from proxy: {}
-2016-11-04T13:08:35.342Z - info: Response from server: undefined
-2016-11-04T13:08:35.351Z - info: Status from proxied server: 503
-2016-11-04T13:08:35.352Z - info: Piping response...
-2016-11-04T13:09:28.340Z - info: Your server is listening  on port 8888 (http://localhost:8888/api/v1)
-2016-11-04T13:09:28.343Z - info: Swagger-ui is available on http://localhost:8888/api/v1/docs
-2016-11-04T13:09:31.681Z - info: Initialize slaManager from: "https://designer.governify.io:10843/rcis-unex/rcis/nimBees/plans.oai-at?accessToken=962b9d32-c615-498b-91d7-9e374d3a94d4"
-2016-11-04T13:09:32.076Z - info: Create {
-  "name": "nimbees1",
-  "url": "https://api.nimbees.com/nimbees_platform_server_api",
-  "swagger_url": "https://designer.governify.io:10843/rcis-unex/rcis/nimBees/swagger.yaml?accessToken=962b9d32-c615-498b-91d7-9e374d3a94d4",
-  "port": 8889
-}
-2016-11-04T13:09:34.683Z - info: Referer from: undefined as service: No referer 
-2016-11-04T13:09:34.683Z - info: Proxing internal /nimbees1/sendNotification/?apikey=e010f506e405 ...
-2016-11-04T13:09:34.684Z - info: Sending to: {"hostname":"localhost","port":8889,"path":"/sendNotification/?apikey=e010f506e405","method":"POST"}
-2016-11-04T13:09:34.685Z - info: preheader: (multi) {"host":"localhost:8888","connection":"keep-alive","content-length":"956","authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","postman-token":"d95330a4-740f-7948-602f-233e9be9ec5d","cache-control":"no-cache","origin":"chrome-extension://aicmkgpgakddgnaphhhpliifpcfhicfo","user-agent":"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36","content-type":"application/json","accept":"*/*","accept-encoding":"gzip, deflate, br","accept-language":"es-ES,es;q=0.8,en;q=0.6"}
-2016-11-04T13:09:34.688Z - info: Bypassed headers from (multi): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json"}
-2016-11-04T13:09:35.524Z - info: Sending to server: https://api.nimbees.com/nimbees_platform_server_api/sendNotification/?apikey=e010f506e405...
-2016-11-04T13:09:35.540Z - info: preheader (single): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json","host":"localhost:8889","connection":"close","transfer-encoding":"chunked"}
-2016-11-04T13:09:35.541Z - info: Bypassed headers from (single): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json"}
-2016-11-04T13:09:35.545Z - info: error from proxy: {}
-2016-11-04T13:09:35.548Z - info: Response from server: undefined
-2016-11-04T13:09:35.557Z - info: Status from proxied server: 503
-2016-11-04T13:09:35.557Z - info: Piping response...
-2016-11-04T13:23:11.699Z - info: Your server is listening  on port 8888 (http://localhost:8888/api/v1)
-2016-11-04T13:23:11.701Z - info: Swagger-ui is available on http://localhost:8888/api/v1/docs
-2016-11-04T13:23:17.335Z - info: Initialize slaManager from: "https://designer.governify.io:10843/rcis-unex/rcis/nimBees/plans.oai-at?accessToken=962b9d32-c615-498b-91d7-9e374d3a94d4"
-2016-11-04T13:23:17.756Z - info: Create {
-  "name": "nimbees1",
-  "url": "https://api.nimbees.com/nimbees_platform_server_api",
-  "swagger_url": "https://designer.governify.io:10843/rcis-unex/rcis/nimBees/swagger.yaml?accessToken=962b9d32-c615-498b-91d7-9e374d3a94d4",
-  "port": 8889
-}
-2016-11-04T13:23:26.122Z - info: Referer from: undefined as service: No referer 
-2016-11-04T13:23:26.123Z - info: Proxing internal /nimbees1/sendNotification/?apikey=e010f506e405 ...
-2016-11-04T13:23:26.124Z - info: Sending to: {"hostname":"localhost","port":8889,"path":"/sendNotification/?apikey=e010f506e405","method":"POST"}
-2016-11-04T13:23:26.124Z - info: preheader: (multi) {"host":"localhost:8888","connection":"keep-alive","content-length":"956","authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","postman-token":"93390012-56eb-ea4f-2464-2f60f138ff3b","cache-control":"no-cache","origin":"chrome-extension://aicmkgpgakddgnaphhhpliifpcfhicfo","user-agent":"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36","content-type":"application/json","accept":"*/*","accept-encoding":"gzip, deflate, br","accept-language":"es-ES,es;q=0.8,en;q=0.6"}
-2016-11-04T13:23:26.128Z - info: Bypassed headers from (multi): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json"}
-2016-11-04T13:23:26.907Z - info: Sending to server: https://api.nimbees.com/nimbees_platform_server_api/sendNotification/?apikey=e010f506e405...
-2016-11-04T13:23:26.956Z - info: preheader (single): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json","host":"localhost:8889","connection":"close","transfer-encoding":"chunked"}
-2016-11-04T13:23:26.959Z - info: Bypassed headers from (single): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json"}
-2016-11-04T13:23:26.969Z - info: error from proxy: {}
-2016-11-04T13:23:26.975Z - info: Response from server: undefined
-2016-11-04T13:23:26.995Z - info: Status from proxied server: 503
-2016-11-04T13:23:26.996Z - info: Piping response...
-2016-11-04T13:31:59.409Z - info: Referer from: undefined as service: No referer 
-2016-11-04T13:31:59.410Z - info: Proxing internal /nimbees1/getNotificationStatusList/?apikey=e010f506e405 ...
-2016-11-04T13:31:59.411Z - info: Sending to: {"hostname":"localhost","port":8889,"path":"/getNotificationStatusList/?apikey=e010f506e405","method":"GET"}
-2016-11-04T13:31:59.412Z - info: preheader: (multi) {"host":"localhost:8888","connection":"keep-alive","authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","postman-token":"4bd9d42d-a2ba-b7f4-45f0-4696d5fbd284","cache-control":"no-cache","user-agent":"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36","content-type":"application/json","accept":"*/*","accept-encoding":"gzip, deflate, sdch, br","accept-language":"es-ES,es;q=0.8,en;q=0.6"}
-2016-11-04T13:31:59.415Z - info: Bypassed headers from (multi): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json"}
-2016-11-04T13:31:59.426Z - info: { Error: socket hang up
-    at createHangUpError (_http_client.js:252:15)
-    at Socket.socketOnEnd (_http_client.js:344:23)
-    at emitNone (events.js:91:20)
-    at Socket.emit (events.js:185:7)
-    at endReadableNT (_stream_readable.js:974:12)
-    at _combinedTickCallback (internal/process/next_tick.js:74:11)
-    at process._tickCallback (internal/process/next_tick.js:98:9) code: 'ECONNRESET' } undefined
-2016-11-04T13:32:00.121Z - info: Sending to server: https://api.nimbees.com/nimbees_platform_server_api/getNotificationStatusList/?apikey=e010f506e405...
-2016-11-04T13:32:00.124Z - info: preheader (single): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json","host":"localhost:8889","connection":"close"}
-2016-11-04T13:32:00.127Z - info: Bypassed headers from (single): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json"}
-2016-11-04T13:32:00.135Z - info: error from proxy: {}
-2016-11-04T13:32:00.137Z - info: Response from server: undefined
-2016-11-04T13:32:50.887Z - info: Your server is listening  on port 8888 (http://localhost:8888/api/v1)
-2016-11-04T13:32:50.889Z - info: Swagger-ui is available on http://localhost:8888/api/v1/docs
-2016-11-04T13:35:25.318Z - info: Your server is listening  on port 8888 (http://localhost:8888/api/v1)
-2016-11-04T13:35:25.321Z - info: Swagger-ui is available on http://localhost:8888/api/v1/docs
-2016-11-04T13:35:33.681Z - info: Initialize slaManager from: "https://designer.governify.io:10843/rcis-unex/rcis/nimBees/plans.oai-at?accessToken=962b9d32-c615-498b-91d7-9e374d3a94d4"
-2016-11-04T13:35:34.095Z - info: Create {
-  "name": "nimbees1",
-  "url": "https://api.nimbees.com/nimbees_platform_server_api",
-  "swagger_url": "https://designer.governify.io:10843/rcis-unex/rcis/nimBees/swagger.yaml?accessToken=962b9d32-c615-498b-91d7-9e374d3a94d4",
-  "port": 8889
-}
-2016-11-04T13:35:44.124Z - info: Referer from: undefined as service: No referer 
-2016-11-04T13:35:44.125Z - info: Proxing internal /nimbees1/getNotificationStatusList/?apikey=e010f506e405 ...
-2016-11-04T13:35:44.125Z - info: Sending to: {"hostname":"localhost","port":8889,"path":"/getNotificationStatusList/?apikey=e010f506e405","method":"GET"}
-2016-11-04T13:35:44.126Z - info: preheader: (multi) {"host":"localhost:8888","connection":"keep-alive","authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","postman-token":"0fe34ad2-2234-29c1-a9b8-a743da68a310","cache-control":"no-cache","user-agent":"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36","content-type":"application/json","accept":"*/*","accept-encoding":"gzip, deflate, sdch, br","accept-language":"es-ES,es;q=0.8,en;q=0.6"}
-2016-11-04T13:35:44.129Z - info: Bypassed headers from (multi): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json"}
-2016-11-04T13:35:44.156Z - info: { Error: socket hang up
-    at createHangUpError (_http_client.js:252:15)
-    at Socket.socketOnEnd (_http_client.js:344:23)
-    at emitNone (events.js:91:20)
-    at Socket.emit (events.js:185:7)
-    at endReadableNT (_stream_readable.js:974:12)
-    at _combinedTickCallback (internal/process/next_tick.js:74:11)
-    at process._tickCallback (internal/process/next_tick.js:98:9) code: 'ECONNRESET' } undefined
-2016-11-04T13:35:44.471Z - info: Referer from: undefined as service: No referer 
-2016-11-04T13:35:44.472Z - info: Proxing internal /nimbees1/getNotificationStatusList/?apikey=e010f506e405 ...
-2016-11-04T13:35:44.473Z - info: Sending to: {"hostname":"localhost","port":8889,"path":"/getNotificationStatusList/?apikey=e010f506e405","method":"GET"}
-2016-11-04T13:35:44.475Z - info: preheader: (multi) {"host":"localhost:8888","connection":"keep-alive","authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","postman-token":"f444d970-826b-fee0-fedc-f18aa84abbd6","cache-control":"no-cache","user-agent":"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36","content-type":"application/json","accept":"*/*","accept-encoding":"gzip, deflate, sdch, br","accept-language":"es-ES,es;q=0.8,en;q=0.6"}
-2016-11-04T13:35:44.478Z - info: Bypassed headers from (multi): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json"}
-2016-11-04T13:35:44.486Z - info: { Error: socket hang up
-    at createHangUpError (_http_client.js:252:15)
-    at Socket.socketOnEnd (_http_client.js:344:23)
-    at emitNone (events.js:91:20)
-    at Socket.emit (events.js:185:7)
-    at endReadableNT (_stream_readable.js:974:12)
-    at _combinedTickCallback (internal/process/next_tick.js:74:11)
-    at process._tickCallback (internal/process/next_tick.js:98:9) code: 'ECONNRESET' } undefined
-2016-11-04T13:35:44.871Z - info: Sending to server: https://api.nimbees.com/nimbees_platform_server_api/getNotificationStatusList/?apikey=e010f506e405...
-2016-11-04T13:35:44.875Z - info: preheader (single): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json","host":"localhost:8889","connection":"close"}
-2016-11-04T13:35:44.878Z - info: Bypassed headers from (single): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json"}
-2016-11-04T13:35:45.190Z - info: Sending to server: https://api.nimbees.com/nimbees_platform_server_api/getNotificationStatusList/?apikey=e010f506e405...
-2016-11-04T13:35:45.198Z - info: preheader (single): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json","host":"localhost:8889","connection":"close"}
-2016-11-04T13:35:45.205Z - info: Bypassed headers from (single): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json"}
-2016-11-04T13:35:45.257Z - info: Response from server: {"statusCode":200,"body":"{\"responseCode\":\"OK\",\"data\":[{\"idNotification\":68645,\"content\":\"dsdsdsdsdsd\",\"creationDate\":1478249341000,\"numTotalNotifications\":0,\"numSentNotifications\":0,\"numAcceptedNotifications\":0,\"numRejectedNotifications\":0,\"numPendingNotifications\":0,\"numOpenedNotifications\":0,\"lastResponseDate\":null,\"idBeacon\":null,\"expiration\":86400,\"expirationDate\":1478335741000,\"idCampaign\":0},{\"idNotification\":68644,\"content\":\"aaa\",\"creationDate\":1478249332000,\"numTotalNotifications\":0,\"numSentNotifications\":0,\"numAcceptedNotifications\":0,\"numRejectedNotifications\":0,\"numPendingNotifications\":0,\"numOpenedNotifications\":0,\"lastResponseDate\":null,\"idBeacon\":null,\"expiration\":86400,\"expirationDate\":1478335732000,\"idCampaign\":0},{\"idNotification\":68643,\"content\":\"Hola\",\"creationDate\":1478249312000,\"numTotalNotifications\":0,\"numSentNotifications\":0,\"numAcceptedNotifications\":0,\"numRejectedNotifications\":0,\"numPendingNotifications\":0,\"numOpenedNotifications\":0,\"lastResponseDate\":null,\"idBeacon\":null,\"expiration\":86400,\"expirationDate\":1478335712000,\"idCampaign\":0}]}","headers":{"content-type":"application/json","date":"Fri, 04 Nov 2016 13:31:16 GMT","server":"Apache-Coyote/1.1","content-length":"1056","connection":"Close"},"request":{"uri":{"protocol":"https:","slashes":true,"auth":null,"host":"api.nimbees.com","port":443,"hostname":"api.nimbees.com","hash":null,"search":"?apikey=e010f506e405","query":"apikey=e010f506e405","pathname":"/nimbees_platform_server_api/getNotificationStatusList/","path":"/nimbees_platform_server_api/getNotificationStatusList/?apikey=e010f506e405","href":"https://api.nimbees.com/nimbees_platform_server_api/getNotificationStatusList/?apikey=e010f506e405"},"method":"GET","headers":{"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json","connection":"close"}}}
-2016-11-04T13:35:50.701Z - info: Referer from: undefined as service: No referer 
-2016-11-04T13:35:50.702Z - info: Proxing internal /nimbees1/getNotificationStatusList/?apikey=e010f506e405 ...
-2016-11-04T13:35:50.703Z - info: Sending to: {"hostname":"localhost","port":8889,"path":"/getNotificationStatusList/?apikey=e010f506e405","method":"GET"}
-2016-11-04T13:35:50.704Z - info: preheader: (multi) {"host":"localhost:8888","connection":"keep-alive","authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","postman-token":"443b6150-827d-16b6-5f2a-4a9b2fe60931","cache-control":"no-cache","user-agent":"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36","content-type":"application/json","accept":"*/*","accept-encoding":"gzip, deflate, sdch, br","accept-language":"es-ES,es;q=0.8,en;q=0.6"}
-2016-11-04T13:35:50.707Z - info: Bypassed headers from (multi): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json"}
-2016-11-04T13:35:50.714Z - info: { Error: socket hang up
-    at createHangUpError (_http_client.js:252:15)
-    at Socket.socketOnEnd (_http_client.js:344:23)
-    at emitNone (events.js:91:20)
-    at Socket.emit (events.js:185:7)
-    at endReadableNT (_stream_readable.js:974:12)
-    at _combinedTickCallback (internal/process/next_tick.js:74:11)
-    at process._tickCallback (internal/process/next_tick.js:98:9) code: 'ECONNRESET' } undefined
-2016-11-04T13:35:51.400Z - info: Sending to server: https://api.nimbees.com/nimbees_platform_server_api/getNotificationStatusList/?apikey=e010f506e405...
-2016-11-04T13:35:51.405Z - info: preheader (single): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json","host":"localhost:8889","connection":"close"}
-2016-11-04T13:35:51.409Z - info: Bypassed headers from (single): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json"}
-2016-11-04T13:36:54.758Z - error: uncaughtException: Unexpected token } date=Fri Nov 04 2016 14:36:54 GMT+0100 (Hora estándar romance), pid=11872, uid=null, gid=null, cwd=C:\Users\isa-tecnico\Documents\workspaces\governify\governify-gateway, execPath=C:\Program Files\nodejs\node.exe, version=v6.5.0, argv=[C:\Program Files\nodejs\node.exe, C:\Users\isa-tecnico\Documents\workspaces\governify\governify-gateway], rss=46997504, heapTotal=36544512, heapUsed=23579128, loadavg=[0, 0, 0], uptime=99822.2594903, trace=[column=16, file=vm.js, function=Object.exports.runInThisContext, line=76, method=exports.runInThisContext, native=false, column=28, file=module.js, function=Module._compile, line=528, method=_compile, native=false, column=10, file=module.js, function=Object.Module._extensions..js, line=565, method=Module._extensions..js, native=false, column=32, file=module.js, function=Module.load, line=473, method=load, native=false, column=12, file=module.js, function=tryModuleLoad, line=432, method=null, native=false, column=3, file=module.js, function=Function.Module._load, line=424, method=Module._load, native=false, column=17, file=module.js, function=Module.require, line=483, method=require, native=false, column=19, file=internal/module.js, function=require, line=20, method=null, native=false, column=15, file=C:\Users\isa-tecnico\Documents\workspaces\governify\governify-gateway\index.js, function=, line=14, method=null, native=false, column=32, file=module.js, function=Module._compile, line=556, method=_compile, native=false], stack=[C:\Users\isa-tecnico\Documents\workspaces\governify\governify-gateway\proxies\multi.js:89, });, ^, SyntaxError: Unexpected token },     at Object.exports.runInThisContext (vm.js:76:16),     at Module._compile (module.js:528:28),     at Object.Module._extensions..js (module.js:565:10),     at Module.load (module.js:473:32),     at tryModuleLoad (module.js:432:12),     at Function.Module._load (module.js:424:3),     at Module.require (module.js:483:17),     at require (internal/module.js:20:19),     at Object.<anonymous> (C:\Users\isa-tecnico\Documents\workspaces\governify\governify-gateway\index.js:14:15),     at Module._compile (module.js:556:32)]
-2016-11-04T13:38:27.164Z - info: Your server is listening  on port 8888 (http://localhost:8888/api/v1)
-2016-11-04T13:38:27.167Z - info: Swagger-ui is available on http://localhost:8888/api/v1/docs
-2016-11-04T13:38:54.789Z - info: Initialize slaManager from: "https://designer.governify.io:10843/rcis-unex/rcis/nimBees/plans.oai-at?accessToken=962b9d32-c615-498b-91d7-9e374d3a94d4"
-2016-11-04T13:38:55.001Z - info: Initialize slaManager from: "https://designer.governify.io:10843/rcis-unex/rcis/nimBees/plans.oai-at?accessToken=962b9d32-c615-498b-91d7-9e374d3a94d4"
-2016-11-04T13:38:55.198Z - info: Create {
-  "name": "nimbees1",
-  "url": "https://api.nimbees.com/nimbees_platform_server_api",
-  "swagger_url": "https://designer.governify.io:10843/rcis-unex/rcis/nimBees/swagger.yaml?accessToken=962b9d32-c615-498b-91d7-9e374d3a94d4",
-  "port": 8889
-}
-2016-11-04T13:38:55.385Z - info: Create {
-  "name": "nimbees1",
-  "url": "https://api.nimbees.com/nimbees_platform_server_api",
-  "swagger_url": "https://designer.governify.io:10843/rcis-unex/rcis/nimBees/swagger.yaml?accessToken=962b9d32-c615-498b-91d7-9e374d3a94d4",
+2016-11-25T10:33:52.655Z - info: Initialize slaManager from: "https://designer.governify.io:10843/dani8art/gtwDemo/sla4oai/petstore-plans.oai-at?accessToken=962b9d32-c615-498b-91d7-9e374d3a94d4"
+2016-11-25T10:33:53.014Z - info: Create {
+  "name": "pets",
+  "url": "http://192.168.99.100/api/pets",
+  "swagger_url": "https://designer.governify.io:10843/dani8art/gtwDemo/sla4oai/swagger.ag?accessToken=962b9d32-c615-498b-91d7-9e374d3a94d4",
   "port": 8890
 }
-2016-11-04T13:39:02.042Z - info: Referer from: undefined as service: No referer 
-2016-11-04T13:39:02.045Z - info: Proxing internal /nimbees1/getNotificationStatusList/?apikey=e010f506e405 ...
-2016-11-04T13:39:02.047Z - info: Sending to: {"hostname":"localhost","port":8890,"path":"/getNotificationStatusList/?apikey=e010f506e405","method":"GET"}
-2016-11-04T13:39:02.048Z - info: preheader: (multi) {"host":"localhost:8888","connection":"keep-alive","authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","postman-token":"19467ed9-e538-f90e-4238-58d20c2b9edf","cache-control":"no-cache","user-agent":"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36","content-type":"application/json","accept":"*/*","accept-encoding":"gzip, deflate, sdch, br","accept-language":"es-ES,es;q=0.8,en;q=0.6"}
-2016-11-04T13:39:02.051Z - info: Bypassed headers from (multi): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json"}
-2016-11-04T13:39:02.837Z - info: Sending to server: https://api.nimbees.com/nimbees_platform_server_api/getNotificationStatusList/?apikey=e010f506e405...
-2016-11-04T13:39:02.876Z - info: preheader (single): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json","host":"localhost:8890","connection":"close"}
-2016-11-04T13:39:02.877Z - info: Bypassed headers from (single): {"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json"}
-2016-11-04T13:39:03.249Z - info: Response from server: {"statusCode":200,"body":"{\"responseCode\":\"OK\",\"data\":[{\"idNotification\":68645,\"content\":\"dsdsdsdsdsd\",\"creationDate\":1478249341000,\"numTotalNotifications\":0,\"numSentNotifications\":0,\"numAcceptedNotifications\":0,\"numRejectedNotifications\":0,\"numPendingNotifications\":0,\"numOpenedNotifications\":0,\"lastResponseDate\":null,\"idBeacon\":null,\"expiration\":86400,\"expirationDate\":1478335741000,\"idCampaign\":0},{\"idNotification\":68644,\"content\":\"aaa\",\"creationDate\":1478249332000,\"numTotalNotifications\":0,\"numSentNotifications\":0,\"numAcceptedNotifications\":0,\"numRejectedNotifications\":0,\"numPendingNotifications\":0,\"numOpenedNotifications\":0,\"lastResponseDate\":null,\"idBeacon\":null,\"expiration\":86400,\"expirationDate\":1478335732000,\"idCampaign\":0},{\"idNotification\":68643,\"content\":\"Hola\",\"creationDate\":1478249312000,\"numTotalNotifications\":0,\"numSentNotifications\":0,\"numAcceptedNotifications\":0,\"numRejectedNotifications\":0,\"numPendingNotifications\":0,\"numOpenedNotifications\":0,\"lastResponseDate\":null,\"idBeacon\":null,\"expiration\":86400,\"expirationDate\":1478335712000,\"idCampaign\":0}]}","headers":{"content-type":"application/json","date":"Fri, 04 Nov 2016 13:34:34 GMT","server":"Apache-Coyote/1.1","transfer-encoding":"chunked","connection":"Close"},"request":{"uri":{"protocol":"https:","slashes":true,"auth":null,"host":"api.nimbees.com","port":443,"hostname":"api.nimbees.com","hash":null,"search":"?apikey=e010f506e405","query":"apikey=e010f506e405","pathname":"/nimbees_platform_server_api/getNotificationStatusList/","path":"/nimbees_platform_server_api/getNotificationStatusList/?apikey=e010f506e405","href":"https://api.nimbees.com/nimbees_platform_server_api/getNotificationStatusList/?apikey=e010f506e405"},"method":"GET","headers":{"authorization":"Basic MU9jNTVRUm9URDlQTVgxZDpPMGcxOXI5QVQ5MzdxOEJQ","content-type":"application/json","connection":"close"}}}
-2016-11-04T13:39:03.300Z - info: Status from proxied server: 200
-2016-11-04T13:39:03.301Z - info: Piping response...
+2016-11-25T10:34:35.836Z - info: Initialize slaManager from: "https://designer.governify.io:10843/dani8art/gtwDemo/sla4oai/petstore-plans.oai-at?accessToken=962b9d32-c615-498b-91d7-9e374d3a94d4"
+2016-11-25T10:34:36.188Z - info: Create {
+  "name": "pets",
+  "url": "http://192.168.99.100/api/pets",
+  "swagger_url": "https://designer.governify.io:10843/dani8art/gtwDemo/sla4oai/swagger.ag?accessToken=962b9d32-c615-498b-91d7-9e374d3a94d4",
+  "port": 8891
+}

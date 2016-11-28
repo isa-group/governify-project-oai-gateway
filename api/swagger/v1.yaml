@@ -45,6 +45,124 @@ paths:
           schema:
             $ref: '#/definitions/errorModel'
       x-swagger-router-controller: Services
+    get:
+      tags:
+        - services
+      description: Get all registered services
+      operationId: servicesGET
+      parameters: []
+      responses:
+        '200':
+          description: List of services
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/serviceInfo'
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/errorModel'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+      x-swagger-router-controller: Services
+    delete:
+      tags:
+        - services
+      description: Delete all registered services
+      operationId: servicesDELETE
+      parameters: []
+      responses:
+        '200':
+          description: All services have been deleted
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/errorModel'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+      x-swagger-router-controller: Services
+  /services/{id}:
+    get:
+      tags:
+        - services
+      description: Get service by id
+      operationId: servicesIdGET
+      parameters:
+        - in: path
+          name: id
+          description: Service identifier
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Required service
+          schema:
+            $ref: '#/definitions/serviceInfo'
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/errorModel'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+      x-swagger-router-controller: Services
+    delete:
+      tags:
+        - services
+      description: Delete service by id
+      operationId: servicesIdDELETE
+      parameters:
+        - in: path
+          name: id
+          description: Service identifier
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Required service has been deleted
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/errorModel'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+      x-swagger-router-controller: Services
+    put:
+      tags:
+        - services
+      description: Update service by id
+      operationId: servicesIdPUT
+      parameters:
+        - in: path
+          name: id
+          description: Service identifier
+          required: true
+          type: string
+        - in: body
+          name: serviceInfo
+          description: Service info for Update
+          required: true
+          schema:
+            $ref: '#/definitions/serviceInfo'
+      responses:
+        '200':
+          description: Service has been update successfully
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/errorModel'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+      x-swagger-router-controller: Services
 
 definitions:
 

@@ -1,16 +1,16 @@
 'use strict';
 
 var database = require('../database'),
-    express = require('express'),
-    swaggerTools = require('swagger-tools'),
-    bodyParser = require('body-parser'),
-    jsyaml = require('js-yaml'),
-    request = require('request'),
-    slaManager = require('sla4oai-tools');
+        express = require('express'),
+        swaggerTools = require('swagger-tools'),
+        bodyParser = require('body-parser'),
+        jsyaml = require('js-yaml'),
+        request = require('request'),
+        slaManager = require('sla4oai-tools');
 
 var config = require('../config'),
-    logger = config.logger,
-    singleProxy = require('../proxies/single');
+        logger = config.logger,
+        singleProxy = require('../proxies/single');
 
 module.exports.generate = function (newServiceInfo, callback) {
     //create the new serverWith express
@@ -19,7 +19,7 @@ module.exports.generate = function (newServiceInfo, callback) {
     newServiceInfo.port = config.port;
 
     app.use(bodyParser.json());
-    app.use((req, res, next) => {
+    app.use(function (req, res, next) {
         req.serviceProxied = newServiceInfo.name;
         next();
     });
@@ -27,9 +27,9 @@ module.exports.generate = function (newServiceInfo, callback) {
     request.get({
         url: newServiceInfo.swagger_url,
         rejectUnauthorized: false
-    }, (err, response, body) => {
+    }, function (err, response, body) {
 
-        if (!err && response.statusCode == 200) {
+        if (!err && response.statusCode === 200) {
             var swaggerDoc = jsyaml.safeLoad(body);
             //prepend the service pathName
             var docsPath = (swaggerDoc.basePath ? swaggerDoc.basePath : '') + '/docs'; //"/" + newServiceInfo.name +
@@ -40,7 +40,7 @@ module.exports.generate = function (newServiceInfo, callback) {
                 sla4oaiUI: {
                     portalSuccessRedirect: docsPath
                 }
-            }, () => {
+            }, function () {
 
                 app.use(singleProxy);
 
