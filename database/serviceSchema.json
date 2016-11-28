@@ -11,5 +11,8 @@
     },
     "port": {
         "type": "number"
+    },
+    "userID": {
+        "type": "string"
     }
 }

@@ -7,7 +7,10 @@ var database = require('../database'),
     jsyaml = require('js-yaml'),
     request = require('request'),
     Promise = require('bluebird'),
+    config = require('../config'),
     slaManager = require('sla4oai-tools');
+
+slaManager.winston.transports.console.level = config.slaManager.loggerLevel;
 
 var config = require('../config'),
     logger = config.logger,
@@ -23,6 +26,7 @@ module.exports.generate = function (newServiceInfo, callback) {
     app.use(bodyParser.json());
     app.use(function (req, res, next) {
         req.serviceProxied = newServiceInfo.name;
+        req.userID = newServiceInfo.userID;
         next();
     });
     // The Swagger document (require it, build it programmatically, fetch it from a URL, ...)

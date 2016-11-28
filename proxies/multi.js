@@ -30,14 +30,22 @@ module.exports = function (originalRequest, originalResponse, next) {
                     return originalResponse.status(405).end("Method Not Allowed");
                 } else {
                     var serviceInfo = service;
+                    if (!serviceInfo) {
+                        logger.multiproxy('There is not service registered for name %s', servicePath);
+                        return originalResponse.status(405).end("Method Not Allowed");
+                    }
                     doProxy(serviceInfo, originalRequest, originalResponse, next);
                 }
-            });
+            }, req.userID);
         } else {
             var serviceInfo = service;
+            if (!serviceInfo) {
+                logger.multiproxy('There is not service registered for name %s', servicePath);
+                return originalResponse.status(405).end("Method Not Allowed");
+            }
             doProxy(serviceInfo, originalRequest, originalResponse, next);
         }
-    });
+    }, originalRequest.userID);
 
 };
 

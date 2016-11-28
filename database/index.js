@@ -42,8 +42,12 @@ module.exports.addService = function (newServiceInfo, callback) {
     });
 };
 
-module.exports.getServices = function (callback) {
-    this.serviceModel.find({}, (err, services) => {
+module.exports.getServices = function (callback, userID) {
+    var query = {};
+    if (userID) {
+        query.userID = userID;
+    }
+    this.serviceModel.find(query, (err, services) => {
         if (err) {
             logger.db("Error while retrieving services: %s", JSON.stringify(err.toString()));
             callback(err, null);
@@ -54,10 +58,14 @@ module.exports.getServices = function (callback) {
     });
 };
 
-module.exports.getServiceById = function (id, callback) {
-    this.serviceModel.findOne({
+module.exports.getServiceById = function (id, callback, userID) {
+    var query = {
         name: id
-    }, (err, service) => {
+    };
+    if (userID) {
+        query.userID = userID;
+    }
+    this.serviceModel.findOne(query, (err, service) => {
         if (err) {
             logger.db("Error while retrieving services: %s", JSON.stringify(err.toString()));
             callback(err, null);
@@ -68,8 +76,10 @@ module.exports.getServiceById = function (id, callback) {
     });
 };
 
-module.exports.deleteAllServices = function (callback) {
-    this.serviceModel.remove({}, (err, result) => {
+module.exports.deleteAllServices = function (callback, userID) {
+    this.serviceModel.remove({
+        userID: userID
+    }, (err, result) => {
         if (err) {
             logger.db("Error while removing services: %s", JSON.stringify(err.toString()));
             callback(err, null);
@@ -79,9 +89,10 @@ module.exports.deleteAllServices = function (callback) {
     });
 };
 
-module.exports.deleteServiceById = function (id, callback) {
+module.exports.deleteServiceById = function (id, callback, userID) {
     this.serviceModel.remove({
-        name: id
+        name: id,
+        userID: userID
     }, (err, result) => {
         if (err) {
             logger.db("Error while removing a service: %s", JSON.stringify(err.toString()));
@@ -92,9 +103,10 @@ module.exports.deleteServiceById = function (id, callback) {
     });
 };
 
-module.exports.updateServiceById = function (id, serviceInfo, callback) {
+module.exports.updateServiceById = function (id, serviceInfo, callback, userID) {
     this.serviceModel.update({
-        name: id
+        name: id,
+        userID: userID
     }, serviceInfo, (err, result) => {
         if (err) {
             logger.db("Error while updating services: %s", JSON.stringify(err.toString()));

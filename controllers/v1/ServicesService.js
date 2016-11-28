@@ -13,6 +13,7 @@ exports.servicesPOST = function (req, res, next) {
 
     var args = req.swagger.params;
     var serviceInfo = args.serviceInfo.value;
+    serviceInfo.userID = req.userID;
     logger.servicesCtl('New request to create Service: %s', JSON.stringify(serviceInfo, null, 2));
     logger.servicesCtl('Generating Service single proxy');
     pipeBuilder.generate(serviceInfo, function (err, data) {
@@ -40,7 +41,7 @@ exports.servicesGET = function (req, res, next) {
     db.getServices((err, services) => {
         if (err) res.json(err);
         else res.json(services);
-    });
+    }, req.userID);
 
 }
 
@@ -59,7 +60,7 @@ exports.servicesIdGET = function (req, res, next) {
                 message: 'Service with this id not found'
             });
         }
-    });
+    }, req.userID);
 
 }
 
@@ -84,7 +85,7 @@ exports.servicesIdDELETE = function (req, res, next) {
                 }
             });
         }
-    });
+    }, req.userID);
 
 }
 
@@ -106,7 +107,7 @@ exports.servicesDELETE = function (req, res, next) {
                 }
             });
         }
-    });
+    }, req.userID);
 
 }
 
@@ -123,6 +124,6 @@ exports.servicesIdPUT = function (req, res, next) {
         } else {
             res.json(result);
         }
-    });
+    }, req.userID);
 
 }

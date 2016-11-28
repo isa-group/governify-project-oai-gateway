@@ -21,6 +21,8 @@ app.use(cors());
 
 app.use(function (req, res, next) {
     req._app = app;
+    //delete in the future
+    req.userID = "google-oauth2|109969872687666085481";
     next();
 });
 
