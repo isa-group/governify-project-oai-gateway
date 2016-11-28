@@ -10,6 +10,7 @@ var express = require('express'),
 var config = require('./config');
 var logger = config.logger;
 var database = require('./database');
+var pipeBuilder = require('./pipeBuilder');
 
 var serverPort = (process.env.PORT || config.port);
 var app = express();
@@ -56,10 +57,18 @@ swaggerTools.initializeMiddleware(swaggerDocV1, function (middleware) {
     database.connectDB((err) => {
         if (err) throw new Error("Database connection has been failed.");
         // Start the server
-        app.listen(serverPort, function () {
-            logger.info('Your server is listening  on port %d (http://localhost:%d/gateway/api/v1/services)', serverPort, serverPort);
-            logger.info('Swagger-ui is available on http://localhost:%d/gateway/api/v1/docs', serverPort);
+        database.getServices((err, services) => {
+            pipeBuilder.regenerate(services, (err) => {
+                if (err)
+                    logger.info("Error regenerating pipe for services.");
+
+                app.listen(serverPort, function () {
+                    logger.info('Your server is listening  on port %d (http://localhost:%d/gateway/api/v1/services)', serverPort, serverPort);
+                    logger.info('Swagger-ui is available on http://localhost:%d/gateway/api/v1/docs', serverPort);
+                });
+            });
         });
+
     });
 
 });

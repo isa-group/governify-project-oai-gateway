@@ -20,6 +20,8 @@ var logConfig = {
     levels: {
         error: 7,
         warning: 8,
+        singleproxy: 9,
+        multiproxy: 9,
         pipeBuilder: 9,
         servicesCtl: 9,
         db: 9,
@@ -29,6 +31,8 @@ var logConfig = {
     colors: {
         error: 'red',
         warning: 'yellow',
+        singleproxy: 'yellow',
+        multiproxy: 'cyan',
         pipeBuilder: 'green',
         servicesCtl: 'cyan',
         db: 'magenta',

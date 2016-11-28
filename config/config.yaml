@@ -2,6 +2,7 @@
 production:
   multiproxy: true
   port: 80
+  pipePorts: 30000
   logger: 'info'
   database:
     url: mongodb://mongo
@@ -10,6 +11,7 @@ production:
 development:
   multiproxy: true
   port: 8888
+  pipePorts: 30000
   logger: 'debug'
   database:
     url: mongodb://localhost

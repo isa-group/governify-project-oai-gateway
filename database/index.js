@@ -16,7 +16,6 @@ function _connectDB(callback) {
             callback(err);
             logger.error(err.toString());
         } else {
-            callback(null);
             logger.info("Database connection has been stablished!!");
             database.serviceModel = mongoose.model('Service', new mongoose.Schema(require('./serviceSchema.json'), {
                 minimize: false,
@@ -26,6 +25,7 @@ function _connectDB(callback) {
                     updatedAt: 'updated_at'
                 }
             }));
+            callback(null);
         }
     });
 }

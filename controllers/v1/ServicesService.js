@@ -23,7 +23,7 @@ exports.servicesPOST = function (req, res, next) {
         logger.servicesCtl('Single Proxy for %s has been created successfully', serviceInfo.name);
         logger.servicesCtl('Persisting serviceInfo', serviceInfo.name);
         db.addService(data, (err, result) => {
-            if (!err)
+            if (err)
                 return res.json(err);
             else
                 return res.status(200).end();
@@ -69,11 +69,20 @@ exports.servicesIdDELETE = function (req, res, next) {
     var name = args.id.value;
     logger.servicesCtl('New request to delete service with name: %s', name);
 
-    db.deleteServiceById(name, (err) => {
+    pipeBuilder.deletePipe(name, (err, data) => {
         if (err) {
-            res.json(err);
+            res.json({
+                code: 500,
+                message: "Unexpected error: " + err.toString()
+            });
         } else {
-            res.end();
+            db.deleteServiceById(name, (err) => {
+                if (err) {
+                    res.json(err);
+                } else {
+                    res.end();
+                }
+            });
         }
     });
 
@@ -82,11 +91,20 @@ exports.servicesIdDELETE = function (req, res, next) {
 exports.servicesDELETE = function (req, res, next) {
 
     logger.servicesCtl('New request to delete all services.');
-    db.deleteAllServices((err) => {
+    pipeBuilder.deleteAllPipe((err, data) => {
         if (err) {
-            res.json(err);
+            res.json({
+                code: 500,
+                message: "Unexpected error: " + err.toString()
+            });
         } else {
-            res.end();
+            db.deleteAllServices((err) => {
+                if (err) {
+                    res.json(err);
+                } else {
+                    res.end();
+                }
+            });
         }
     });
 

@@ -6,17 +6,19 @@ var database = require('../database'),
     bodyParser = require('body-parser'),
     jsyaml = require('js-yaml'),
     request = require('request'),
+    Promise = require('bluebird'),
     slaManager = require('sla4oai-tools');
 
 var config = require('../config'),
     logger = config.logger,
     singleProxy = require('../proxies/single');
 
+module.exports.runningPipes = {};
 module.exports.generate = function (newServiceInfo, callback) {
     //create the new serverWith express
     var app = express();
-    config.port++;
-    newServiceInfo.port = config.port;
+    config.pipePorts++;
+    newServiceInfo.port = config.pipePorts;
 
     app.use(bodyParser.json());
     app.use(function (req, res, next) {
@@ -53,11 +55,15 @@ module.exports.generate = function (newServiceInfo, callback) {
                         swaggerUi: docsPath
                     }));
 
-                    app.listen(newServiceInfo.port, function () {
+                    var toSave = newServiceInfo;
+
+                    module.exports.runningPipes[toSave.name] = app.listen(newServiceInfo.port, function () {
                         logger.pipeBuilder("Created %s", JSON.stringify(newServiceInfo, null, 2));
-                        var toSave = newServiceInfo;
                         callback(null, toSave);
                     });
+
+                    logger.debug("runningPipes has been updated.");
+                    logger.debug(Object.keys(module.exports.runningPipes));
                 });
 
             });
@@ -67,6 +73,75 @@ module.exports.generate = function (newServiceInfo, callback) {
             return callback(err, null);
         }
 
-        //return callback({err, response}, null);
+    });
+}
+
+module.exports.deletePipe = function (name, callback) {
+    var runningPipes = this.runningPipes;
+    try {
+        logger.pipeBuilder("removing pipe for %s", name);
+        runningPipes[name].close(() => {
+            delete runningPipes[name];
+            callback(null);
+        });
+    } catch (e) {
+        logger.pipeBuilder("Error while removing pipe with name: '%s': %s ", name, e.toString());
+        callback(e);
+    }
+}
+
+module.exports.deleteAllPipe = function (callback) {
+    var runningPipes = this.runningPipes;
+    var promiseArray = [];
+    logger.debug("runningPipes before deleteAllPipe");
+    //console.log(runningPipes);
+    for (var p in runningPipes) {
+        runningPipes[p].name = p;
+        promiseArray.push(runningPipes[p]);
+    }
+    Promise.each(promiseArray, (pipe) => {
+        return new Promise((resolve, reject) => {
+            try {
+                logger.pipeBuilder("removing pipe for %s", pipe.name);
+                runningPipes[pipe.name].close(() => {
+                    delete runningPipes[pipe.name];
+                    return resolve(pipe);
+                });
+            } catch (e) {
+                logger.pipeBuilder("Error while removing pipe with name: '%s' over deleteAll:  %s ", pipe.name, e.toString());
+                return reject(e);
+            }
+        }).then((success) => {}, (error) => {});
+    }).then((success) => {
+        logger.pipeBuilder("deleteAllPipe has finished");
+        //console.log(module.exports.runningPipes);
+        callback(null);
+        //delete runningPipes = {};
+    }, (error) => {
+        logger.pipeBuilder("Error while removing all pipes: %s", error.toString());
+        callback(error);
+    });
+}
+
+module.exports.regenerate = function (serviceInfos, callback) {
+    logger.pipeBuilder("Creating pipe for serviceInfos that already exist in db");
+    Promise.each(serviceInfos, (serviceInfo) => {
+        return new Promise((resolve, reject) => {
+            module.exports.generate(serviceInfo, (err, data) => {
+                if (err) {
+                    return reject(err);
+                } else {
+                    return resolve(data);
+                }
+            });
+        }).then((success) => {}, (error) => {
+            logger.pipeBuilder("Error with one serviceInfo: %s", JSON.stringify(serviceInfo, null, 2));
+        });
+    }).then((success) => {
+        callback(null);
+        logger.pipeBuilder("All serviceInfos, that already exist in db, have been created");
+    }, (error) => {
+        callback(error);
+        logger.pipeBuilder("Error in regeneration of serviceInfos that already exist in db");
     });
 }
