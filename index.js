@@ -28,7 +28,9 @@ app.use(compression());
 app.use(errorhandler());
 app.use(bodyParser.json());
 app.use(cors());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
 
 app.use("/gateway", function (request, response, next) {
@@ -57,28 +59,28 @@ app.use("/gateway", function (request, response, next) {
                 request.userID = verified.sub;
 
                 requestModule({
-                    method: 'POST',
-                    uri: 'https://' + config.AUTH0_DOMAIN + '/tokeninfo',
-                    headers: [
-                        {
+                        method: 'POST',
+                        uri: 'https://' + config.AUTH0_DOMAIN + '/tokeninfo',
+                        headers: [{
                             name: 'content-type',
                             value: 'application/x-www-form-urlencoded'
+                        }],
+                        form: {
+                            id_token: token
                         }
-                    ],
-                    form: {id_token: token}
 
-                },
-                        function (err, res, stringProfile) {
+                    },
+                    function (err, res, stringProfile) {
 
-                            if (err) {
-                                logger.warning('err', err);
-                                response.status(401).send("You shall not pass. Error while getting user profile");
-                            } else {
-                                var profile = JSON.parse(stringProfile);
-                                next();
-                                logger.info("A request to '" + response.req.url + "' from '" + profile["name"] + "' is being served");
-                            }
-                        });
+                        if (err) {
+                            logger.warning('err', err);
+                            response.status(401).send("You shall not pass. Error while getting user profile");
+                        } else {
+                            var profile = JSON.parse(stringProfile);
+                            next();
+                            logger.info("A request to '" + response.req.url + "' from '" + profile["name"] + "' is being served");
+                        }
+                    });
             } else {
                 logger.warning("Invalid JWT payload", verified);
                 response.status(401).send("You shall not pass. Invalid JWT payload");
@@ -103,7 +105,7 @@ app.use(function (req, res, next) {
 app.use(function (req, res, next) {
     req._app = app;
     //delete in the future
-    req.userID = "google-oauth2|109969872687666085481";
+    //req.userID = "google-oauth2|109969872687666085481";
     next();
 });
 

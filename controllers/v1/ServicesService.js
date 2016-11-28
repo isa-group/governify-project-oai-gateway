@@ -19,13 +19,13 @@ exports.servicesPOST = function (req, res, next) {
     pipeBuilder.generate(serviceInfo, function (err, data) {
         if (err) {
             logger.error('Erro creating Service single proxy: %s', err.toString());
-            return res.json(err);
+            return res.status(500).json(err);
         }
         logger.servicesCtl('Single Proxy for %s has been created successfully', serviceInfo.name);
         logger.servicesCtl('Persisting serviceInfo', serviceInfo.name);
         db.addService(data, function (err, result) {
             if (err)
-                return res.json(err);
+                return res.status(400).json(err);
             else
                 return res.status(200).end();
         });
@@ -40,7 +40,7 @@ exports.servicesGET = function (req, res, next) {
     logger.servicesCtl('New request to retrieve all services.');
     db.getServices(function (err, services) {
         if (err)
-            res.json(err);
+            res.status(500).json(err);
         else
             res.json(services);
     }, req.userID);
@@ -74,14 +74,14 @@ exports.servicesIdDELETE = function (req, res, next) {
 
     pipeBuilder.deletePipe(name, function (err, data) {
         if (err) {
-            res.json({
+            res.status(500).json({
                 code: 500,
                 message: "Unexpected error: " + err.toString()
             });
         } else {
             db.deleteServiceById(name, function (err) {
                 if (err) {
-                    res.json(err);
+                    res.status(500).json(err);
                 } else {
                     res.end();
                 }
@@ -96,14 +96,14 @@ exports.servicesDELETE = function (req, res, next) {
     logger.servicesCtl('New request to delete all services.');
     pipeBuilder.deleteAllPipe(function (err, data) {
         if (err) {
-            res.json({
+            res.status(500).json({
                 code: 500,
                 message: "Unexpected error: " + err.toString()
             });
         } else {
             db.deleteAllServices(function (err) {
                 if (err) {
-                    res.json(err);
+                    res.status(500).json(err);
                 } else {
                     res.end();
                 }
@@ -122,7 +122,7 @@ exports.servicesIdPUT = function (req, res, next) {
 
     db.updateServiceById(name, serviceInfo, function (err, result) {
         if (err) {
-            res.json(err);
+            res.status(500).json(err);
         } else {
             res.json(result);
         }
