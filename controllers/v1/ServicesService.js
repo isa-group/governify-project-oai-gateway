@@ -43,7 +43,7 @@ exports.servicesGET = function (req, res, next) {
             res.status(500).json(err);
         else
             res.json(services);
-    }, req.userID);
+    }, req.userID, req.isAdmin);
 
 };
 
@@ -62,7 +62,7 @@ exports.servicesIdGET = function (req, res, next) {
                 message: 'Service with this id not found'
             });
         }
-    }, req.userID);
+    }, req.userID, req.isAdmin);
 
 };
 
@@ -87,7 +87,7 @@ exports.servicesIdDELETE = function (req, res, next) {
                 }
             });
         }
-    }, req.userID);
+    }, req.userID, req.isAdmin);
 
 };
 
@@ -109,7 +109,7 @@ exports.servicesDELETE = function (req, res, next) {
                 }
             });
         }
-    }, req.userID);
+    }, req.userID, req.isAdmin);
 
 };
 
@@ -126,6 +126,6 @@ exports.servicesIdPUT = function (req, res, next) {
         } else {
             res.json(result);
         }
-    }, req.userID);
+    }, req.userID, req.isAdmin);
 
 };

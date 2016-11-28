@@ -53,14 +53,19 @@
             clientID: AUTH0_CLIENT_ID,
             domain: AUTH0_DOMAIN,
             options: {
-                allowSignUp: false,
+                allowSignUp: true,
+                autoclose: true,
+                socialButtonStyle: 'small',
                 theme: {
                     primaryColor: "#337ab7"
                 },
                 languageDictionary: {
                     title: "Governify Gateway"
-                }
-
+                },
+                additionalSignUpFields: [{
+                        name: "university",
+                        placeholder: "Enter your University (if applicable)"
+                    }]
             }
         });
 

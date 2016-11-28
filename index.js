@@ -55,8 +55,6 @@ app.use("/gateway", function (request, response, next) {
         }
         if (verified) {
             if (verified.aud === config.AUTH0_CLIENT_ID) {
-                logger.debug("Setting request.userID to: " + verified.sub);
-
                 requestModule({
                     method: 'POST',
                     uri: 'https://' + config.AUTH0_DOMAIN + '/tokeninfo',
@@ -76,7 +74,6 @@ app.use("/gateway", function (request, response, next) {
                                 response.status(401).send("You shall not pass. Error while getting user profile");
                             } else {
                                 var profile = JSON.parse(stringProfile);
-                                console.log(profile.roles)
                                 var isAdmin = profile.roles.find(function (role) {
                                     if (role === "admin") {
                                         return true;
@@ -88,6 +85,7 @@ app.use("/gateway", function (request, response, next) {
                                 } else {
                                     logger.info("A request to '" + response.req.url + "' from '" + profile["name"] + "' is being served");
                                 }
+                                logger.debug("Setting request.userID to: " + verified.sub);
                                 request.userID = verified.sub;
                                 next();
                             }

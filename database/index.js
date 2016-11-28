@@ -43,9 +43,9 @@ module.exports.addService = function (newServiceInfo, callback) {
     });
 };
 
-module.exports.getServices = function (callback, userID) {
+module.exports.getServices = function (callback, userID, isAdmin) {
     var query = {};
-    if (userID) {
+    if (userID && !isAdmin) {
         query.userID = userID;
     }
     this.serviceModel.find(query, function (err, services) {
@@ -59,11 +59,11 @@ module.exports.getServices = function (callback, userID) {
     });
 };
 
-module.exports.getServiceById = function (id, callback, userID) {
+module.exports.getServiceById = function (id, callback, userID, isAdmin) {
     var query = {
         name: id
     };
-    if (userID) {
+    if (userID && !isAdmin) {
         query.userID = userID;
     }
     this.serviceModel.findOne(query, function (err, service) {
@@ -77,10 +77,12 @@ module.exports.getServiceById = function (id, callback, userID) {
     });
 };
 
-module.exports.deleteAllServices = function (callback, userID) {
-    this.serviceModel.remove({
-        userID: userID
-    }, function (err, result) {
+module.exports.deleteAllServices = function (callback, userID, isAdmin) {
+    var query = {};
+    if (userID && !isAdmin) {
+        query.userID = userID;
+    }
+    this.serviceModel.remove(query, function (err, result) {
         if (err) {
             logger.db("Error while removing services: %s", JSON.stringify(err.toString()));
             callback(err, null);
@@ -88,13 +90,17 @@ module.exports.deleteAllServices = function (callback, userID) {
             callback(null);
         }
     });
+
 };
 
-module.exports.deleteServiceById = function (id, callback, userID) {
-    this.serviceModel.remove({
-        name: id,
-        userID: userID
-    }, function (err, result) {
+module.exports.deleteServiceById = function (id, callback, userID, isAdmin) {
+    var query = {
+        name: id
+    };
+    if (userID && !isAdmin) {
+        query.userID = userID;
+    }
+    this.serviceModel.remove(query, function (err, result) {
         if (err) {
             logger.db("Error while removing a service: %s", JSON.stringify(err.toString()));
             callback(err, null);
@@ -104,11 +110,14 @@ module.exports.deleteServiceById = function (id, callback, userID) {
     });
 };
 
-module.exports.updateServiceById = function (id, serviceInfo, callback, userID) {
-    this.serviceModel.update({
-        name: id,
-        userID: userID
-    }, serviceInfo, function (err, result) {
+module.exports.updateServiceById = function (id, serviceInfo, callback, userID, isAdmin) {
+    var query = {
+        name: id
+    };
+    if (userID && !isAdmin) {
+        query.userID = userID;
+    }
+    this.serviceModel.update(query, serviceInfo, function (err, result) {
         if (err) {
             logger.db("Error while updating services: %s", JSON.stringify(err.toString()));
             callback(err, null);

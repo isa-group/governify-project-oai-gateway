@@ -20,8 +20,8 @@
                     <a href="https://www.facebook.com/isaresearchgroup" target="_blank"><i class="fa fa-facebook"></i></a> 
                 </span>
                 <span>
-                    <a ng-cloak ng-if="!isAuthenticated" ui-sref="home" ng-click="authService.login()">Log In</a>
-                    <a ng-cloak ng-if="isAuthenticated" ng-click="logoutFromAuth0()">Log Out</a>
+                    <a ng-cloak class="clickable" ng-if="!isAuthenticated" ui-sref="home" ng-click="authService.login()">Log in</a>
+                    <a ng-cloak class="clickable" ng-if="isAuthenticated" ng-click="logoutFromAuth0()">Log out as {{profile.nickname}} {{isAdmin?"(admin)":""}}</a>
                     <div ng-cloak ng-if="isAuthenticated" class="login-photo">
                         <img ng-src="{{profile.picture}}">
                     </div>
