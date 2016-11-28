@@ -1,4 +1,5 @@
 'use strict';
+
 // Dependencies
 var express = require('express');
 var swaggerTools = require('swagger-tools');
@@ -14,7 +15,10 @@ var requestModule = require('request');
 var config = require('./config');
 var proxy = require('./proxies/multi');
 var logger = config.logger;
+var database = require('./database');
+var pipeBuilder = require('./pipeBuilder');
 
+var serverPort = (process.env.PORT || config.port);
 var app = express();
 var serverPort = (process.env.PORT || config.port);
 
@@ -49,7 +53,7 @@ app.use("/gateway", function (request, response, next) {
         }
         if (verified) {
             if (verified.aud === config.AUTH0_CLIENT_ID) {
-                logger.debug("Setting request.userID to: "+verified.sub);
+                logger.debug("Setting request.userID to: " + verified.sub);
                 request.userID = verified.sub;
 
                 requestModule({
@@ -98,6 +102,8 @@ app.use(function (req, res, next) {
 
 app.use(function (req, res, next) {
     req._app = app;
+    //delete in the future
+    req.userID = "google-oauth2|109969872687666085481";
     next();
 });
 
@@ -131,9 +137,20 @@ swaggerTools.initializeMiddleware(swaggerDocV1, function (middleware) {
         swaggerUi: swaggerDocV1.basePath + '/docs'
     }));
 
-    // Start the server
-    app.listen(serverPort, function () {
-        logger.info('Your server is listening  on port %d (http://localhost:%d/gateway/api/v1/services)', serverPort, serverPort);
-        logger.info('Swagger-ui is available on http://localhost:%d/gateway/api/v1/docs', serverPort);
+    database.connectDB(function (err) {
+        if (err)
+            throw new Error("Database connection has been failed.");
+        // Start the server
+        database.getServices(function (err, services) {
+            pipeBuilder.regenerate(services, function (err) {
+                if (err)
+                    logger.info("Error regenerating pipe for services.");
+
+                app.listen(serverPort, function () {
+                    logger.info('Your server is listening  on port %d (http://localhost:%d/gateway/api/v1/services)', serverPort, serverPort);
+                    logger.info('Swagger-ui is available on http://localhost:%d/gateway/api/v1/docs', serverPort);
+                });
+            });
+        });
     });
 });

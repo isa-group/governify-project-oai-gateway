@@ -9,7 +9,7 @@
     HomeController.$inject = ['$scope', '$rootScope', 'authService', 'angularAuth0', '$location', '$state'];
 
     function HomeController($scope, $rootScope, authService, angularAuth0, $location, $state) {
-        var baseURL = $location.protocol() + "://" + $location.host() + ":" + $location.port();
+//        var baseURL = $location.protocol() + "://" + $location.host() + ":" + $location.port();
         $scope.authService = authService;
 
         $scope.logoutFromAuth0 = function () {

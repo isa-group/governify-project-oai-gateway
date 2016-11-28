@@ -2,15 +2,27 @@
 production:
   multiproxy: true
   port: 80
+  pipePorts: 30000
   logger: 'info'
   AUTH0_CLIENT_ID: 'A47u28ujCjIY2sojBP2JZ3kRkMFykNzy'
   AUTH0_SECRET: 'LvR-XUCEcDYW1KaE_2wRE2fLR6eqBPVJ45akJs4yyYdmXdrIosndsmV4enkzXC94'
   AUTH0_DOMAIN: 'isagroup.eu.auth0.com'
-  
+  database:
+    url: mongodb://mongo
+    db_name: gateway
+  slaManager:
+    loggerLevel: info
+
 development:
   multiproxy: true
   port: 8888
+  pipePorts: 30000
   logger: 'debug'
+  database:
+    url: mongodb://localhost
+    db_name: gateway
+  slaManager:
+    loggerLevel: info
   AUTH0_CLIENT_ID: 'A47u28ujCjIY2sojBP2JZ3kRkMFykNzy'
   AUTH0_SECRET: 'LvR-XUCEcDYW1KaE_2wRE2fLR6eqBPVJ45akJs4yyYdmXdrIosndsmV4enkzXC94'
   AUTH0_DOMAIN: 'isagroup.eu.auth0.com'

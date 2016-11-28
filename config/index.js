@@ -1,16 +1,16 @@
-'use strict'
+'use strict';
+
 var jsyaml = require('js-yaml');
 var fs = require('fs');
 var winston = require('winston');
-
 
 var configString = fs.readFileSync('./config/config.yaml', 'utf8');
 module.exports = jsyaml.safeLoad(configString)[process.env.NODE_ENV ? process.env.NODE_ENV : 'development'];
 
 // CHECKING ENV VARS
 // multiproxy
-process.env.MULTIPROXY ? module.exports.multiproxy = process.env.MULTIPROXY
-        : null;
+process.env.MULTIPROXY ? module.exports.multiproxy = process.env.MULTIPROXY :
+    null;
 
 
 // WINSTON CONFIGURATION
@@ -20,18 +20,22 @@ var logConfig = {
     levels: {
         error: 7,
         warning: 8,
-        checkCtl: 9,
-        tenantsCtl: 9,
-        slaCtl: 9,
+        singleproxy: 9,
+        multiproxy: 9,
+        pipeBuilder: 9,
+        servicesCtl: 9,
+        db: 9,
         info: 10,
         debug: 11
     },
     colors: {
         error: 'red',
         warning: 'yellow',
-        checkCtl: 'green',
-        tenantsCtl: 'cyan',
-        slaCtl: 'magenta',
+        singleproxy: 'yellow',
+        multiproxy: 'cyan',
+        pipeBuilder: 'green',
+        servicesCtl: 'cyan',
+        db: 'magenta',
         info: 'white',
         debug: 'grey'
     }
