@@ -56,31 +56,42 @@ app.use("/gateway", function (request, response, next) {
         if (verified) {
             if (verified.aud === config.AUTH0_CLIENT_ID) {
                 logger.debug("Setting request.userID to: " + verified.sub);
-                request.userID = verified.sub;
 
                 requestModule({
-                        method: 'POST',
-                        uri: 'https://' + config.AUTH0_DOMAIN + '/tokeninfo',
-                        headers: [{
+                    method: 'POST',
+                    uri: 'https://' + config.AUTH0_DOMAIN + '/tokeninfo',
+                    headers: [{
                             name: 'content-type',
                             value: 'application/x-www-form-urlencoded'
                         }],
-                        form: {
-                            id_token: token
-                        }
+                    form: {
+                        id_token: token
+                    }
 
-                    },
-                    function (err, res, stringProfile) {
+                },
+                        function (err, res, stringProfile) {
 
-                        if (err) {
-                            logger.warning('err', err);
-                            response.status(401).send("You shall not pass. Error while getting user profile");
-                        } else {
-                            var profile = JSON.parse(stringProfile);
-                            next();
-                            logger.info("A request to '" + response.req.url + "' from '" + profile["name"] + "' is being served");
-                        }
-                    });
+                            if (err) {
+                                logger.warning('err', err);
+                                response.status(401).send("You shall not pass. Error while getting user profile");
+                            } else {
+                                var profile = JSON.parse(stringProfile);
+                                console.log(profile.roles)
+                                var isAdmin = profile.roles.find(function (role) {
+                                    if (role === "admin") {
+                                        return true;
+                                    }
+                                });
+                                if (isAdmin) {
+                                    logger.info("An ADMIN request to '" + response.req.url + "' from '" + profile["name"] + "' is being served");
+                                    request.isAdmin = true;
+                                } else {
+                                    logger.info("A request to '" + response.req.url + "' from '" + profile["name"] + "' is being served");
+                                }
+                                request.userID = verified.sub;
+                                next();
+                            }
+                        });
             } else {
                 logger.warning("Invalid JWT payload", verified);
                 response.status(401).send("You shall not pass. Invalid JWT payload");
