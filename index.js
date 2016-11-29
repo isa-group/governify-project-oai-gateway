@@ -11,6 +11,7 @@ var jsonwebtoken = require('jsonwebtoken');
 var errorhandler = require('errorhandler');
 var compression = require('compression');
 var requestModule = require('request');
+var helmet = require('helmet');
 
 var config = require('./config');
 var proxy = require('./proxies/multi');
@@ -20,10 +21,9 @@ var pipeBuilder = require('./pipeBuilder');
 
 var serverPort = (process.env.PORT || config.port);
 var app = express();
-var serverPort = (process.env.PORT || config.port);
 
 
-app.use(express.static(__dirname + '/public'));
+app.use(helmet());
 app.use(compression());
 app.use(errorhandler());
 app.use(bodyParser.json());
@@ -32,6 +32,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+app.use(express.static(__dirname + '/public'));
 
 app.use("/gateway", function (request, response, next) {
     function fromHeaderOrQuerystring(req) {
