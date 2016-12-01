@@ -18,7 +18,8 @@ module.exports.generate = function (newServiceInfo, callback) {
 
     var app = express();
     config.pipePorts++;
-    newServiceInfo.port = config.pipePorts;
+    if (!newServiceInfo.port)
+        newServiceInfo.port = config.pipePorts;
 
     app.use(bodyParser.json());
     app.use(function (req, res, next) {
