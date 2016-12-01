@@ -6,18 +6,16 @@ var bodyParser = require('body-parser');
 var jsyaml = require('js-yaml');
 var request = require('request');
 var Promise = require('bluebird');
-var slaManager = require('sla4oai-tools');
+var sla4oaiTools = require('sla4oai-tools');
 
 var singleProxy = require('../proxies/single');
 var config = require('../config');
 var logger = config.logger;
 
-slaManager.winston.transports.console.level = config.slaManager.loggerLevel;
-
 module.exports.runningPipes = {};
 
 module.exports.generate = function (newServiceInfo, callback) {
-    //create the new serverWith express
+
     var app = express();
     config.pipePorts++;
     newServiceInfo.port = config.pipePorts;
@@ -33,6 +31,9 @@ module.exports.generate = function (newServiceInfo, callback) {
         url: newServiceInfo.swagger_url,
         rejectUnauthorized: false
     }, function (err, response, body) {
+        //create the new serverWith express
+        var slaManager = new sla4oaiTools();
+        slaManager.winston.transports.console.level = config.slaManager.loggerLevel;
 
         if (!err && response.statusCode === 200) {
             var swaggerDoc = jsyaml.safeLoad(body);
