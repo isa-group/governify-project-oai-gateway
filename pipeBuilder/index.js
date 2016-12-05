@@ -12,14 +12,19 @@ var singleProxy = require('../proxies/single');
 var config = require('../config');
 var logger = config.logger;
 
+var usedPorts = [];
 module.exports.runningPipes = {};
 
 module.exports.generate = function (newServiceInfo, callback) {
 
     var app = express();
     config.pipePorts++;
-    if (!newServiceInfo.port)
+    while (usedPorts.indexOf(config.pipePorts) !== -1) {
+        config.pipePorts++;
+    }
+    if (!newServiceInfo.port) {
         newServiceInfo.port = config.pipePorts;
+    }
 
     app.use(bodyParser.json());
     app.use(function (req, res, next) {
@@ -64,6 +69,7 @@ module.exports.generate = function (newServiceInfo, callback) {
 
                     module.exports.runningPipes[toSave.name] = app.listen(newServiceInfo.port, function () {
                         logger.pipeBuilder("Created %s", JSON.stringify(newServiceInfo, null, 2));
+                        usedPorts.push(newServiceInfo.port);
                         callback(null, toSave);
                     });
 
