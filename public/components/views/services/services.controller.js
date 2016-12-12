@@ -59,10 +59,38 @@
                 });
 
             });
-
         };
 
-        $scope.deleteService = function (id) {
+        $scope.editService = function (service) {
+            var serv = service;
+            var id = service.name;
+            $http({
+                method: 'DELETE',
+                url: '/gateway/api/v1/services/' + id,
+                headers: {Authorization: "Bearer " + localStorage.getItem('id_token')}
+            }).then(function () {
+                var notify = $.notify('Click add service to save changes', {
+                    type: 'info',
+                    allow_dismiss: true,
+                    showProgressbar: false,
+                    delay: 3000,
+                    timer: 500
+                });
+                var i = $scope.servicelist.indexOf(service);
+                $scope.servicelist.splice(i, 1);
+                $scope.service = serv;
+            }, function (err) {
+                var notify = $.notify('There was an error editing the new service (' + err.status + ')', {
+                    type: 'warning',
+                    allow_dismiss: true,
+                    delay: 500,
+                    timer: 500
+                });
+            });
+        };
+
+        $scope.deleteService = function (service) {
+            var id = service.name;
             console.log("Deleting service with " + id);
             $http({
                 method: 'DELETE',
@@ -76,8 +104,7 @@
                     delay: 500,
                     timer: 500
                 });
-
-                refresh()
+                refresh();
             }, function (err) {
                 var notify = $.notify('There was an error deleting the new service (' + err.status + ')', {
                     type: 'warning',
