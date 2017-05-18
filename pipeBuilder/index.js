@@ -52,30 +52,35 @@ module.exports.generate = function (newServiceInfo, callback) {
                 sla4oaiUI: {
                     portalSuccessRedirect: docsPath
                 }
-            }, function () {
+            }, function (slaManager, error) {
 
-                app.use(singleProxy);
+                if (error) {
+                    logger.error("sla4oai-tools error: %s", error.toString());
+                    return callback(error, null);
+                } else {
+                    app.use(singleProxy);
 
-                // Initialize the Swagger middleware
-                swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
+                    // Initialize the Swagger middleware
+                    swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
 
-                    // Serve the Swagger documents and Swagger UI
-                    app.use(middleware.swaggerUi({
-                        apiDocs: apidocsPath,
-                        swaggerUi: docsPath
-                    }));
+                        // Serve the Swagger documents and Swagger UI
+                        app.use(middleware.swaggerUi({
+                            apiDocs: apidocsPath,
+                            swaggerUi: docsPath
+                        }));
 
-                    var toSave = newServiceInfo;
+                        var toSave = newServiceInfo;
 
-                    module.exports.runningPipes[toSave.name] = app.listen(newServiceInfo.port, function () {
-                        logger.pipeBuilder("Created %s", JSON.stringify(newServiceInfo, null, 2));
-                        usedPorts.push(newServiceInfo.port);
-                        callback(null, toSave);
+                        module.exports.runningPipes[toSave.name] = app.listen(newServiceInfo.port, function () {
+                            logger.pipeBuilder("Created %s", JSON.stringify(newServiceInfo, null, 2));
+                            usedPorts.push(newServiceInfo.port);
+                            callback(null, toSave);
+                        });
+
+                        logger.debug("runningPipes has been updated.");
+                        logger.debug(Object.keys(module.exports.runningPipes));
                     });
-
-                    logger.debug("runningPipes has been updated.");
-                    logger.debug(Object.keys(module.exports.runningPipes));
-                });
+                }
 
             });
 
