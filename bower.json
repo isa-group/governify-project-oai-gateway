@@ -1,22 +1,24 @@
 {
-    "name": "contactlist",
-    "description": "A simple contactlist",
-    "main": "server.js",
-    "authors": [
-        "Pablo Fernandez <pablofm@us.es>"
-    ],
-    "license": "MIT",
+    "name": "governify-gateway",
+    "description": "Gatway for controling APIs by SLA",
+    "main": "index.js",
+    "authors": [{
+        "name": "ISA group",
+        "web": "http://www.isa.us.es/"
+    }],
+    "license": "GPL-3.0+",
     "keywords": [
+        "template",
+        "nodejs",
         "node",
-        "heroku",
-        "express"
+        "project"
     ],
-    "homepage": "https://github.com/pafmon/contactlist",
-    "private": true,
+    "homepage": "https://github.com/isa-group/governify-gateway",
     "ignore": [
         "**/.*",
         "node_modules",
         "bower_components",
+        "public/bower_components/",
         "test",
         "tests"
     ],
@@ -33,7 +35,6 @@
         "remarkable-bootstrap-notify": "*",
         "angular-jwt": "*",
         "angular-lock": "*",
-        "angular-ui-router": "*",
         "angular-auth0": "*"
     }
 }
