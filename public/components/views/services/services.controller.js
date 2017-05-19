@@ -63,7 +63,7 @@
 
                     refresh();
                 }, function (err) {
-                    var notify = $.notify('There was an error while adding the new service (' + err.status + ') ' + err.data, {
+                    var notify = $.notify('There was an error while adding the new service (' + err.status + ') ' + JSON.stringify(err.data, null, 2), {
                         type: 'warning',
                         allow_dismiss: true,
                         delay: 200,
@@ -95,7 +95,7 @@
                 $scope.servicelist.splice(i, 1);
                 $scope.service = serv;
             }, function (err) {
-                var notify = $.notify('There was an error editing the new service (' + err.status + ')', {
+                var notify = $.notify('There was an error editing the new service (' + err.status + ')' + JSON.stringify(err.data, null, 2), {
                     type: 'warning',
                     allow_dismiss: true,
                     delay: 200,
@@ -123,7 +123,7 @@
                 });
                 refresh();
             }, function (err) {
-                var notify = $.notify('There was an error deleting the new service (' + err.status + ')', {
+                var notify = $.notify('There was an error deleting the new service (' + err.status + ')' + JSON.stringify(err.data, null, 2), {
                     type: 'warning',
                     allow_dismiss: true,
                     delay: 200,
