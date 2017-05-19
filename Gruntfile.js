@@ -139,7 +139,7 @@ module.exports = function (grunt) {
                         username: "DOCKER_HUB_USERNAME", //SET ENVIRONMENT VARIABLE WITH THIS NAME
                         password: "DOCKER_HUB_PASSWORD" //SET ENVIRONMENT VARIABLE WITH THIS NAME
                     },
-                    name: 'governify-gateway',
+                    name: 'governify-project-oai-gateway',
                     push: true
                 }
             },
@@ -150,7 +150,7 @@ module.exports = function (grunt) {
                         username: "DOCKER_HUB_USERNAME", //SET ENVIRONMENT VARIABLE WITH THIS NAME
                         password: "DOCKER_HUB_PASSWORD" //SET ENVIRONMENT VARIABLE WITH THIS NAME
                     },
-                    name: 'governify-gateway',
+                    name: 'governify-project-oai-gateway',
                     tag: '<%= pkg.version %>',
                     push: true
                 }
