@@ -47,17 +47,22 @@ module.exports = function (singleProxyRequest, singleProxyResponse, next) {
 
             try {
                 var renameHost = proxiedServer.split('//')[1];
-                singleProxyResponse.setHeader("host", renameHost);
+                //singleProxyResponse.setHeader("host", renameHost);
                 var newHeaders = {};
+                newHeaders.host = renameHost.split('/')[0];
                 //console.log(singleProxyRequest.body);
                 //logger.debug("preheader (single): " + JSON.stringify(singleProxyRequest.headers));
                 for (var h in singleProxyRequest.headers) {
-                    if (h === 'authorization' || h === 'content-type') {
+                    var hlower = h.toLowerCase();
+                    if (hlower === 'authorization' || hlower === 'content-type' || hlower === 'user-agent' ||
+                        hlower === 'accept' || hlower === 'connection' || hlower === 'cache-control' ||
+                        hlower === 'pragma') {
                         newHeaders[h] = singleProxyRequest.headers[h];
                     }
                 }
+                newHeaders['upgrade-insecure-requests'] = 1;
                 var requestBody = JSON.stringify(singleProxyRequest.body);
-                //logger.debug("Bypassed headers from (single): " + JSON.stringify(newHeaders));
+                logger.debug("Bypassed headers from (single): " + JSON.stringify(newHeaders));
                 // logger.debug("Bypassed body from (single): " + requestBody);
                 var realServerRequestOptions = {
                     method: singleProxyRequest.method,
@@ -66,7 +71,7 @@ module.exports = function (singleProxyRequest, singleProxyResponse, next) {
                     body: requestBody
                 };
 
-                if (realServerRequestOptions.method === 'HEAD')
+                if (realServerRequestOptions.method === 'HEAD' || realServerRequestOptions.method === 'GET')
                     delete realServerRequestOptions.body;
                 var requestToRealServer = request(realServerRequestOptions, function (err, realServerResponse) {
                     if (err) {
@@ -75,9 +80,9 @@ module.exports = function (singleProxyRequest, singleProxyResponse, next) {
                     } else {
                         logger.debug("Response from realServer: " + JSON.stringify(realServerResponse, null, 2));
                         for (var h in realServerResponse.headers) {
-                            if (h === 'authorization' || h === 'content-type') {
-                                singleProxyResponse.setHeader("content-type", realServerResponse.headers["content-type"]);
-                            }
+                            // if (h === 'authorization' || h === 'content-type') {
+                            singleProxyResponse.setHeader(h, realServerResponse.headers[h]);
+                            // }
                         }
                         singleProxyResponse.send(realServerResponse.body);
                     }

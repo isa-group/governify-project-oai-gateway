@@ -82,10 +82,13 @@ function doProxy(serviceInfo, originalRequest, originalResponse, next) {
         if (requestToSingleProxyOptions.method === 'HEAD')
             delete requestToSingleProxyOptions.body;
 
-        originalResponse.setHeader("host", originalRequest.headers.host);
+        //originalResponse.setHeader("host", originalRequest.headers.host);
         var newHeaders = {};
         for (var h in originalRequest.headers) {
-            if (h === 'authorization' || h === 'content-type') {
+            var hlower = h.toLowerCase();
+            if (hlower === 'authorization' || hlower === 'content-type' || hlower === 'user-agent' ||
+                hlower === 'accept' || hlower === 'connection' || hlower === 'cache-control' ||
+                hlower === 'pragma') {
                 newHeaders[h] = originalRequest.headers[h];
             }
         }
@@ -110,9 +113,9 @@ function doProxy(serviceInfo, originalRequest, originalResponse, next) {
                 logger.multiproxy("Piping response...");
                 var newHeaders = singleProxyResponse.headers;
                 for (var h in singleProxyResponse.headers) {
-                    if (h === 'authorization' || h === 'content-type') {
-                        newHeaders[h] = singleProxyResponse.headers[h];
-                    }
+                    // if (h === 'authorization' || h === 'content-type') {
+                    newHeaders[h] = singleProxyResponse.headers[h];
+                    // }
                 }
                 originalResponse.headers = newHeaders;
                 originalResponse.send(singleProxyResponse.body);
