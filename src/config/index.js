@@ -4,7 +4,7 @@ var jsyaml = require('js-yaml');
 var fs = require('fs');
 var winston = require('winston');
 
-var configString = fs.readFileSync('./config/config.yaml', 'utf8');
+var configString = fs.readFileSync('./src/config/config.yaml', 'utf8');
 module.exports = jsyaml.safeLoad(configString)[process.env.NODE_ENV ? process.env.NODE_ENV : 'development'];
 
 // CHECKING ENV VARS

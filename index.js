@@ -13,11 +13,11 @@ var compression = require('compression');
 var requestModule = require('request');
 var helmet = require('helmet');
 
-var config = require('./config');
-var proxy = require('./proxies/multi');
+var config = require('./src/config');
+var proxy = require('./src/proxies/multi');
 var logger = config.logger;
-var database = require('./database');
-var pipeBuilder = require('./pipeBuilder');
+var database = require('./src/database');
+var pipeBuilder = require('./src/pipeBuilder');
 
 var serverPort = (process.env.PORT || config.port);
 var app = express();
@@ -57,40 +57,40 @@ app.use("/gateway", function (request, response, next) {
         if (verified) {
             if (verified.aud === config.AUTH0_CLIENT_ID) {
                 requestModule({
-                    method: 'POST',
-                    uri: 'https://' + config.AUTH0_DOMAIN + '/tokeninfo',
-                    headers: [{
+                        method: 'POST',
+                        uri: 'https://' + config.AUTH0_DOMAIN + '/tokeninfo',
+                        headers: [{
                             name: 'content-type',
                             value: 'application/x-www-form-urlencoded'
                         }],
-                    form: {
-                        id_token: token
-                    }
+                        form: {
+                            id_token: token
+                        }
 
-                },
-                        function (err, res, stringProfile) {
+                    },
+                    function (err, res, stringProfile) {
 
-                            if (err) {
-                                logger.warning('err', err);
-                                response.status(401).send("You shall not pass. Error while getting user profile");
-                            } else {
-                                var profile = JSON.parse(stringProfile);
-                                var isAdmin = profile.roles.find(function (role) {
-                                    if (role === "admin") {
-                                        return true;
-                                    }
-                                });
-                                if (isAdmin) {
-                                    logger.info("An ADMIN request to '" + response.req.url + "' from '" + profile["name"] + "' is being served");
-                                    request.isAdmin = true;
-                                } else {
-                                    logger.info("A request to '" + response.req.url + "' from '" + profile["name"] + "' is being served");
+                        if (err) {
+                            logger.warning('err', err);
+                            response.status(401).send("You shall not pass. Error while getting user profile");
+                        } else {
+                            var profile = JSON.parse(stringProfile);
+                            var isAdmin = profile.roles.find(function (role) {
+                                if (role === "admin") {
+                                    return true;
                                 }
-                                logger.debug("Setting request.userID to: " + verified.sub);
-                                request.userID = verified.sub;
-                                next();
+                            });
+                            if (isAdmin) {
+                                logger.info("An ADMIN request to '" + response.req.url + "' from '" + profile["name"] + "' is being served");
+                                request.isAdmin = true;
+                            } else {
+                                logger.info("A request to '" + response.req.url + "' from '" + profile["name"] + "' is being served");
                             }
-                        });
+                            logger.debug("Setting request.userID to: " + verified.sub);
+                            request.userID = verified.sub;
+                            next();
+                        }
+                    });
             } else {
                 logger.warning("Invalid JWT payload", verified);
                 response.status(401).send("You shall not pass. Invalid JWT payload");
@@ -124,12 +124,12 @@ app.use(function (req, res, next) {
 // swaggerRouter configuration
 var optionsV1 = {
     swaggerUi: '/swagger/v1.json',
-    controllers: './controllers/v1',
+    controllers: './src/controllers/v1',
     useStubs: process.env.NODE_ENV === 'development' ? true : false // Conditionally turn on stubs (mock mode)
 };
 
 // The Swagger document (require it, build it programmatically, fetch it from a URL, ...)
-var specV1 = fs.readFileSync('./api/swagger/v1.yaml', 'utf8');
+var specV1 = fs.readFileSync('./src/api/swagger/v1.yaml', 'utf8');
 var swaggerDocV1 = jsyaml.safeLoad(specV1);
 
 // Initialize the Swagger middleware

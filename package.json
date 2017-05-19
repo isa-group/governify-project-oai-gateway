@@ -1,10 +1,13 @@
 {
     "name": "governify-gateway",
+    "buildOn": "2017-03-30",
     "version": "0.0.1",
-    "description": "Gatway for control APIs by SLA",
+    "description": "Gatway for controling  APIs by SLA",
+    "homepage": "https://github.com/isa-group/governify-gateway",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
+        "test": "grunt test",
+        "postinstall": "bower install",
         "start": "node ."
     },
     "keywords": [
@@ -15,8 +18,11 @@
         "sla4oai",
         "governify"
     ],
-    "author": "ISA group (isagroup.us@gmail.com)",
-    "license": "ISC",
+    "author": {
+        "name": "ISA group",
+        "web": "http://www.isa.us.es/"
+    },
+    "license": "GPL-3.0+",
     "dependencies": {
         "bluebird": "^3.4.6",
         "body-parser": "^1.15.2",
@@ -34,5 +40,25 @@
         "sla4oai-tools": "^1.2.3",
         "swagger-tools": "^0.10.1",
         "winston": "^2.3.0"
+    },
+    "devDependencies": {
+        "chai": "^3.5.0",
+        "grunt": "^1.0.1",
+        "grunt-banner": "^0.6.0",
+        "grunt-contrib-jshint": "^1.1.0",
+        "grunt-contrib-watch": "^1.0.0",
+        "grunt-dockerize": "0.0.2",
+        "grunt-header": "^1.1.0",
+        "grunt-mocha-test": "^0.13.2",
+        "grunt-release-github": "^1.0.4",
+        "mocha": "^3.4.1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/isa-group/governify-gateway.git",
+        "github": "http://github.com/isa-group/governify-gateway"
+    },
+    "docker": {
+        "url": "https://hub.docker.com/r/isa-group/governify-gateway"
     }
 }
