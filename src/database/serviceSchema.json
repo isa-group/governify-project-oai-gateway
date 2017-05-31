@@ -14,5 +14,11 @@
     },
     "userID": {
         "type": "string"
+    },
+    "status": {
+        "type": "string"
+    },
+    "message": {
+        "type": "string"
     }
 }

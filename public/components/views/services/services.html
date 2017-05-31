@@ -17,24 +17,30 @@
                         <th>Name</th>
                         <th>URL</th>
                         <th>OAI URL</th>
+                        <th>Status</th>
                         <th ng-cloak ng-if="isAdmin">User</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><input class="form-control" ng-model="service.name"/></td>
-                        <td><input class="form-control" ng-model="service.url"/></td>
-                        <td><input class="form-control" ng-model="service.swagger_url"/></td>
-                        <td ng-cloak ng-if="isAdmin"><input class="form-control" ng-model="service.userID"/></td>
+                        <td><input class="form-control" ng-model="service.name" /></td>
+                        <td><input class="form-control" ng-model="service.url" /></td>
+                        <td><input class="form-control" ng-model="service.swagger_url" /></td>
+                        <td></td>
+                        <td ng-cloak ng-if="isAdmin"></td>
                         <td><button class="btn btn-primary" ng-click="addService()">Add service</button></td>
                     </tr>
                     <tr ng-repeat="service in servicelist">
-                        <td class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><a href="/{{service.name}}/docs"><strong>{{service.name}}</strong></a></td>
-                        <td class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><a href="{{service.url}}">{{service.url}}</a></td>
-                        <td class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><a href="{{service.swagger_url}}">{{service.swagger_url}}</a></td>
-                        <td ng-cloak ng-if="isAdmin" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">{{service.userID}}</td>
-                        <td class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><a target="_blank" href="/{{service.name}}/docs">Open <strong>{{service.name}}</strong></a></td>
+                        <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><a target="_blank" href="{{service.url}}">Go to the service URL</a></td>
+                        <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><a target="_blank" href="{{service.swagger_url}}">View SWAGGER specification</a></td>
+                        <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                            <span class="btn {{service.status ==='ERROR'? 'btn-danger': 'btn-success'}}" data-placement="bottom" data-toggle="tooltip"
+                                title="{{service.message || 'Running'}}">{{service.status || 'OK'}}</span>
+                        </td>
+                        <td ng-cloak ng-if="isAdmin" class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{service.userID}}</td>
+                        <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                             <button class="btn btn-danger" ng-click="deleteService(service)">Delete service</button>
                             <button class="btn btn-warning" ng-click="editService(service)">Edit service</button>
                         </td>
