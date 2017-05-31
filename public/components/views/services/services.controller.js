@@ -28,9 +28,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
         .module('gateway')
         .controller('ServicesController', HomeController);
 
-    HomeController.$inject = ['$scope', '$http'];
+    HomeController.$inject = ['$scope', '$http', '$timeout'];
 
-    function HomeController($scope, $http) {
+    function HomeController($scope, $http, $timeout) {
+        $scope.$on('$viewContentLoaded', function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
 
         var refresh = function () {
             $http({
@@ -42,7 +45,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
             }).then(function (response) {
                 console.log('Data received successfully', response.data);
                 $scope.servicelist = response.data;
-
+                window.setTimeout(function () {
+                    $('[data-toggle="tooltip"]').tooltip();
+                }, 600);
             }, function (err) {
                 console.log("Error, token=" + localStorage.getItem('id_token'));
                 var notify = $.notify('There was an error while adding the new service (' + err.status + ')', {

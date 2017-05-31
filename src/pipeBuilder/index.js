@@ -53,63 +53,78 @@ module.exports.generate = function (newServiceInfo, callback) {
         next();
     });
     // The Swagger document (require it, build it programmatically, fetch it from a URL, ...)
-    request.get({
-        url: newServiceInfo.swagger_url,
-        rejectUnauthorized: false
-    }, function (err, response, body) {
-        //create the new serverWith express
-        var slaManager = new sla4oaiTools();
-        slaManager.winston.transports.console.level = config.slaManager.loggerLevel;
+    try {
+        request.get({
+            url: newServiceInfo.swagger_url,
+            rejectUnauthorized: false
+        }, function (err, response, body) {
+            //create the new serverWith express
+            var slaManager = new sla4oaiTools();
+            slaManager.winston.transports.console.level = config.slaManager.loggerLevel;
 
-        if (!err && response.statusCode === 200) {
-            var swaggerDoc = jsyaml.safeLoad(body);
-            //prepend the service pathName
-            var docsPath = (swaggerDoc.basePath ? swaggerDoc.basePath : '') + '/docs'; //"/" + newServiceInfo.name +
-            var apidocsPath = (swaggerDoc.basePath ? swaggerDoc.basePath : '') + '/api-docs'; // "/" + newServiceInfo.name +
-            logger.pipeBuilder("Initialize slaManager from: %s", JSON.stringify(swaggerDoc.info['x-sla']));
-            slaManager.initialize(app, {
-                sla4oai: swaggerDoc.info['x-sla'],
-                sla4oaiUI: {
-                    portalSuccessRedirect: docsPath
-                }
-            }, function (slaManager, error) {
+            if (!err && response.statusCode === 200) {
+                var swaggerDoc = jsyaml.safeLoad(body);
+                //prepend the service pathName
+                var docsPath = (swaggerDoc.basePath ? swaggerDoc.basePath : '') + '/docs'; //"/" + newServiceInfo.name +
+                var apidocsPath = (swaggerDoc.basePath ? swaggerDoc.basePath : '') + '/api-docs'; // "/" + newServiceInfo.name +
+                logger.pipeBuilder("Initialize slaManager from: %s", JSON.stringify(swaggerDoc.info['x-sla']));
+                slaManager.initialize(app, {
+                    sla4oai: swaggerDoc.info['x-sla'],
+                    sla4oaiUI: {
+                        portalSuccessRedirect: docsPath
+                    }
+                }, function (slaManager, error) {
 
-                if (error) {
-                    logger.error("sla4oai-tools error: %s", error.toString());
-                    return callback(error, null);
-                } else {
-                    app.use(singleProxy);
+                    if (error) {
+                        logger.error("sla4oai-tools error: %s", error.toString());
+                        return callback(error, null);
+                    } else {
+                        app.use(singleProxy);
 
-                    // Initialize the Swagger middleware
-                    swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
+                        // Initialize the Swagger middleware
+                        swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
 
-                        // Serve the Swagger documents and Swagger UI
-                        app.use(middleware.swaggerUi({
-                            apiDocs: apidocsPath,
-                            swaggerUi: docsPath
-                        }));
+                            // Serve the Swagger documents and Swagger UI
+                            app.use(middleware.swaggerUi({
+                                apiDocs: apidocsPath,
+                                swaggerUi: docsPath
+                            }));
 
-                        var toSave = newServiceInfo;
+                            var toSave = newServiceInfo;
 
-                        module.exports.runningPipes[toSave.name] = app.listen(newServiceInfo.port, function () {
-                            logger.pipeBuilder("Created %s", JSON.stringify(newServiceInfo, null, 2));
-                            usedPorts.push(newServiceInfo.port);
-                            callback(null, toSave);
+                            module.exports.runningPipes[toSave.name] = app.listen(newServiceInfo.port, function () {
+                                logger.pipeBuilder("Created %s", JSON.stringify(newServiceInfo, null, 2));
+                                usedPorts.push(newServiceInfo.port);
+                                callback(null, toSave);
+                            });
+
+                            logger.debug("runningPipes has been updated.");
+                            logger.debug(Object.keys(module.exports.runningPipes));
                         });
+                    }
 
-                        logger.debug("runningPipes has been updated.");
-                        logger.debug(Object.keys(module.exports.runningPipes));
-                    });
+                });
+
+            } else {
+                var error = "Error while it was retrieving swaggerDoc from " + newServiceInfo.swagger_url;
+                if (err) {
+                    logger.error(error + " " + JSON.stringify(err, null, 2));
+                    return callback(error + " " + JSON.stringify(err, null, 2), null);
+                } else if (response) {
+                    logger.error(error + " HTTPcode=" + response.statusCode);
+                    return callback(error + " HTTPcode=" + response.statusCode, null);
+                } else {
+                    logger.error(error);
+                    return callback(error, null);
                 }
+            }
 
-            });
+        });
+    } catch (e) {
+        logger.error(e);
+        callback(e, null);
+    }
 
-        } else {
-            logger.error("Error while it was retrieving swaggerDoc from %s. %s", newServiceInfo.swagger_url, JSON.stringify(err, null, 2));
-            return callback(err, null);
-        }
-
-    });
 };
 
 module.exports.deletePipe = function (name, callback) {
@@ -147,7 +162,7 @@ module.exports.deleteAllPipe = function (callback) {
                 logger.pipeBuilder("Error while removing pipe with name: '%s' over deleteAll:  %s ", pipe.name, e.toString());
                 return reject(e);
             }
-        }).then(function (success) {}, function (error) {});
+        }).then(function (success) { }, function (error) { });
     }).then(function (success) {
         logger.pipeBuilder("deleteAllPipe has finished");
         //console.log(module.exports.runningPipes);
@@ -170,8 +185,11 @@ module.exports.regenerate = function (serviceInfos, callback) {
                     return resolve(data);
                 }
             });
-        }).then(function (success) {}, function (error) {
+        }).then(function (success) { }, function (error) {
             logger.pipeBuilder("Error with one serviceInfo: %s", JSON.stringify(serviceInfo, null, 2));
+            serviceInfo.status = "ERROR";
+            serviceInfo.message = JSON.stringify(error);
+            serviceInfo.save();
         });
     }).then(function (success) {
         callback(null);
