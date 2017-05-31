@@ -68,6 +68,12 @@ module.exports.generate = function (newServiceInfo, callback) {
                 var docsPath = (swaggerDoc.basePath ? swaggerDoc.basePath : '') + '/docs'; //"/" + newServiceInfo.name +
                 var apidocsPath = (swaggerDoc.basePath ? swaggerDoc.basePath : '') + '/api-docs'; // "/" + newServiceInfo.name +
                 logger.pipeBuilder("Initialize slaManager from: %s", JSON.stringify(swaggerDoc.info['x-sla']));
+                var xSla = swaggerDoc.info['x-sla'];
+                if (!swaggerDoc.info || !xSla) {
+                    var error = "Error in swagger specification info['x-sla'] is required";
+                    logger.error(error);
+                    return callback(error, null);
+                }
                 slaManager.initialize(app, {
                     sla4oai: swaggerDoc.info['x-sla'],
                     sla4oaiUI: {
