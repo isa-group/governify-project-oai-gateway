@@ -102,6 +102,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
         $scope.editService = function (service) {
             var serv = service;
             var id = service.name;
+            delete service.port;
             $http({
                 method: 'DELETE',
                 url: '/gateway/api/v1/services/' + id,
