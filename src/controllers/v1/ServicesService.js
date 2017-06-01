@@ -33,7 +33,7 @@ exports.servicesPOST = function (req, res, next) {
 
     var args = req.swagger.params;
     var serviceInfo = args.serviceInfo.value;
-    serviceInfo.userID = req.userID;
+    serviceInfo.userID = serviceInfo.userID || req.userID;
     logger.servicesCtl('New request to create Service: %s', JSON.stringify(serviceInfo, null, 2));
     logger.servicesCtl('Generating Service single proxy');
     pipeBuilder.generate(serviceInfo, function (err, data) {

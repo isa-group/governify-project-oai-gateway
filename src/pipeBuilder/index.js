@@ -191,7 +191,11 @@ module.exports.regenerate = function (serviceInfos, callback) {
                     return resolve(data);
                 }
             });
-        }).then(function (success) { }, function (error) {
+        }).then(function (success) {
+            serviceInfo.status = "OK";
+            serviceInfo.message = null;
+            serviceInfo.save();
+        }, function (error) {
             logger.pipeBuilder("Error with one serviceInfo: %s", JSON.stringify(serviceInfo, null, 2));
             serviceInfo.status = "ERROR";
             serviceInfo.message = JSON.stringify(error);
