@@ -1,2 +1,2 @@
-FROM node:7.2.1-onbuild
+FROM node:onbuild
 EXPOSE 80 8888
