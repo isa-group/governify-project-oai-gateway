@@ -96,31 +96,36 @@ function doProxy(serviceInfo, originalRequest, originalResponse, next) {
         requestToSingleProxyOptions.headers = newHeaders;
 
         logger.debug("Sending to SingleProxy: %s", JSON.stringify(requestToSingleProxyOptions, null, 2));
+        process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
         var requestToSingleProxy = request(requestToSingleProxyOptions, function (err, singleProxyResponse) {
-            if (singleProxyResponse.statusCode === 404) {
-                return next();
-            }
-
-            for (var h in singleProxyResponse.headers) {
-                originalResponse.setHeader(h, singleProxyResponse.headers[h]);
-            }
-
-            logger.multiproxy('Status from proxied server: %s', singleProxyResponse.statusCode);
-            if (singleProxyResponse.statusCode === 302 || singleProxyResponse.statusCode === 301) {
-                logger.multiproxy('Redirecting: %s', '/' + serviceInfo.name + singleProxyResponse.headers['location']);
-                originalResponse.redirect('/' + serviceInfo.name + singleProxyResponse.headers['location']);
-            } else {
-                logger.multiproxy("Piping response...");
-                var newHeaders = singleProxyResponse.headers;
-                for (var h in singleProxyResponse.headers) {
-                    // if (h === 'authorization' || h === 'content-type') {
-                    newHeaders[h] = singleProxyResponse.headers[h];
-                    // }
+            if (!err) {
+                if (singleProxyResponse.statusCode === 404) {
+                    return next();
                 }
-                originalResponse.headers = newHeaders;
-                originalResponse.send(singleProxyResponse.body);
-            }
 
+                for (var h in singleProxyResponse.headers) {
+                    originalResponse.setHeader(h, singleProxyResponse.headers[h]);
+                }
+
+                logger.multiproxy('Status from proxied server: %s', singleProxyResponse.statusCode);
+                if (singleProxyResponse.statusCode === 302 || singleProxyResponse.statusCode === 301) {
+                    logger.multiproxy('Redirecting: %s', '/' + serviceInfo.name + singleProxyResponse.headers['location']);
+                    originalResponse.redirect('/' + serviceInfo.name + singleProxyResponse.headers['location']);
+                } else {
+                    logger.multiproxy("Piping response...");
+                    var newHeaders = singleProxyResponse.headers;
+                    for (var h in singleProxyResponse.headers) {
+                        // if (h === 'authorization' || h === 'content-type') {
+                        newHeaders[h] = singleProxyResponse.headers[h];
+                        // }
+                    }
+                    originalResponse.headers = newHeaders;
+                    originalResponse.send(singleProxyResponse.body);
+                }
+            } else {
+                logger.error("Error in request", requestToSingleProxyOptions);
+                originalResponse.status(500).end(err.toString());
+            }
         }).on('error', function (err) {
             logger.error("Error in request", requestToSingleProxyOptions);
             originalResponse.status(500).end(err.toString());
