@@ -95,7 +95,7 @@ function doProxy(serviceInfo, originalRequest, originalResponse, next) {
 
         requestToSingleProxyOptions.headers = newHeaders;
 
-        logger.debug("Sending to: %s", JSON.stringify(requestToSingleProxyOptions, null, 2));
+        logger.debug("Sending to SingleProxy: %s", JSON.stringify(requestToSingleProxyOptions, null, 2));
         var requestToSingleProxy = request(requestToSingleProxyOptions, function (err, singleProxyResponse) {
             if (singleProxyResponse.statusCode === 404) {
                 return next();

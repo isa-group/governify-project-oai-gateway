@@ -1,11 +1,13 @@
 {
     "name": "governify-gateway",
-    "description": "Gatway for controling APIs by SLA",
+    "description": "Gateway for controlling APIs by SLA",
     "main": "index.js",
-    "authors": [{
-        "name": "ISA group",
-        "web": "http://www.isa.us.es/"
-    }],
+    "authors": [
+        {
+            "name": "ISA group",
+            "web": "http://www.isa.us.es/"
+        }
+    ],
     "license": "GPL-3.0+",
     "keywords": [
         "template",

@@ -38,7 +38,7 @@ exports.servicesPOST = function (req, res, next) {
     logger.servicesCtl('Generating Service single proxy');
     pipeBuilder.generate(serviceInfo, function (err, data) {
         if (err) {
-            logger.error('Erro creating Service single proxy: %s', err.toString());
+            logger.error('Error creating Service single proxy: %s', err.toString());
             return res.status(500).json(err);
         }
         logger.servicesCtl('Single Proxy for %s has been created successfully', serviceInfo.name);

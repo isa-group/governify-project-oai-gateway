@@ -73,6 +73,7 @@ module.exports = function (singleProxyRequest, singleProxyResponse, next) {
 
                 if (realServerRequestOptions.method === 'HEAD' || realServerRequestOptions.method === 'GET')
                     delete realServerRequestOptions.body;
+                logger.debug("Sending to RealServer: %s", JSON.stringify(realServerRequestOptions, null, 2));
                 var requestToRealServer = request(realServerRequestOptions, function (err, realServerResponse) {
                     if (err) {
                         logger.error("Error from realServer: " + err);
