@@ -1,6 +1,6 @@
 /*!
-governify-gateway 0.0.1, built on: 2017-03-30
-Copyright (C) 2017 ISA group
+governify-gateway 0.0.1, built on: 2018-03-26
+Copyright (C) 2018 ISA group
 http://www.isa.us.es/
 https://github.com/isa-group/governify-gateway
 
@@ -20,12 +20,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
 'use strict';
 
-const config = require('../../configurations');
 const logger = require('../../logger');
 const pipeBuilder = require('../../pipeBuilder');
 const db = require('../../database');
 
-exports.servicesPOST = function (req, res, next) {
+exports.servicesPOST = function (req, res) {
     /**
      * parameters expected in the args:
      *  ServiceInfo (RequestInfo)
@@ -43,7 +42,7 @@ exports.servicesPOST = function (req, res, next) {
         }
         logger.servicesCtl("SingleProxy for service '%s' has been created successfully", serviceInfo.name);
         logger.servicesCtl("Persisting serviceInfo for service '%s'", serviceInfo.name);
-        db.addService(data, function (err, result) {
+        db.addService(data, function (err) {
             if (err) {
                 return res.status(400).json(err);
             } else {
@@ -55,9 +54,8 @@ exports.servicesPOST = function (req, res, next) {
 
 };
 
-exports.servicesGET = function (req, res, next) {
+exports.servicesGET = function (req, res) {
 
-    var args = req.swagger.params;
     logger.servicesCtl('New request to retrieve all services.');
     db.getServices(function (err, services) {
         if (err) {
@@ -69,7 +67,7 @@ exports.servicesGET = function (req, res, next) {
 
 };
 
-exports.servicesIdGET = function (req, res, next) {
+exports.servicesIdGET = function (req, res) {
 
     var args = req.swagger.params;
     var name = args.id.value;
@@ -88,13 +86,13 @@ exports.servicesIdGET = function (req, res, next) {
 
 };
 
-exports.servicesIdDELETE = function (req, res, next) {
+exports.servicesIdDELETE = function (req, res) {
 
     var args = req.swagger.params;
     var name = args.id.value;
     logger.servicesCtl("New request to delete the service with name '%s'", name);
 
-    pipeBuilder.deletePipe(name, function (err, data) {
+    pipeBuilder.deletePipe(name, function (err) {
         if (err) {
             res.status(500).json({
                 code: 500,
@@ -113,10 +111,10 @@ exports.servicesIdDELETE = function (req, res, next) {
 
 };
 
-exports.servicesDELETE = function (req, res, next) {
+exports.servicesDELETE = function (req, res) {
 
     logger.servicesCtl('New request to delete all services');
-    pipeBuilder.deleteAllPipe(function (err, data) {
+    pipeBuilder.deleteAllPipes(function (err) {
         if (err) {
             res.status(500).json({
                 code: 500,
@@ -135,7 +133,7 @@ exports.servicesDELETE = function (req, res, next) {
 
 };
 
-exports.servicesIdPUT = function (req, res, next) {
+exports.servicesIdPUT = function (req, res) {
 
     var args = req.swagger.params;
     var name = args.id.value;

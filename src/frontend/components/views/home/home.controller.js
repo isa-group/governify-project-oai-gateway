@@ -1,6 +1,6 @@
 /*!
-governify-gateway 0.0.1, built on: 2017-03-30
-Copyright (C) 2017 ISA group
+governify-gateway 0.0.1, built on: 2018-03-26
+Copyright (C) 2018 ISA group
 http://www.isa.us.es/
 https://github.com/isa-group/governify-gateway
 
@@ -23,8 +23,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
     'use strict';
 
     angular
-            .module('gateway')
-            .controller('HomeController', HomeController);
+        .module('gateway')
+        .controller('HomeController', HomeController);
 
     HomeController.$inject = ['$scope'];
 

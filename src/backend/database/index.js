@@ -1,6 +1,6 @@
 /*!
-governify-gateway 0.0.1, built on: 2017-03-30
-Copyright (C) 2017 ISA group
+governify-gateway 0.0.1, built on: 2018-03-26
+Copyright (C) 2018 ISA group
 http://www.isa.us.es/
 https://github.com/isa-group/governify-gateway
 
@@ -41,14 +41,15 @@ function _connectDB(callback) {
             logger.error(err.toString());
         } else {
             logger.info("Database connection has been established at '%s'", mongoURI);
-            database.serviceModel = mongoose.model('Service', new mongoose.Schema(serviceSchema, {
+            var mongooseServiceSchema = new mongoose.Schema(serviceSchema, {
                 minimize: false,
                 versionKey: false,
                 timestamps: {
                     createdAt: 'created_at',
                     updatedAt: 'updated_at'
                 }
-            }));
+            });
+            database.serviceModel = mongoose.model('Service', mongooseServiceSchema);
             callback(null);
         }
     });
@@ -108,7 +109,7 @@ module.exports.deleteAllServices = function (callback, userID, isAdmin) {
     if (userID && !isAdmin) {
         query.userID = userID;
     }
-    this.serviceModel.remove(query, function (err, result) {
+    this.serviceModel.remove(query, function (err) {
         if (err) {
             logger.db("Error while removing services: %s", JSON.stringify(err.toString()));
             callback(err, null);
@@ -126,7 +127,7 @@ module.exports.deleteServiceById = function (id, callback, userID, isAdmin) {
     if (userID && !isAdmin) {
         query.userID = userID;
     }
-    this.serviceModel.remove(query, function (err, result) {
+    this.serviceModel.remove(query, function (err) {
         if (err) {
             logger.db("Error while removing a service: %s", JSON.stringify(err.toString()));
             callback(err, null);

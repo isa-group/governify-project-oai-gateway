@@ -1,6 +1,6 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const path = require('path'); 
+const path = require('path');
 const webpack = require('webpack');
 
 // the path(s) that should be cleaned 

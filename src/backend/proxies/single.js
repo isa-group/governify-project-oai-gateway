@@ -1,6 +1,6 @@
 /*!
-governify-gateway 0.0.1, built on: 2017-03-30
-Copyright (C) 2017 ISA group
+governify-gateway 0.0.1, built on: 2018-03-26
+Copyright (C) 2018 ISA group
 http://www.isa.us.es/
 https://github.com/isa-group/governify-gateway
 
@@ -23,13 +23,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 const request = require('request');
 const services = require('../database');
 
-const config = require('../configurations');
 const logger = require('../logger');
 
 module.exports = function (singleProxyRequest, singleProxyResponse, next) {
 
-    if (singleProxyRequest.originalUrl.indexOf('plans') !== -1 || singleProxyRequest.originalUrl.indexOf('docs') !== -1)
+    if (singleProxyRequest.originalUrl.indexOf('plans') !== -1 || singleProxyRequest.originalUrl.indexOf('docs') !== -1) {
         return next();
+    }
 
     services.getServiceById(singleProxyRequest.serviceProxied, function (err, serviceInfo) {
         if (err) {
@@ -74,7 +74,7 @@ module.exports = function (singleProxyRequest, singleProxyResponse, next) {
                 }
                 logger.debug("Sending to RealServer: %s", JSON.stringify(realServerRequestOptions, null, 2));
                 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-                var requestToRealServer = request(realServerRequestOptions, function (err, realServerResponse) {
+                request(realServerRequestOptions, function (err, realServerResponse) {
                     if (err) {
                         logger.error("Error from realServer: " + err);
                         singleProxyResponse.status(503).send(err);

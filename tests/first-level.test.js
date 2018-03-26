@@ -1,8 +1,8 @@
 /*!
-project-template-nodejs 0.0.0, built on: 2017-03-30
-Copyright (C) 2017 ISA group
+governify-gateway 0.0.1, built on: 2018-03-26
+Copyright (C) 2018 ISA group
 http://www.isa.us.es/
-https://github.com/isa-group/project-template-nodejs
+https://github.com/isa-group/governify-gateway
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -19,23 +19,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
 
 'use strict';
+/* jshint expr: true */
 
 var expect = require('chai').expect;
 var lib = require('../src/backend');
 
-
 /*
  * USE MOCHA AND CHAI for testing your code
  */
+
 describe('First Level test', function () {
     this.timeout(10000);
     it('Execute', (done) => {
-
-        var result = lib.myfunction("test", "1");
-
-        expect(result).to.be.equal("test-1");
-
+        var result = lib.server;
+        expect(result).to.not.be.null;
         done();
-
     });
 });

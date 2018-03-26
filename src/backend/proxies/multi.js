@@ -1,6 +1,6 @@
 /*!
-governify-gateway 0.0.1, built on: 2017-03-30
-Copyright (C) 2017 ISA group
+governify-gateway 0.0.1, built on: 2018-03-26
+Copyright (C) 2018 ISA group
 http://www.isa.us.es/
 https://github.com/isa-group/governify-gateway
 
@@ -23,7 +23,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 const request = require('request');
 
 const services = require('../database');
-const config = require('../configurations');
 const logger = require('../logger');
 
 module.exports = function (originalRequest, originalResponse, next) {
@@ -84,12 +83,12 @@ function doProxy(serviceInfo, originalRequest, originalResponse, next) {
         }
         //originalResponse.setHeader("host", originalRequest.headers.host);
         var newHeaders = {};
-        for (var h in originalRequest.headers) {
-            var hlower = h.toLowerCase();
+        for (var originalRequestHeader in originalRequest.headers) {
+            var hlower = originalRequestHeader.toLowerCase();
             if (hlower === 'authorization' || hlower === 'content-type' || hlower === 'user-agent' ||
                 hlower === 'accept' || hlower === 'connection' || hlower === 'cache-control' ||
                 hlower === 'pragma') {
-                newHeaders[h] = originalRequest.headers[h];
+                newHeaders[originalRequestHeader] = originalRequest.headers[originalRequestHeader];
             }
         }
 
@@ -97,26 +96,26 @@ function doProxy(serviceInfo, originalRequest, originalResponse, next) {
 
         logger.debug("Sending to SingleProxy: %s", JSON.stringify(requestToSingleProxyOptions, null, 2));
         process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-        var requestToSingleProxy = request(requestToSingleProxyOptions, function (err, singleProxyResponse) {
+        request(requestToSingleProxyOptions, function (err, singleProxyResponse) {
             if (!err) {
                 if (singleProxyResponse.statusCode === 404) {
                     return next();
                 }
 
-                for (var h in singleProxyResponse.headers) {
-                    originalResponse.setHeader(h, singleProxyResponse.headers[h]);
+                for (var singleProxyResponseHeader in singleProxyResponse.headers) {
+                    originalResponse.setHeader(singleProxyResponseHeader, singleProxyResponse.headers[singleProxyResponseHeader]);
                 }
 
                 logger.multiProxy('Status from proxied server: %s', singleProxyResponse.statusCode);
                 if (singleProxyResponse.statusCode === 302 || singleProxyResponse.statusCode === 301) {
-                    logger.multiProxy('Redirecting: %s', '/' + serviceInfo.name + singleProxyResponse.headers['location']);
-                    originalResponse.redirect('/' + serviceInfo.name + singleProxyResponse.headers['location']);
+                    logger.multiProxy('Redirecting: %s', '/' + serviceInfo.name + singleProxyResponse.headers.location);
+                    originalResponse.redirect('/' + serviceInfo.name + singleProxyResponse.headers.location);
                 } else {
                     logger.multiProxy("Piping response from '%s'", singleProxyResponse.request.href);
                     var newHeaders = singleProxyResponse.headers;
-                    for (var h in singleProxyResponse.headers) {
-                        // if (h === 'authorization' || h === 'content-type') {
-                        newHeaders[h] = singleProxyResponse.headers[h];
+                    for (var singleProxyResponseHeader2 in singleProxyResponse.headers) {
+                        // if (singleProxyResponseHeader2 === 'authorization' || singleProxyResponseHeader2 === 'content-type') {
+                        newHeaders[singleProxyResponseHeader2] = singleProxyResponse.headers[singleProxyResponseHeader2];
                         // }
                     }
                     originalResponse.headers = newHeaders;

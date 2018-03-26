@@ -16,4 +16,6 @@ For technical inquiry please contact to [engineering team](./extra/about.md).
 The version 0.0.1 is the latest stable version of governify-gateway component.
 see [release note](http://github.com/isa-group/governify-gateway/releases/tag/0.0.1) for details.
 
+For running:
+
 - Download latest version from [0.0.1](http://github.com/isa-group/governify-gateway/releases/tag/0.0.1)

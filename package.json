@@ -1,6 +1,6 @@
 {
   "name": "governify-gateway",
-  "buildOn": "2017-03-30",
+  "buildOn": "2018-03-26",
   "version": "0.0.1",
   "description": "Configurable gateway for manage OAS-modeled RESTful APIs driven by explicit SLAs",
   "homepage": "https://github.com/isa-group/governify-gateway",
@@ -49,7 +49,15 @@
   },
   "scripts": {
     "start": "webpack && node index.js",
-    "dev": "concurrently --kill-others \"yarn run start\" \"grunt watch\""
+    "dev": "concurrently --kill-others \"yarn run start\" \"grunt watch\"",
+    "watch": "grunt watch",
+    "test": "grunt test",
+    "coverage": "grunt coverage",
+    "build": "grunt build",
+    "release:patch": "grunt release",
+    "release:minor": "grunt release:minor",
+    "release:major": "grunt release:major",
+    "deliver": "grunt deliver"
   },
   "keywords": [
     "gateway",

@@ -20,7 +20,6 @@
     "esversion": 6,
     "validthis": true,
     "eqnull": true,
-
     "globals": {
         "module": true,
         "describe": true,

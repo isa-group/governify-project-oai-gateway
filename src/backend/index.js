@@ -1,3 +1,23 @@
+/*!
+governify-gateway 0.0.1, built on: 2018-03-26
+Copyright (C) 2018 ISA group
+http://www.isa.us.es/
+https://github.com/isa-group/governify-gateway
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
+
+
 'use strict';
 
 // Dependencies
@@ -88,10 +108,10 @@ app.use("/gateway", function (request, response, next) {
                                     }
                                 });
                                 if (isAdmin) {
-                                    logger.info("An ADMIN request to '" + response.req.url + "' from '" + profile["name"] + "' is being served");
+                                    logger.info("An ADMIN request to '" + response.req.url + "' from '" + profile.name + "' is being served");
                                     request.isAdmin = true;
                                 } else {
-                                    logger.info("A request to '" + response.req.url + "' from '" + profile["name"] + "' is being served");
+                                    logger.info("A request to '" + response.req.url + "' from '" + profile.name + "' is being served");
                                 }
                                 logger.debug("Setting request.userID to: " + verified.sub);
                                 request.userID = verified.sub;
@@ -161,6 +181,7 @@ swaggerTools.initializeMiddleware(swaggerDocV1, function (middleware) {
 
 
     var server = http.createServer(app);
+    exports.server = server;
     database.connectDB(function (err) {
         if (err) {
             logger.error("Database connection cannot be established. A MongoDB persistence layer is needed to run this app. This error is not recoverable: exiting now");
