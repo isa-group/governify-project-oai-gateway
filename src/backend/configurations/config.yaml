@@ -1,0 +1,68 @@
+production:
+  server: 
+    port: 80
+    bypassCORS: true
+    useHelmet: true
+  multiproxy: true
+  pipePorts: 30000
+  auth0:
+    AUTH0_CLIENT_ID: 'A47u28ujCjIY2sojBP2JZ3kRkMFykNzy'
+    AUTH0_SECRET: 'LvR-XUCEcDYW1KaE_2wRE2fLR6eqBPVJ45akJs4yyYdmXdrIosndsmV4enkzXC94'
+    AUTH0_DOMAIN: 'isagroup.eu.auth0.com'
+  database:
+    host: mongo
+    port: 27017
+    name:  gateway
+  slaManager:
+    loggerLevel: info
+  log:
+    level: info
+    file: './logs/pro-logs.log'
+    maxSize: 10000000 
+    maxFiles: 30
+
+development:
+  server: 
+    port: 8888
+    bypassCORS: true
+    useHelmet: true
+  multiproxy: true
+  pipePorts: 30000
+  database:
+    host: localhost
+    port: 27017
+    name:  gateway
+  slaManager:
+    loggerLevel: debug
+  auth0:
+    AUTH0_CLIENT_ID: 'A47u28ujCjIY2sojBP2JZ3kRkMFykNzy'
+    AUTH0_SECRET: 'LvR-XUCEcDYW1KaE_2wRE2fLR6eqBPVJ45akJs4yyYdmXdrIosndsmV4enkzXC94'
+    AUTH0_DOMAIN: 'isagroup.eu.auth0.com'
+  log:
+    level: debug
+    file: './logs/dev-logs.log'
+    maxSize: 10000000 
+    maxFiles: 30
+
+testing:
+  server:
+    port: 8888
+    bypassCORS: true
+    useHelmet: true
+  multiproxy: true
+  pipePorts: 30000
+  database:
+    host: localhost
+    port: 27017
+    name:  gateway
+  slaManager:
+    loggerLevel: debug
+  auth0:
+    AUTH0_CLIENT_ID: 'A47u28ujCjIY2sojBP2JZ3kRkMFykNzy'
+    AUTH0_SECRET: 'LvR-XUCEcDYW1KaE_2wRE2fLR6eqBPVJ45akJs4yyYdmXdrIosndsmV4enkzXC94'
+    AUTH0_DOMAIN: 'isagroup.eu.auth0.com'
+  log:
+    file: './logs/test-logs.log'
+    maxSize: 10000000 
+    maxFiles: 30
+  

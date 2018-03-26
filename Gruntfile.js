@@ -20,6 +20,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
 'use strict';
 
+var config = require("./src/backend/configurations");
+
 module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -33,6 +35,10 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-banner');
 
     grunt.loadNpmTasks('grunt-dockerize');
+
+    grunt.loadNpmTasks("grunt-mocha-istanbul");
+
+
 
     // Project configuration.
     grunt.initConfig({
@@ -54,7 +60,7 @@ module.exports = function (grunt) {
                     replace: true
                 },
                 files: {
-                    src: ['src/**/*.js', 'tests/**/*.js', 'Gruntfile.js', 'public/*.js', 'public/components/**/*.js'] //If you want to inspect more file, you change this.
+                    src: ['src/**/*.js', 'tests/**/*.js', 'Gruntfile.js'] //If you want to inspect more file, you change this.
                 }
             },
             readme: {
@@ -72,7 +78,7 @@ module.exports = function (grunt) {
 
         //Lint JS 
         jshint: {
-            all: ['Gruntfile.js', 'src/**/*.js', 'tests/**/*.js', 'index.js'], //If you want to inspect more file, you change this.
+            all: ['Gruntfile.js', 'src/**/*.js', '!**/frontend/report/**', '!**/frontend/coverage/**', 'tests/**/*.js', 'index.js'], //If you want to inspect more file, you change this.
             options: {
                 jshintrc: '.jshintrc'
             }
@@ -99,17 +105,16 @@ module.exports = function (grunt) {
         release: {
             options: {
                 changelog: true, //NOT CHANGE
-                changelogFromGithub: true, //NOT CHANGE
                 githubReleaseBody: 'See [CHANGELOG.md](./CHANGELOG.md) for details.', //NOT CHANGE
                 npm: false, //CHANGE TO TRUE IF YOUR PROJECT IS A NPM MODULE 
                 //npmtag: true, //default: no tag
                 beforeBump: [], // IS NOT READY YET
                 afterBump: [], // IS NOT READY YET
-                beforeReleaseTasks: ['usebanner'], // IS NOT READY YET
-                afterReleaseTasks: [], // IS NOT READY YET
+                beforeRelease: [], // IS NOT READY YET
+                afterRelease: [], // IS NOT READY YET
                 updateVars: ['pkg'], //NOT CHANGE
                 github: {
-                    repo: "isa-group/governify-gateway",
+                    repo: "isa-group/project-template-nodejs",
                     accessTokenVar: "GITHUB_ACCESS_TOKEN", //SET ENVIRONMENT VARIABLE WITH THIS NAME
                     usernameVar: "GITHUB_USERNAME" //SET ENVIRONMENT VARIABLE WITH THIS NAME
                 }
@@ -119,43 +124,52 @@ module.exports = function (grunt) {
         //IT IS RECOMENDED TO EXECUTE "grunt watch" while you are working.
         watch: {
             scripts: {
-                files: ['src/**/*.js', 'public/**'],
-                tasks: [],
+                files: ['src/**/*.js'],
+                tasks: ['jshint']
+            }
+        },
+
+        mocha_istanbul: {
+            full: {
+                src: [
+                    "tests/**/*.test.js",
+
+                ],
+
                 options: {
-                    livereload: {
-                        host: 'localhost',
-                        port: 9000
-                    }
+                    mask: "*.test.js",
+                    istanbulOptions: ["--harmony", "--handle-sigint"],
+                    coverageFolder: "src/backend/coverage"
                 }
             }
         },
 
         //USE THIS TASK FOR BUILDING AND PUSHING docker images
         dockerize: {
-            'governify-gateway-latest': {
+            'groups-service-latest': {
                 options: {
                     auth: {
                         email: "DOCKER_HUB_EMAIL", //SET ENVIRONMENT VARIABLE WITH THIS NAME
                         username: "DOCKER_HUB_USERNAME", //SET ENVIRONMENT VARIABLE WITH THIS NAME
                         password: "DOCKER_HUB_PASSWORD" //SET ENVIRONMENT VARIABLE WITH THIS NAME
                     },
-                    name: 'governify-project-oai-gateway',
+                    name: 'groups-service',
                     push: true
                 }
             },
-            'governify-gateway-version': {
+            'groups-service-version': {
                 options: {
                     auth: {
                         email: "DOCKER_HUB_EMAIL", //SET ENVIRONMENT VARIABLE WITH THIS NAME
                         username: "DOCKER_HUB_USERNAME", //SET ENVIRONMENT VARIABLE WITH THIS NAME
                         password: "DOCKER_HUB_PASSWORD" //SET ENVIRONMENT VARIABLE WITH THIS NAME
                     },
-                    name: 'governify-project-oai-gateway',
+                    name: 'groups-service',
                     tag: '<%= pkg.version %>',
                     push: true
                 }
             }
-        }
+        },
     });
 
     grunt.registerTask('buildOn', function () {
@@ -163,16 +177,27 @@ module.exports = function (grunt) {
         grunt.file.write('package.json', JSON.stringify(grunt.config('pkg'), null, 2));
     });
 
+    grunt.registerTask('import', 'drop and import data', function () {
+        var exec = require('child_process').execSync;
+        var uri = "mongodb://" + config.urlMongo + ":" + config.portMongo + "/" + config.dbName;
+        var fileLocation = "{yourTestFileLocation}";
+
+        var result = exec('mongoimport --uri ' + uri + ' --collection customGroups --drop --file ' + fileLocation, { encoding: 'utf8' });
+        grunt.log.writeln(result);
+    });
+
     // Default task(s).
-    grunt.registerTask('default', ['jshint', 'usebanner']);
+    grunt.registerTask('default', ['usebanner']);
+
 
     //TEST TASK
     grunt.registerTask('test', ['jshint', 'mochaTest']);
 
     //BUILD TASK
-    grunt.registerTask('build', ['test', 'buildOn', 'usebanner']);
+    grunt.registerTask('build', ['test', 'buildOn', 'usebanner', 'dockerize']);
 
     //DEVELOPMENT TASK
     grunt.registerTask('dev', ['watch']);
+
 
 };
