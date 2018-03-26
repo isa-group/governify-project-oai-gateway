@@ -20,11 +20,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
 'use strict';
 
-var request = require('request');
-var services = require('../database');
+const request = require('request');
+const services = require('../database');
 
-var config = require('../config');
-var logger = config.logger;
+const config = require('../configurations');
+const logger = require('../logger');
 
 module.exports = function (singleProxyRequest, singleProxyResponse, next) {
 
@@ -43,14 +43,13 @@ module.exports = function (singleProxyRequest, singleProxyResponse, next) {
 
             var builtURL = proxiedServer.replace(/\/?$/, '/') + path.replace(/^\/|\/$/g, '');
 
-            logger.singleproxy("Sending to server: " + builtURL + "...");
+            logger.singleProxy("Sending request to server: '%s'", builtURL);
 
             try {
                 var renameHost = proxiedServer.split('//')[1];
                 //singleProxyResponse.setHeader("host", renameHost);
                 var newHeaders = {};
                 newHeaders.host = renameHost.split('/')[0];
-                //console.log(singleProxyRequest.body);
                 //logger.debug("preheader (single): " + JSON.stringify(singleProxyRequest.headers));
                 for (var h in singleProxyRequest.headers) {
                     var hlower = h.toLowerCase();
@@ -63,7 +62,6 @@ module.exports = function (singleProxyRequest, singleProxyResponse, next) {
                 newHeaders['upgrade-insecure-requests'] = 1;
                 var requestBody = JSON.stringify(singleProxyRequest.body);
                 logger.debug("Bypassed headers from (single): " + JSON.stringify(newHeaders));
-                // logger.debug("Bypassed body from (single): " + requestBody);
                 var realServerRequestOptions = {
                     method: singleProxyRequest.method,
                     url: builtURL,
@@ -71,8 +69,9 @@ module.exports = function (singleProxyRequest, singleProxyResponse, next) {
                     body: requestBody
                 };
 
-                if (realServerRequestOptions.method === 'HEAD' || realServerRequestOptions.method === 'GET')
+                if (realServerRequestOptions.method === 'HEAD' || realServerRequestOptions.method === 'GET') {
                     delete realServerRequestOptions.body;
+                }
                 logger.debug("Sending to RealServer: %s", JSON.stringify(realServerRequestOptions, null, 2));
                 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
                 var requestToRealServer = request(realServerRequestOptions, function (err, realServerResponse) {
@@ -82,9 +81,9 @@ module.exports = function (singleProxyRequest, singleProxyResponse, next) {
                     } else {
                         logger.debug("Response from realServer: " + JSON.stringify(realServerResponse, null, 2));
                         for (var h in realServerResponse.headers) {
-                            // if (h === 'authorization' || h === 'content-type') {
-                            singleProxyResponse.setHeader(h, realServerResponse.headers[h]);
-                            // }
+                            if (h === 'authorization' || h === 'content-type' || h === 'data') {
+                                singleProxyResponse.setHeader(h, realServerResponse.headers[h]);
+                            }
                         }
                         singleProxyResponse.send(realServerResponse.body);
                     }

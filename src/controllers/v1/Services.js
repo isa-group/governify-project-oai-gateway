@@ -20,10 +20,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
 'use strict';
 
-var url = require('url');
-
-
-var Services = require('./ServicesService');
+const url = require('url');
+const Services = require('./ServicesService');
 
 
 module.exports.servicesPOST = function servicesPOST(req, res, next) {

@@ -1,38 +1,48 @@
 'use strict';
 
 // Dependencies
-var express = require('express');
-var swaggerTools = require('swagger-tools');
-var jsyaml = require('js-yaml');
-var fs = require('fs');
-var bodyParser = require('body-parser');
-var cors = require('cors');
-var jsonwebtoken = require('jsonwebtoken');
-var errorhandler = require('errorhandler');
-var compression = require('compression');
-var requestModule = require('request');
-var helmet = require('helmet');
+const express = require('express');
+const swaggerTools = require('swagger-tools');
+const jsyaml = require('js-yaml');
+const fs = require('fs');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const jsonwebtoken = require('jsonwebtoken');
+const errorhandler = require('errorhandler');
+const compression = require('compression');
+const requestModule = require('request');
+const helmet = require('helmet');
+const http = require('http');
 
-var config = require('./src/config');
-var proxy = require('./src/proxies/multi');
-var logger = config.logger;
-var database = require('./src/database');
-var pipeBuilder = require('./src/pipeBuilder');
+const config = require('./configurations');
+const proxy = require('./proxies/multi');
+const logger = require('./logger');
+const database = require('./database');
+const pipeBuilder = require('./pipeBuilder');
 
-var serverPort = (process.env.PORT || config.port);
-var app = express();
+const serverPort = process.env.PORT || config.server.port;
+const app = express();
 
 
-app.use(helmet());
+if (config.server.bypassCORS) {
+    logger.info("Adding 'Access-Control-Allow-Origin: *' header to every path.");
+    app.use(cors());
+}
+if (config.server.useHelmet) {
+    logger.info("Adding Helmet related headers.");
+    app.use(helmet());
+}
+
 app.use(compression());
 app.use(errorhandler());
 app.use(bodyParser.json());
-app.use(cors());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-app.use(express.static(__dirname + '/public'));
+const frontendPath = __dirname + '/../frontend';
+logger.info("Serving '%s' as static folder", frontendPath);
+app.use(express.static(frontendPath));
 
 app.use("/gateway", function (request, response, next) {
     function fromHeaderOrQuerystring(req) {
@@ -49,16 +59,13 @@ app.use("/gateway", function (request, response, next) {
     logger.debug('Received token:', token);
     if (token) {
         try {
-            var secret = Buffer.from(config.AUTH0_SECRET, 'base64');
+            var secret = Buffer.from(config.auth0.AUTH0_SECRET, 'base64');
             var verified = jsonwebtoken.verify(token, secret);
-        } catch (err) {
-            logger.warning("WARNING: invalid JWT signature");
-        }
-        if (verified) {
-            if (verified.aud === config.AUTH0_CLIENT_ID) {
-                requestModule({
+            if (verified) {
+                if (verified.aud === config.auth0.AUTH0_CLIENT_ID) {
+                    requestModule({
                         method: 'POST',
-                        uri: 'https://' + config.AUTH0_DOMAIN + '/tokeninfo',
+                        uri: 'https://' + config.auth0.AUTH0_DOMAIN + '/tokeninfo',
                         headers: [{
                             name: 'content-type',
                             value: 'application/x-www-form-urlencoded'
@@ -68,36 +75,39 @@ app.use("/gateway", function (request, response, next) {
                         }
 
                     },
-                    function (err, res, stringProfile) {
+                        function (err, res, stringProfile) {
 
-                        if (err) {
-                            logger.warning('err', err);
-                            response.status(401).send("You shall not pass. Error while getting user profile");
-                        } else {
-                            var profile = JSON.parse(stringProfile);
-                            var isAdmin = profile.roles.find(function (role) {
-                                if (role === "admin") {
-                                    return true;
-                                }
-                            });
-                            if (isAdmin) {
-                                logger.info("An ADMIN request to '" + response.req.url + "' from '" + profile["name"] + "' is being served");
-                                request.isAdmin = true;
+                            if (err) {
+                                logger.warning('err', err);
+                                response.status(401).send("You shall not pass. Error while getting user profile");
                             } else {
-                                logger.info("A request to '" + response.req.url + "' from '" + profile["name"] + "' is being served");
+                                var profile = JSON.parse(stringProfile);
+                                var isAdmin = profile.roles.find(function (role) {
+                                    if (role === "admin") {
+                                        return true;
+                                    }
+                                });
+                                if (isAdmin) {
+                                    logger.info("An ADMIN request to '" + response.req.url + "' from '" + profile["name"] + "' is being served");
+                                    request.isAdmin = true;
+                                } else {
+                                    logger.info("A request to '" + response.req.url + "' from '" + profile["name"] + "' is being served");
+                                }
+                                logger.debug("Setting request.userID to: " + verified.sub);
+                                request.userID = verified.sub;
+                                next();
                             }
-                            logger.debug("Setting request.userID to: " + verified.sub);
-                            request.userID = verified.sub;
-                            next();
-                        }
-                    });
+                        });
+                } else {
+                    logger.warning("Invalid JWT payload", verified);
+                    response.status(401).send("You shall not pass. Invalid JWT payload");
+                }
             } else {
-                logger.warning("Invalid JWT payload", verified);
-                response.status(401).send("You shall not pass. Invalid JWT payload");
+                logger.warning("Invalid JWT signature");
+                response.status(401).send("You shall not pass. Invalid JWT signature");
             }
-        } else {
-            logger.warning("Invalid JWT signature");
-            response.status(401).send("You shall not pass. Invalid JWT signature");
+        } catch (err) {
+            logger.warning("WARNING: invalid JWT signature");
         }
     } else {
         logger.warning("No token was given");
@@ -124,12 +134,12 @@ app.use(function (req, res, next) {
 // swaggerRouter configuration
 var optionsV1 = {
     swaggerUi: '/swagger/v1.json',
-    controllers: './src/controllers/v1',
+    controllers: './src/backend/controllers/v1',
     useStubs: process.env.NODE_ENV === 'development' ? true : false // Conditionally turn on stubs (mock mode)
 };
 
 // The Swagger document (require it, build it programmatically, fetch it from a URL, ...)
-var specV1 = fs.readFileSync('./src/api/swagger/v1.yaml', 'utf8');
+var specV1 = fs.readFileSync('./src/backend/api/swagger/v1.yaml', 'utf8');
 var swaggerDocV1 = jsyaml.safeLoad(specV1);
 
 // Initialize the Swagger middleware
@@ -149,20 +159,38 @@ swaggerTools.initializeMiddleware(swaggerDocV1, function (middleware) {
         swaggerUi: swaggerDocV1.basePath + '/docs'
     }));
 
-    database.connectDB(function (err) {
-        if (err)
-            throw new Error("Database connection has been failed.");
-        // Start the server
-        database.getServices(function (err, services) {
-            pipeBuilder.regenerate(services, function (err) {
-                if (err)
-                    logger.info("Error regenerating pipe for services.");
 
-                app.listen(serverPort, function () {
-                    logger.info('Your server is listening  on port %d (http://localhost:%d/gateway/api/v1/services)', serverPort, serverPort);
-                    logger.info('Swagger-ui is available on http://localhost:%d/gateway/api/v1/docs', serverPort);
+    var server = http.createServer(app);
+    database.connectDB(function (err) {
+        if (err) {
+            logger.error("Database connection cannot be established. A MongoDB persistence layer is needed to run this app. This error is not recoverable: exiting now");
+            process.exitCode = 1;
+            process.exit();
+        } else {
+            // Start the server
+            database.getServices(function (err, services) {
+                pipeBuilder.regenerate(services, function (err) {
+                    if (err) {
+                        logger.info("Error regenerating pipe for services.");
+                    }
+                    server.listen(serverPort, function () {
+                        logger.info("The Server is listening on port %d. Useful paths:", serverPort);
+                        logger.info("1) API documentation: http://localhost:%d/gateway/api/v1/docs", serverPort);
+                        logger.info("2) Services frontend: http://localhost:%d/#!/home", serverPort);
+                        logger.info("3) Services API: http://localhost:%d/gateway/api/v1/services?token=xxx", serverPort);
+
+                    });
                 });
             });
-        });
+        }
     });
+
+    exports.close = function (callback) {
+        if (server.listening) {
+            server.close(callback);
+        } else {
+            callback();
+        }
+    };
+
 });

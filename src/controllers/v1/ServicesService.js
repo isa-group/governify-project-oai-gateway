@@ -20,10 +20,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
 'use strict';
 
-var config = require('../../config');
-var logger = config.logger;
-var pipeBuilder = require('../../pipeBuilder');
-var db = require('../../database');
+const config = require('../../configurations');
+const logger = require('../../logger');
+const pipeBuilder = require('../../pipeBuilder');
+const db = require('../../database');
 
 exports.servicesPOST = function (req, res, next) {
     /**
@@ -34,20 +34,21 @@ exports.servicesPOST = function (req, res, next) {
     var args = req.swagger.params;
     var serviceInfo = args.serviceInfo.value;
     serviceInfo.userID = serviceInfo.userID || req.userID;
-    logger.servicesCtl('New request to create Service: %s', JSON.stringify(serviceInfo, null, 2));
-    logger.servicesCtl('Generating Service single proxy');
+    logger.servicesCtl("New request to create a new service '%s'", JSON.stringify(serviceInfo, null, 2));
+    logger.servicesCtl("Generating a new SingleProxy for service '%s'", serviceInfo.name);
     pipeBuilder.generate(serviceInfo, function (err, data) {
         if (err) {
-            logger.error('Error creating Service single proxy: %s', err.toString());
+            logger.error("Error while creating a new SingleProxy for service '%s': '%s", serviceInfo.name, err.toString());
             return res.status(500).json(err);
         }
-        logger.servicesCtl('Single Proxy for %s has been created successfully', serviceInfo.name);
-        logger.servicesCtl('Persisting serviceInfo', serviceInfo.name);
+        logger.servicesCtl("SingleProxy for service '%s' has been created successfully", serviceInfo.name);
+        logger.servicesCtl("Persisting serviceInfo for service '%s'", serviceInfo.name);
         db.addService(data, function (err, result) {
-            if (err)
+            if (err) {
                 return res.status(400).json(err);
-            else
+            } else {
                 return res.status(200).end();
+            }
         });
 
     });
@@ -59,10 +60,11 @@ exports.servicesGET = function (req, res, next) {
     var args = req.swagger.params;
     logger.servicesCtl('New request to retrieve all services.');
     db.getServices(function (err, services) {
-        if (err)
+        if (err) {
             res.status(500).json(err);
-        else
+        } else {
             res.json(services);
+        }
     }, req.userID, req.isAdmin);
 
 };
@@ -71,7 +73,7 @@ exports.servicesIdGET = function (req, res, next) {
 
     var args = req.swagger.params;
     var name = args.id.value;
-    logger.servicesCtl('New request to retrieve service with name: %s', name);
+    logger.servicesCtl("New request to retrieve the service with name '%s'", name);
 
     db.getServiceById(name, function (err, service) {
         if (service) {
@@ -79,7 +81,7 @@ exports.servicesIdGET = function (req, res, next) {
         } else {
             res.json({
                 code: 404,
-                message: 'Service with this id not found'
+                message: "Service 'name' not found"
             });
         }
     }, req.userID, req.isAdmin);
@@ -90,13 +92,13 @@ exports.servicesIdDELETE = function (req, res, next) {
 
     var args = req.swagger.params;
     var name = args.id.value;
-    logger.servicesCtl('New request to delete service with name: %s', name);
+    logger.servicesCtl("New request to delete the service with name '%s'", name);
 
     pipeBuilder.deletePipe(name, function (err, data) {
         if (err) {
             res.status(500).json({
                 code: 500,
-                message: "Unexpected error: " + err.toString()
+                message: "Unexpected error while deleting the service with name '%s': " + err.toString()
             });
         } else {
             db.deleteServiceById(name, function (err) {
@@ -113,12 +115,12 @@ exports.servicesIdDELETE = function (req, res, next) {
 
 exports.servicesDELETE = function (req, res, next) {
 
-    logger.servicesCtl('New request to delete all services.');
+    logger.servicesCtl('New request to delete all services');
     pipeBuilder.deleteAllPipe(function (err, data) {
         if (err) {
             res.status(500).json({
                 code: 500,
-                message: "Unexpected error: " + err.toString()
+                message: "Unexpected error while deleting all services: " + err.toString()
             });
         } else {
             db.deleteAllServices(function (err) {
@@ -138,7 +140,7 @@ exports.servicesIdPUT = function (req, res, next) {
     var args = req.swagger.params;
     var name = args.id.value;
     var serviceInfo = args.serviceInfo.value;
-    logger.servicesCtl('New request to delete service with name: %s and content: %s', name, serviceInfo);
+    logger.servicesCtl("New request to delete service with name '%s' and content '%s'", name, serviceInfo);
 
     db.updateServiceById(name, serviceInfo, function (err, result) {
         if (err) {

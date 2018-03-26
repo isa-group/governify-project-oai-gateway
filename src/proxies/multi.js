@@ -20,37 +20,36 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
 'use strict';
 
-var request = require('request');
+const request = require('request');
 
-var services = require('../database');
-var config = require('../config');
-var logger = config.logger;
+const services = require('../database');
+const config = require('../configurations');
+const logger = require('../logger');
 
 module.exports = function (originalRequest, originalResponse, next) {
-    logger.multiproxy("Initialize proxing for: %s", originalRequest.originalUrl);
+    logger.multiProxy("Initializing proxy for the path '%s'", originalRequest.originalUrl);
     if (false || originalRequest.originalUrl.indexOf('gateway') !== -1) {
-        logger.multiproxy("Is not need to do proxy for this path", originalRequest.originalUrl);
+        logger.multiProxy("It is not necessary to proxy the path '%s'", originalRequest.originalUrl);
         return next();
     }
 
-    var refererFrom = originalRequest.headers['referer'] ? originalRequest.headers['referer'].split('/')[3] : 'No referer';
-    logger.multiproxy("Referer as service: %s ", refererFrom);
+    var refererFrom = originalRequest.headers.referer ? originalRequest.headers.referer.split('/')[3] : 'No referer';
+    logger.multiProxy("Referer: '%s'", refererFrom);
 
-    logger.multiproxy("Finding service with name");
     var servicePath = originalRequest.originalUrl.split('/')[1];
 
-    logger.multiproxy("Using path: %s", servicePath);
+    logger.multiProxy("Searching service: '%s'", servicePath);
     services.getServiceById(servicePath, function (err, service) {
         if (err || !service) {
-            logger.multiproxy("Not found service. Using refererFrom: %s", refererFrom);
+            logger.multiProxy("Service not found. Using 'refererFrom: %s'", refererFrom);
             services.getServiceById(refererFrom, function (err, service) {
                 if (err) {
-                    logger.multiproxy('There is not service registered for name %s', servicePath);
+                    logger.multiProxy("There is no registered service for the name '%s'", servicePath);
                     return originalResponse.status(405).end("Method Not Allowed");
                 } else {
                     var serviceInfo = service;
                     if (!serviceInfo) {
-                        logger.multiproxy('There is not service registered for name %s', servicePath);
+                        logger.multiProxy("There is no registered service for the name '%s'", servicePath);
                         return originalResponse.status(405).end("Method Not Allowed");
                     }
                     doProxy(serviceInfo, originalRequest, originalResponse, next);
@@ -59,7 +58,7 @@ module.exports = function (originalRequest, originalResponse, next) {
         } else {
             var serviceInfo = service;
             if (!serviceInfo) {
-                logger.multiproxy('There is not service registered for name %s', servicePath);
+                logger.multiProxy('There is not service registered for name %s', servicePath);
                 return originalResponse.status(405).end("Method Not Allowed");
             }
             doProxy(serviceInfo, originalRequest, originalResponse, next);
@@ -69,19 +68,20 @@ module.exports = function (originalRequest, originalResponse, next) {
 };
 
 function doProxy(serviceInfo, originalRequest, originalResponse, next) {
-    logger.multiproxy("Proxing from originalRequest to singleProxy for: %s", serviceInfo.name);
+    logger.multiProxy("Proxying from originalRequest to singleProxy for: '%s'", serviceInfo.name);
     try {
 
         var originalRequestBody = JSON.stringify(originalRequest.body);
         var requestToSingleProxyOptions = {
             followRedirect: false,
             method: originalRequest.method,
-            url: "http://localhost:" + serviceInfo.port + (originalRequest.originalUrl.replace('/' + serviceInfo.name, '')).replace(/([^:]\/)\/+/g, "$1"),
+            url: "http" + "://" + "localhost" + ":" + serviceInfo.port + (originalRequest.originalUrl.replace('/' + serviceInfo.name, '')).replace(/([^:]\/)\/+/g, "$1"),
             body: originalRequestBody
         };
-        if (requestToSingleProxyOptions.method === 'HEAD')
+        logger.debug("requestToSingleProxyOptions for: '%s'", serviceInfo.name, JSON.stringify(requestToSingleProxyOptions, null, 2));
+        if (requestToSingleProxyOptions.method === 'HEAD') {
             delete requestToSingleProxyOptions.body;
-
+        }
         //originalResponse.setHeader("host", originalRequest.headers.host);
         var newHeaders = {};
         for (var h in originalRequest.headers) {
@@ -107,12 +107,12 @@ function doProxy(serviceInfo, originalRequest, originalResponse, next) {
                     originalResponse.setHeader(h, singleProxyResponse.headers[h]);
                 }
 
-                logger.multiproxy('Status from proxied server: %s', singleProxyResponse.statusCode);
+                logger.multiProxy('Status from proxied server: %s', singleProxyResponse.statusCode);
                 if (singleProxyResponse.statusCode === 302 || singleProxyResponse.statusCode === 301) {
-                    logger.multiproxy('Redirecting: %s', '/' + serviceInfo.name + singleProxyResponse.headers['location']);
+                    logger.multiProxy('Redirecting: %s', '/' + serviceInfo.name + singleProxyResponse.headers['location']);
                     originalResponse.redirect('/' + serviceInfo.name + singleProxyResponse.headers['location']);
                 } else {
-                    logger.multiproxy("Piping response...");
+                    logger.multiProxy("Piping response from '%s'", singleProxyResponse.request.href);
                     var newHeaders = singleProxyResponse.headers;
                     for (var h in singleProxyResponse.headers) {
                         // if (h === 'authorization' || h === 'content-type') {
@@ -123,11 +123,11 @@ function doProxy(serviceInfo, originalRequest, originalResponse, next) {
                     originalResponse.send(singleProxyResponse.body);
                 }
             } else {
-                logger.error("Error in request", requestToSingleProxyOptions);
+                logger.error("Error in request: %s", JSON.parse(err, null, 2), requestToSingleProxyOptions);
                 originalResponse.status(500).end(err.toString());
             }
         }).on('error', function (err) {
-            logger.error("Error in request", requestToSingleProxyOptions);
+            logger.error("Error in request: %s", JSON.parse(err, null, 2), requestToSingleProxyOptions);
             originalResponse.status(500).end(err.toString());
         });
 

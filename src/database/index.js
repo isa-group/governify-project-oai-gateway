@@ -20,10 +20,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
 'use strict';
 
-var mongoose = require('mongoose');
-var config = require('../config');
-var bluebird = require('bluebird');
-var logger = config.logger;
+const mongoose = require('mongoose');
+const bluebird = require('bluebird');
+
+const serviceSchema = require('./serviceSchema.json');
+const config = require('../configurations');
+const logger = require('../logger');
 
 mongoose.Promise = bluebird;
 module.exports = {
@@ -32,13 +34,14 @@ module.exports = {
 
 function _connectDB(callback) {
     var database = this;
-    mongoose.connect(config.database.url + "/" + config.database.db_name, function (err) {
+    let mongoURI = "mongodb://" + config.database.host + ":" + config.database.port + "/" + config.database.name;
+    mongoose.connect(mongoURI, function (err) {
         if (err) {
             callback(err);
             logger.error(err.toString());
         } else {
-            logger.info("Database connection has been stablished!!");
-            database.serviceModel = mongoose.model('Service', new mongoose.Schema(require('./serviceSchema.json'), {
+            logger.info("Database connection has been established at '%s'", mongoURI);
+            database.serviceModel = mongoose.model('Service', new mongoose.Schema(serviceSchema, {
                 minimize: false,
                 versionKey: false,
                 timestamps: {
@@ -73,7 +76,7 @@ module.exports.getServices = function (callback, userID, isAdmin) {
             logger.db("Error while retrieving services: %s", JSON.stringify(err.toString()));
             callback(err, null);
         } else {
-            logger.db("%d have been found.", services.length);
+            logger.db("%d services have been found.", services.length);
             callback(null, services);
         }
     });
@@ -88,11 +91,14 @@ module.exports.getServiceById = function (id, callback, userID, isAdmin) {
     }
     this.serviceModel.findOne(query, function (err, service) {
         if (err) {
-            logger.db("Error while retrieving services: %s", JSON.stringify(err.toString()));
+            logger.db("Error while retrieving services: %s", JSON.stringify(err.toString(), null, 2));
             callback(err, null);
-        } else {
-            logger.db("Found: %s", JSON.stringify(service, null, 2));
+        } else if (service) {
+            logger.db("Service '%s' found", service.name);
             callback(null, service);
+        } else {
+            logger.db("Service not found for query '%s'", JSON.stringify(query, null, 2));
+            callback(null, null);
         }
     });
 };
