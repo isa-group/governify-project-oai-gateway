@@ -1,5 +1,5 @@
 /*!
-governify-gateway 0.0.1, built on: 2018-03-26
+governify-gateway 1.0.0, built on: 2018-03-27
 Copyright (C) 2018 ISA group
 http://www.isa.us.es/
 https://github.com/isa-group/governify-gateway

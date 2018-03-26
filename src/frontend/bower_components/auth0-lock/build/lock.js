@@ -1,3 +1,22 @@
+/*!
+governify-gateway 1.0.0, built on: 2018-03-27
+Copyright (C) 2018 ISA group
+http://www.isa.us.es/
+https://github.com/isa-group/governify-gateway
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
+
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -883,12 +902,6 @@ function overrideOptions(m, opts) {
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
 
 if (false) {
   var REACT_ELEMENT_TYPE = (typeof Symbol === 'function' &&
@@ -918,15 +931,6 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 /**
  * Use invariant() to assert state which your program assumes to be true.
@@ -977,15 +981,6 @@ module.exports = invariant;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
 
 /**
  * WARNING: DO NOT manually require this module.
@@ -1019,15 +1014,6 @@ module.exports = reactProdInvariant;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var emptyFunction = __webpack_require__(25);
 
@@ -1184,15 +1170,6 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var _prodInvariant = __webpack_require__(4);
 
@@ -1716,14 +1693,6 @@ function getState() {
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/**
- *  Copyright (c) 2014-2015, Facebook, Inc.
- *  All rights reserved.
- *
- *  This source code is licensed under the BSD-style license found in the
- *  LICENSE file in the root directory of this source tree. An additional grant
- *  of patent rights can be found in the PATENTS file in the same directory.
- */
 
 (function (global, factory) {
    true ? module.exports = factory() :
@@ -7165,15 +7134,6 @@ function resolveAdditionalSignUpTextField(m, x) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
 
@@ -7547,16 +7507,6 @@ module.exports = {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2016-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-
 
 // Trust the developer to only use ReactInstrumentation with a __DEV__ check
 
@@ -7959,15 +7909,6 @@ function dataFns(baseNSKeyPath) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var _prodInvariant = __webpack_require__(4),
     _assign = __webpack_require__(6);
@@ -8481,15 +8422,6 @@ function loginType(fields) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var _assign = __webpack_require__(6);
 
@@ -8757,14 +8689,6 @@ function getPooledWarningPropertyDefinition(propName, getVal) {
 "use strict";
 
 
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
 
 function makeEmptyFunction(arg) {
   return function () {
@@ -8797,16 +8721,6 @@ module.exports = emptyFunction;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-
 
 /**
  * Keeps track of the current owner.
@@ -9247,16 +9161,6 @@ InputWrap.propTypes = {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-
 
 var _prodInvariant = __webpack_require__(4);
 
@@ -9752,15 +9656,6 @@ module.exports = {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2015-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var DOMNamespaces = __webpack_require__(83);
 var setInnerHTML = __webpack_require__(64);
@@ -9873,15 +9768,6 @@ module.exports = DOMLazyTree;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var _prodInvariant = __webpack_require__(4);
 
@@ -10085,15 +9971,6 @@ module.exports = DOMProperty;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var ReactRef = __webpack_require__(314);
 var ReactInstrumentation = __webpack_require__(17);
@@ -10254,15 +10131,6 @@ module.exports = ReactReconciler;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var _assign = __webpack_require__(6);
 
@@ -10389,15 +10257,6 @@ module.exports = React;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var _assign = __webpack_require__(6);
 
@@ -11090,15 +10949,6 @@ module.exports = __webpack_require__(291);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var _prodInvariant = __webpack_require__(4);
 
@@ -11367,15 +11217,6 @@ module.exports = EventPluginHub;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var EventPluginHub = __webpack_require__(45);
 var EventPluginUtils = __webpack_require__(85);
@@ -11504,15 +11345,6 @@ module.exports = EventPropagators;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 /**
  * `ReactInstanceMap` maintains a mapping from a public facing stateful
@@ -11553,15 +11385,6 @@ module.exports = ReactInstanceMap;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var SyntheticEvent = __webpack_require__(24);
 
@@ -11615,15 +11438,6 @@ module.exports = SyntheticUIEvent;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
 
 /**
  * WARNING: DO NOT manually require this module.
@@ -11657,15 +11471,6 @@ module.exports = reactProdInvariant;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 /**
  * Use invariant() to assert state which your program assumes to be true.
@@ -12402,15 +12207,6 @@ module.exports = _;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var _assign = __webpack_require__(6);
 
@@ -12729,15 +12525,6 @@ module.exports = ReactBrowserEventEmitter;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var SyntheticUIEvent = __webpack_require__(48);
 var ViewportMetrics = __webpack_require__(144);
@@ -12804,16 +12591,6 @@ module.exports = SyntheticMouseEvent;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-
 
 var _prodInvariant = __webpack_require__(4);
 
@@ -13035,40 +12812,6 @@ module.exports = TransactionImpl;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2016-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * Based on the escape-html library, which is used under the MIT License below:
- *
- * Copyright (c) 2012-2013 TJ Holowaychuk
- * Copyright (c) 2015 Andreas Lubbe
- * Copyright (c) 2015 Tiancheng "Timothy" Gu
- *
- * Permission is hereby granted, free of charge, to any person obtaining
- * a copy of this software and associated documentation files (the
- * 'Software'), to deal in the Software without restriction, including
- * without limitation the rights to use, copy, modify, merge, publish,
- * distribute, sublicense, and/or sell copies of the Software, and to
- * permit persons to whom the Software is furnished to do so, subject to
- * the following conditions:
- *
- * The above copyright notice and this permission notice shall be
- * included in all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
- * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
- * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
- * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
- * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- *
- */
-
-
 
 // code copied and modified from escape-html
 /**
@@ -13160,15 +12903,6 @@ module.exports = escapeTextContentForBrowser;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var ExecutionEnvironment = __webpack_require__(12);
 var DOMNamespaces = __webpack_require__(83);
@@ -13261,15 +12995,6 @@ module.exports = setInnerHTML;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var emptyFunction = __webpack_require__(165);
 
@@ -15465,14 +15190,6 @@ module.exports = {
 "use strict";
 
 
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
 
 function makeEmptyFunction(arg) {
   return function () {
@@ -15505,15 +15222,6 @@ module.exports = emptyFunction;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var DOMLazyTree = __webpack_require__(37);
 var Danger = __webpack_require__(283);
@@ -15734,15 +15442,6 @@ module.exports = DOMChildrenOperations;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var DOMNamespaces = {
   html: 'http://www.w3.org/1999/xhtml',
@@ -15757,16 +15456,6 @@ module.exports = DOMNamespaces;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-
 
 var _prodInvariant = __webpack_require__(4);
 
@@ -16013,15 +15702,6 @@ module.exports = EventPluginRegistry;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var _prodInvariant = __webpack_require__(4);
 
@@ -16242,16 +15922,6 @@ module.exports = EventPluginUtils;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-
 
 /**
  * Escape and wrap key so it is safe to use as a reactid
@@ -16304,15 +15974,6 @@ module.exports = KeyEscapeUtils;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var _prodInvariant = __webpack_require__(4);
 
@@ -16445,16 +16106,6 @@ module.exports = LinkedValueUtils;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-
 
 var _prodInvariant = __webpack_require__(4);
 
@@ -16492,16 +16143,6 @@ module.exports = ReactComponentEnvironment;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-
 
 var caughtError = null;
 
@@ -16573,15 +16214,6 @@ module.exports = ReactErrorUtils;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2015-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var _prodInvariant = __webpack_require__(4);
 
@@ -16810,13 +16442,6 @@ module.exports = ReactUpdateQueue;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
 
 /* globals MSApp */
 
@@ -16845,15 +16470,6 @@ module.exports = createMicrosoftUnsafeLocalFunction;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 /**
  * `charCode` represents the actual "character code" and is safe to use with
@@ -16898,15 +16514,6 @@ module.exports = getEventCharCode;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 /**
  * Translation from modifier key to the associated property in the event.
@@ -16944,15 +16551,6 @@ module.exports = getEventModifierState;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 /**
  * Gets the target node from a native browser event by accounting for
@@ -16982,15 +16580,6 @@ module.exports = getEventTarget;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var ExecutionEnvironment = __webpack_require__(12);
 
@@ -17045,15 +16634,6 @@ module.exports = isEventSupported;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 /**
  * Given a `prevElement` and `nextElement`, determines if the existing
@@ -17090,15 +16670,6 @@ module.exports = shouldUpdateReactComponent;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2015-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var _assign = __webpack_require__(6);
 
@@ -17464,15 +17035,6 @@ module.exports = validateDOMNesting;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * @typechecks
- * 
- */
 
 /*eslint-disable no-self-compare */
 
@@ -20584,19 +20146,6 @@ function img(src) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright 2013-2015, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * @providesModule CSSCore
- * @typechecks
- */
-
-
 
 var invariant = __webpack_require__(259);
 
@@ -22236,14 +21785,6 @@ module.exports.charsets = charsets;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-
 
 // React 15.5 references this module, and assumes PropTypes are still callable in production.
 // Therefore we re-export development-only version with all the PropTypes checks here.
@@ -22262,14 +21803,6 @@ module.exports = function(isValidElement) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-
 
 var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 
@@ -22281,15 +21814,6 @@ module.exports = ReactPropTypesSecret;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 /**
  * Use invariant() to assert state which your program assumes to be true.
@@ -22554,15 +22078,6 @@ exports.isBuffer = function (obj) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 /**
  * CSS properties which accept numbers but are not in units of "px".
@@ -22712,16 +22227,6 @@ module.exports = CSSProperty;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-
 
 var _prodInvariant = __webpack_require__(4);
 
@@ -22834,15 +22339,6 @@ module.exports = PooledClass.addPoolingTo(CallbackQueue);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var DOMProperty = __webpack_require__(38);
 var ReactDOMComponentTree = __webpack_require__(7);
@@ -23072,15 +22568,6 @@ module.exports = DOMPropertyOperations;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2015-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var ReactDOMComponentFlags = {
   hasCachedChildNodes: 1 << 0
@@ -23093,15 +22580,6 @@ module.exports = ReactDOMComponentFlags;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var _assign = __webpack_require__(6);
 
@@ -23296,15 +22774,6 @@ module.exports = ReactDOMSelect;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var emptyComponentFactory;
 
@@ -23329,16 +22798,6 @@ module.exports = ReactEmptyComponent;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-
 
 var ReactFeatureFlags = {
   // When true, call console.time() before and .timeEnd() after each top-level
@@ -23354,15 +22813,6 @@ module.exports = ReactFeatureFlags;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var _prodInvariant = __webpack_require__(4);
 
@@ -23425,15 +22875,6 @@ module.exports = ReactHostComponent;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var ReactDOMSelection = __webpack_require__(299);
 
@@ -23551,15 +22992,6 @@ module.exports = ReactInputSelection;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var _prodInvariant = __webpack_require__(4);
 
@@ -24092,16 +23524,6 @@ module.exports = ReactMount;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-
 
 var _prodInvariant = __webpack_require__(4);
 
@@ -24135,15 +23557,6 @@ module.exports = ReactNodeTypes;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var ViewportMetrics = {
   currentScrollLeft: 0,
@@ -24163,16 +23576,6 @@ module.exports = ViewportMetrics;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-
 
 var _prodInvariant = __webpack_require__(4);
 
@@ -24224,16 +23627,6 @@ module.exports = accumulateInto;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-
 
 /**
  * @param {array} arr an "accumulation" of items which is either an Array or
@@ -24258,15 +23651,6 @@ module.exports = forEachAccumulated;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var ReactNodeTypes = __webpack_require__(143);
 
@@ -24291,15 +23675,6 @@ module.exports = getHostComponentFromComposite;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var ExecutionEnvironment = __webpack_require__(12);
 
@@ -24327,15 +23702,6 @@ module.exports = getTextContentAccessor;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var ReactDOMComponentTree = __webpack_require__(7);
 
@@ -24453,15 +23819,6 @@ module.exports = inputValueTracking;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var _prodInvariant = __webpack_require__(4),
     _assign = __webpack_require__(6);
@@ -24585,16 +23942,6 @@ module.exports = instantiateReactComponent;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-
 
 /**
  * @see http://www.whatwg.org/specs/web-apps/current-work/multipage/the-input-element.html#input-type-attr-summary
@@ -24639,15 +23986,6 @@ module.exports = isTextInputElement;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var ExecutionEnvironment = __webpack_require__(12);
 var escapeTextContentForBrowser = __webpack_require__(63);
@@ -24694,15 +24032,6 @@ module.exports = setTextContent;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var _prodInvariant = __webpack_require__(4);
 
@@ -24875,14 +24204,6 @@ module.exports = traverseAllChildren;
 "use strict";
 
 
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * @typechecks
- */
 
 var emptyFunction = __webpack_require__(25);
 
@@ -24953,15 +24274,6 @@ module.exports = EventListener;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var emptyObject = {};
 
@@ -24976,15 +24288,6 @@ module.exports = emptyObject;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 /**
  * @param {DOMElement} node input/textarea to focus
@@ -25008,14 +24311,6 @@ module.exports = focusNode;
 "use strict";
 
 
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * @typechecks
- */
 
 /* eslint-disable fb-www/typeof-undefined */
 
@@ -25665,15 +24960,6 @@ var classNamesShape = exports.classNamesShape = _propTypes2.default.oneOfType([_
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var _prodInvariant = __webpack_require__(49),
     _assign = __webpack_require__(6);
@@ -25811,16 +25097,6 @@ module.exports = {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2016-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-
 
 var _prodInvariant = __webpack_require__(49);
 
@@ -26193,16 +25469,6 @@ module.exports = ReactComponentTreeHook;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-
 
 // The Symbol used to tag the ReactElement type. If there is no native Symbol
 // nor polyfill, then a plain number is used for performance.
@@ -26216,15 +25482,6 @@ module.exports = REACT_ELEMENT_TYPE;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2015-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var warning = __webpack_require__(65);
 
@@ -26314,16 +25571,6 @@ module.exports = ReactNoopUpdateQueue;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-
 
 var canDefineProperty = false;
 if (false) {
@@ -26345,14 +25592,6 @@ module.exports = canDefineProperty;
 "use strict";
 
 
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
 
 function makeEmptyFunction(arg) {
   return function () {
@@ -35078,15 +34317,6 @@ Emitter.prototype.hasListeners = function(event){
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var _assign = __webpack_require__(6);
 
@@ -35955,15 +35185,6 @@ module.exports = factory;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var emptyObject = {};
 
@@ -35978,15 +35199,6 @@ module.exports = emptyObject;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 /**
  * Use invariant() to assert state which your program assumes to be true.
@@ -37248,26 +36460,7 @@ module.exports = function removeClass(element, className) {
 /* 258 */
 /***/ (function(module, exports) {
 
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
 
 function EventEmitter() {
   this._events = this._events || {};
@@ -37557,18 +36750,6 @@ function isUndefined(arg) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright 2013-2015, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * @providesModule invariant
- */
-
-
 
 /**
  * Use invariant() to assert state which your program assumes to be true.
@@ -38554,14 +37735,6 @@ module.exports = {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-
 
 if (false) {
   var invariant = require('fbjs/lib/invariant');
@@ -38620,14 +37793,6 @@ module.exports = checkPropTypes;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-
 
 var emptyFunction = __webpack_require__(81);
 var invariant = __webpack_require__(130);
@@ -38685,14 +37850,6 @@ module.exports = function() {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-
 
 var emptyFunction = __webpack_require__(81);
 var invariant = __webpack_require__(130);
@@ -39234,15 +38391,6 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var emptyFunction = __webpack_require__(81);
 
@@ -39690,15 +38838,6 @@ module.exports = function (object, opts) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var ARIADOMPropertyConfig = {
   Properties: {
@@ -39767,15 +38906,6 @@ module.exports = ARIADOMPropertyConfig;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var ReactDOMComponentTree = __webpack_require__(7);
 
@@ -39794,15 +38924,6 @@ module.exports = AutoFocusUtils;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var EventPropagators = __webpack_require__(46);
 var ExecutionEnvironment = __webpack_require__(12);
@@ -40181,15 +39302,6 @@ module.exports = BeforeInputEventPlugin;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var CSSProperty = __webpack_require__(133);
 var ExecutionEnvironment = __webpack_require__(12);
@@ -40399,15 +39511,6 @@ module.exports = CSSPropertyOperations;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var EventPluginHub = __webpack_require__(45);
 var EventPropagators = __webpack_require__(46);
@@ -40714,15 +39817,6 @@ module.exports = ChangeEventPlugin;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var _prodInvariant = __webpack_require__(4);
 
@@ -40763,15 +39857,6 @@ module.exports = Danger;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 /**
  * Module that is injectable into `EventPluginHub`, that specifies a
@@ -40792,15 +39877,6 @@ module.exports = DefaultEventPluginOrder;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var EventPropagators = __webpack_require__(46);
 var ReactDOMComponentTree = __webpack_require__(7);
@@ -40893,15 +39969,6 @@ module.exports = EnterLeaveEventPlugin;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var _assign = __webpack_require__(6);
 
@@ -40991,15 +40058,6 @@ module.exports = FallbackCompositionState;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var DOMProperty = __webpack_require__(38);
 
@@ -41231,15 +40289,6 @@ module.exports = HTMLDOMPropertyConfig;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var ReactReconciler = __webpack_require__(39);
 
@@ -41388,15 +40437,6 @@ module.exports = ReactChildReconciler;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var DOMChildrenOperations = __webpack_require__(82);
 var ReactDOMIDOperations = __webpack_require__(296);
@@ -41419,15 +40459,6 @@ module.exports = ReactComponentBrowserEnvironment;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var _prodInvariant = __webpack_require__(4),
     _assign = __webpack_require__(6);
@@ -42322,13 +41353,6 @@ module.exports = ReactCompositeComponent;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
 
 /* globals __REACT_DEVTOOLS_GLOBAL_HOOK__*/
 
@@ -42436,13 +41460,6 @@ module.exports = ReactDOM;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
 
 /* global hasOwnProperty:true */
 
@@ -43453,15 +42470,6 @@ module.exports = ReactDOMComponent;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var validateDOMNesting = __webpack_require__(97);
 
@@ -43489,15 +42497,6 @@ module.exports = ReactDOMContainerInfo;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var _assign = __webpack_require__(6);
 
@@ -43552,15 +42551,6 @@ module.exports = ReactDOMEmptyComponent;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var ReactDOMFeatureFlags = {
   useCreateElement: true,
@@ -43574,15 +42564,6 @@ module.exports = ReactDOMFeatureFlags;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var DOMChildrenOperations = __webpack_require__(82);
 var ReactDOMComponentTree = __webpack_require__(7);
@@ -43610,15 +42591,6 @@ module.exports = ReactDOMIDOperations;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var _prodInvariant = __webpack_require__(4),
     _assign = __webpack_require__(6);
@@ -43900,15 +42872,6 @@ module.exports = ReactDOMInput;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var _assign = __webpack_require__(6);
 
@@ -44025,15 +42988,6 @@ module.exports = ReactDOMOption;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var ExecutionEnvironment = __webpack_require__(12);
 
@@ -44240,15 +43194,6 @@ module.exports = ReactDOMSelection;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var _prodInvariant = __webpack_require__(4),
     _assign = __webpack_require__(6);
@@ -44405,15 +43350,6 @@ module.exports = ReactDOMTextComponent;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var _prodInvariant = __webpack_require__(4),
     _assign = __webpack_require__(6);
@@ -44568,15 +43504,6 @@ module.exports = ReactDOMTextarea;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2015-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var _prodInvariant = __webpack_require__(4);
 
@@ -44707,15 +43634,6 @@ module.exports = {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var _assign = __webpack_require__(6);
 
@@ -44778,15 +43696,6 @@ module.exports = ReactDefaultBatchingStrategy;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var ARIADOMPropertyConfig = __webpack_require__(278);
 var BeforeInputEventPlugin = __webpack_require__(280);
@@ -44867,16 +43776,6 @@ module.exports = {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-
 
 // The Symbol used to tag the ReactElement type. If there is no native Symbol
 // nor polyfill, then a plain number is used for performance.
@@ -44890,15 +43789,6 @@ module.exports = REACT_ELEMENT_TYPE;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var EventPluginHub = __webpack_require__(45);
 
@@ -44925,15 +43815,6 @@ module.exports = ReactEventEmitterMixin;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var _assign = __webpack_require__(6);
 
@@ -45083,15 +43964,6 @@ module.exports = ReactEventListener;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var DOMProperty = __webpack_require__(38);
 var EventPluginHub = __webpack_require__(45);
@@ -45120,15 +43992,6 @@ module.exports = ReactInjection;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var adler32 = __webpack_require__(331);
 
@@ -45173,15 +44036,6 @@ module.exports = ReactMarkupChecksum;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var _prodInvariant = __webpack_require__(4);
 
@@ -45622,16 +44476,6 @@ module.exports = ReactMultiChild;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-
 
 var _prodInvariant = __webpack_require__(4);
 
@@ -45718,16 +44562,6 @@ module.exports = ReactOwner;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-
 
 var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 
@@ -45738,15 +44572,6 @@ module.exports = ReactPropTypesSecret;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var _assign = __webpack_require__(6);
 
@@ -45919,16 +44744,6 @@ module.exports = ReactReconcileTransaction;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-
 
 var ReactOwner = __webpack_require__(311);
 
@@ -46011,15 +44826,6 @@ module.exports = ReactRef;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var _assign = __webpack_require__(6);
 
@@ -46104,16 +44910,6 @@ module.exports = ReactServerRenderingTransaction;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2015-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -46246,15 +45042,6 @@ module.exports = ReactServerUpdateQueue;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 module.exports = '15.6.2';
 
@@ -46263,15 +45050,6 @@ module.exports = '15.6.2';
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var NS = {
   xlink: 'http://www.w3.org/1999/xlink',
@@ -46568,15 +45346,6 @@ module.exports = SVGDOMPropertyConfig;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var EventPropagators = __webpack_require__(46);
 var ExecutionEnvironment = __webpack_require__(12);
@@ -46759,16 +45528,6 @@ module.exports = SelectEventPlugin;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-
 
 var _prodInvariant = __webpack_require__(4);
 
@@ -46988,15 +45747,6 @@ module.exports = SimpleEventPlugin;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var SyntheticEvent = __webpack_require__(24);
 
@@ -47030,15 +45780,6 @@ module.exports = SyntheticAnimationEvent;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var SyntheticEvent = __webpack_require__(24);
 
@@ -47071,15 +45812,6 @@ module.exports = SyntheticClipboardEvent;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var SyntheticEvent = __webpack_require__(24);
 
@@ -47110,15 +45842,6 @@ module.exports = SyntheticCompositionEvent;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var SyntheticMouseEvent = __webpack_require__(61);
 
@@ -47149,15 +45872,6 @@ module.exports = SyntheticDragEvent;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var SyntheticUIEvent = __webpack_require__(48);
 
@@ -47188,15 +45902,6 @@ module.exports = SyntheticFocusEvent;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var SyntheticEvent = __webpack_require__(24);
 
@@ -47228,15 +45933,6 @@ module.exports = SyntheticInputEvent;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var SyntheticUIEvent = __webpack_require__(48);
 
@@ -47315,15 +46011,6 @@ module.exports = SyntheticKeyboardEvent;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var SyntheticUIEvent = __webpack_require__(48);
 
@@ -47363,15 +46050,6 @@ module.exports = SyntheticTouchEvent;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var SyntheticEvent = __webpack_require__(24);
 
@@ -47405,15 +46083,6 @@ module.exports = SyntheticTransitionEvent;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var SyntheticMouseEvent = __webpack_require__(61);
 
@@ -47459,16 +46128,6 @@ module.exports = SyntheticWheelEvent;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-
 
 var MOD = 65521;
 
@@ -47506,15 +46165,6 @@ module.exports = adler32;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var CSSProperty = __webpack_require__(133);
 var warning = __webpack_require__(5);
@@ -47588,15 +46238,6 @@ module.exports = dangerousStyleValue;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var _prodInvariant = __webpack_require__(4);
 
@@ -47651,16 +46292,6 @@ module.exports = findDOMNode;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-
 
 var KeyEscapeUtils = __webpack_require__(86);
 var traverseAllChildren = __webpack_require__(153);
@@ -47731,15 +46362,6 @@ module.exports = flattenChildren;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var getEventCharCode = __webpack_require__(92);
 
@@ -47846,16 +46468,6 @@ module.exports = getEventKey;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-
 
 /* global Symbol */
 
@@ -47890,15 +46502,6 @@ module.exports = getIteratorFn;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 /**
  * Given any node return the first leaf node without children.
@@ -47967,15 +46570,6 @@ module.exports = getNodeForCharacterOffset;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var ExecutionEnvironment = __webpack_require__(12);
 
@@ -48071,15 +46665,6 @@ module.exports = getVendorPrefixedEventName;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var escapeTextContentForBrowser = __webpack_require__(63);
 
@@ -48100,15 +46685,6 @@ module.exports = quoteAttributeValueForBrowser;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var ReactMount = __webpack_require__(142);
 
@@ -48121,14 +46697,6 @@ module.exports = ReactMount.renderSubtreeIntoContainer;
 "use strict";
 
 
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * @typechecks
- */
 
 var _hyphenPattern = /-(.)/g;
 
@@ -48154,16 +46722,6 @@ module.exports = camelize;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * @typechecks
- */
-
-
 
 var camelize = __webpack_require__(341);
 
@@ -48199,14 +46757,6 @@ module.exports = camelizeStyleName;
 "use strict";
 
 
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
 
 var isTextNode = __webpack_require__(351);
 
@@ -48242,14 +46792,6 @@ module.exports = containsNode;
 "use strict";
 
 
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * @typechecks
- */
 
 var invariant = __webpack_require__(3);
 
@@ -48372,14 +46914,6 @@ module.exports = createArrayFromMixed;
 "use strict";
 
 
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * @typechecks
- */
 
 /*eslint-disable fb-www/unsafe-html*/
 
@@ -48459,13 +46993,6 @@ module.exports = createNodesFromMarkup;
 "use strict";
 
 
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
 
 /*eslint-disable fb-www/unsafe-html */
 
@@ -48555,16 +47082,6 @@ module.exports = getMarkupWrap;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * @typechecks
- */
-
-
 
 /**
  * Gets the scroll position of the supplied element or window.
@@ -48599,14 +47116,6 @@ module.exports = getUnboundedScrollPosition;
 "use strict";
 
 
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * @typechecks
- */
 
 var _uppercasePattern = /([A-Z])/g;
 
@@ -48633,16 +47142,6 @@ module.exports = hyphenate;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * @typechecks
- */
-
-
 
 var hyphenate = __webpack_require__(348);
 
@@ -48677,14 +47176,6 @@ module.exports = hyphenateStyleName;
 "use strict";
 
 
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * @typechecks
- */
 
 /**
  * @param {*} object The object to check.
@@ -48705,14 +47196,6 @@ module.exports = isNode;
 "use strict";
 
 
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * @typechecks
- */
 
 var isNode = __webpack_require__(350);
 
@@ -48731,17 +47214,6 @@ module.exports = isTextNode;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- * @typechecks static-only
- */
-
-
 
 /**
  * Memoizes the return value of a function that accepts one string argument.
@@ -49499,16 +47971,6 @@ function mergeChildMappings(prev, next) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-
 
 /**
  * Escape and wrap key so it is safe to use as a reactid
@@ -49561,16 +48023,6 @@ module.exports = KeyEscapeUtils;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-
 
 var _prodInvariant = __webpack_require__(49);
 
@@ -49676,15 +48128,6 @@ module.exports = PooledClass;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var PooledClass = __webpack_require__(358);
 var ReactElement = __webpack_require__(41);
@@ -49870,15 +48313,6 @@ module.exports = ReactChildren;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var ReactElement = __webpack_require__(41);
 
@@ -50042,15 +48476,6 @@ module.exports = ReactDOMFactories;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var _require = __webpack_require__(41),
     isValidElement = _require.isValidElement;
@@ -50064,15 +48489,6 @@ module.exports = factory(isValidElement);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 module.exports = '15.6.2';
 
@@ -50081,15 +48497,6 @@ module.exports = '15.6.2';
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var _require = __webpack_require__(160),
     Component = _require.Component;
@@ -50107,16 +48514,6 @@ module.exports = factory(Component, isValidElement, ReactNoopUpdateQueue);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-
 
 /* global Symbol */
 
@@ -50151,16 +48548,6 @@ module.exports = getIteratorFn;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-
 
 var nextDebugID = 1;
 
@@ -50175,15 +48562,6 @@ module.exports = getNextDebugID;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 /**
  * Forked from fbjs/warning:
@@ -50243,14 +48621,6 @@ module.exports = lowPriorityWarning;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
 
 var _prodInvariant = __webpack_require__(49);
 
@@ -50284,15 +48654,6 @@ module.exports = onlyChild;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var _prodInvariant = __webpack_require__(49);
 
@@ -50463,15 +48824,6 @@ module.exports = traverseAllChildren;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
 
 var emptyObject = {};
 

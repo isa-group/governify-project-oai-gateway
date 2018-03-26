@@ -1,6 +1,6 @@
 {
   "name": "governify-gateway",
-  "buildOn": "2018-03-26",
+  "buildOn": "2018-03-27",
   "version": "1.0.0",
   "description": "Configurable gateway for manage OAS-modeled RESTful APIs driven by explicit SLAs",
   "homepage": "https://github.com/isa-group/governify-gateway",
