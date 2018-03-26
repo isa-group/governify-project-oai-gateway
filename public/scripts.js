@@ -18,21 +18,23 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
 
-jQuery(document).ready(function() {
-	
+jQuery(document).ready(function () {
+
     /*
         Fullscreen background
     */
     $.backstretch("img/backgrounds/1.jpg");
-    
-    $('#top-navbar-1').on('shown.bs.collapse', function(){
-    	$.backstretch("resize");
+
+    $('#top-navbar-1').on('shown.bs.collapse', function () {
+        $.backstretch("resize");
     });
-    $('#top-navbar-1').on('hidden.bs.collapse', function(){
-    	$.backstretch("resize");
+    $('#top-navbar-1').on('hidden.bs.collapse', function () {
+        $.backstretch("resize");
     });
-    
-    
+
+    $('[data-toggle="tooltip"]').tooltip();
+
+
 });
 
 

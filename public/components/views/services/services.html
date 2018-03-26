@@ -1,6 +1,9 @@
 <div class="row">
     <div class="form-box f1">
-        <h3 class="text-left"><strong>My services</strong></h3>
+        <h3 class="text-left">
+            <strong ng-if="!isAdmin">{{profile.name}}'s services</strong>
+            <strong ng-if="isAdmin">All services (admin view)</strong>
+        </h3>
         <div class="table-responsive ">
             <table class="table table-hover text-center">
                 <thead>
@@ -8,7 +11,7 @@
                         <th class="text-center" style="border-bottom: 0;"></th>
                         <th class="text-center">Name</th>
                         <th class="text-center">Service endpoint</th>
-                        <th class="text-center">OAI spec URL</th>
+                        <th class="text-center">SLA-Driven OAS URL</th>
                         <th class="text-center" ng-cloak ng-if="isAdmin">User</th>
                         <th class="text-center">Action</th>
                     </tr>
@@ -16,11 +19,26 @@
                 <tbody>
                     <tr>
                         <td class="border-right" style="border-top: 0;"></td>
-                        <td><input class="form-control" ng-model="service.name" /></td>
-                        <td><input class="form-control" ng-model="service.url" /></td>
-                        <td><input class="form-control" ng-model="service.swagger_url" /></td>
-                        <td ng-cloak ng-if="isAdmin"><input class="form-control" ng-model="service.userID" /></td>
-                        <td class="text-center"><button class="btn btn-primary" ng-click="addService()"><i class="fa fa-plus" aria-hidden="true"></i> add</button></td>
+                        <td>
+                            <input class="form-control" data-toggle="tooltip" data-placement="bottom" title="Later, you can reach your service at https://.../petstore"
+                                placeholder="petstore" ng-model="service.name" />
+                        </td>
+                        <td>
+                            <input class="form-control" data-toggle="tooltip" data-placement="bottom" title="This is the real endpoint of the proxied service."
+                                placeholder="https://example.com/petstore" ng-model="service.url" />
+                        </td>
+                        <td>
+                            <input class="form-control" data-toggle="tooltip" data-placement="bottom" title="Enter here the URL pointing to a valid SLA-Driven OAS v2 document."
+                                placeholder="https://example.com/petstore/oai.yaml" ng-model="service.swagger_url" />
+                        </td>
+                        <td ng-cloak ng-if="isAdmin">
+                            <input class="form-control" data-toggle="tooltip" data-placement="bottom" title="Transfer the ownership of the service to a certain user."
+                                placeholder="Auth0 user identifier" ng-model="service.userID" />
+                        </td>
+                        <td class="text-center">
+                            <button class="btn btn-primary" ng-click="addService()">
+                                <i class="fa fa-plus" aria-hidden="true"></i> add</button>
+                        </td>
                     </tr>
                     <tr ng-repeat="service in servicelist">
                         <td class="col-xs-1 col-sm-1 col-md-1 col-lg-1 text-center border-right without-border-top">
@@ -30,13 +48,29 @@
                                 <i ng-if="service.status==='ERROR'" class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                             </button>
                         </td>
-                        <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-left"><a target="_blank" href="/{{service.name}}/docs"><strong>{{service.name | uppercase}}</strong></a></td>
-                        <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><a target="_blank" href="{{service.url}}">Go to the service URL</a></td>
-                        <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><a target="_blank" href="{{service.swagger_url}}">View OAI specification</a></td>
+                        <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-left">
+                            <a target="_blank" href="/{{service.name}}/docs">
+                                <strong>{{service.name | uppercase}} DOCS</strong>
+                            </a>
+                            ||
+                            <a target="_blank" href="/{{service.name}}/plans">
+                                <strong>{{service.name | uppercase}} PLANS</strong>
+                            </a>
+                        </td>
+                        <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                            <a target="_blank" href="{{service.url}}">Go to the service URL</a>
+                        </td>
+                        <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                            <a target="_blank" href="{{service.swagger_url}}">View OAI specification</a>
+                        </td>
                         <td ng-cloak ng-if="isAdmin" class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{service.userID}}</td>
                         <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">
-                            <button class="btn btn-danger" ng-click="deleteService(service)" style="min-width: 0"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                            <button class="btn btn-warning" ng-click="editService(service)" style="min-width: 0"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                            <button class="btn btn-danger" ng-click="deleteService(service)" style="min-width: 0">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </button>
+                            <button class="btn btn-warning" ng-click="editService(service)" style="min-width: 0">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </button>
                         </td>
                     </tr>
                 </tbody>
