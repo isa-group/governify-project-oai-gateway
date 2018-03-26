@@ -155,7 +155,7 @@ module.exports = function (grunt) {
                 afterRelease: [],
                 updateVars: ['pkg'],
                 github: {
-                    repo: "GITHUB_REPO",
+                    repo: "isa-group/governify-gateway",
                     accessTokenVar: "GITHUB_ACCESS_TOKEN",
                     usernameVar: "GITHUB_USERNAME"
                 }
