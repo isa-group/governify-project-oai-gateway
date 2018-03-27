@@ -1,8 +1,8 @@
 production:
   server: 
     port: 80
-    bypassCORS: true
-    useHelmet: true
+    bypassCORS: false
+    useHelmet: false
   multiproxy: true
   pipePorts: 30000
   auth0:
