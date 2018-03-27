@@ -22,7 +22,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
  * USED ENV VARS:
  * 
  ** GITHUB_ACCESS_TOKEN
- ** GITHUB_REPO
  ** GITHUB_USERNAME
  ** DOCKER_HUB_EMAIL
  ** DOCKER_HUB_USERNAME
@@ -64,7 +63,6 @@ module.exports = function (grunt) {
         latestReleaseNotes: grunt.file.read('extra/latest-release-notes', {
             encoding: 'utf8'
         }).toString(),
-
 
         //LICENCE NOTES AND HEADERS
         usebanner: {
@@ -140,13 +138,14 @@ module.exports = function (grunt) {
         //MAKE A RELEASE IN GITHUB
         /**
          * Usage:
-         *   grunt release" for patch version
-         *   grunt release:minor" for minor version
-         *   grunt release:major" for major version
+         *   grunt release:0.0.1" for patch versions
+         *   grunt release:0.1.0" for minor versions
+         *   grunt release:1.0.0" for major versions
          * */
         release: {
             options: {
                 changelog: true,
+                changelogFromGithub: true,
                 githubReleaseBody: 'See [CHANGELOG.md](./CHANGELOG.md) for details.',
                 npm: false, //CHANGE TO TRUE IF YOUR PROJECT IS A NPM MODULE 
                 //npmtag: true, //default: no tag
@@ -219,9 +218,8 @@ module.exports = function (grunt) {
     grunt.registerTask('build', ['test', 'buildOn', 'usebanner']);
 
     //RELEASE TASK
-    // already defined. Usage: release" for patch version; release:minor" for minor version; grunt release:major" for major version
+    // already defined. Usage: grunt release:0.0.1" for patch versions; grunt release:0.1.0" for minor versions; grunt release:1.0.0" for major versions
 
     //DELIVER TASK
     grunt.registerTask('deliver', ['test', 'dockerize']);
-
 };
