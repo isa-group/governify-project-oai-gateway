@@ -1,1 +1,2 @@
-### <%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>
+### 1.0.0- 2018-03-27
+- Fist official release

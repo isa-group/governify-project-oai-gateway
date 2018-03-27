@@ -1,8 +1,8 @@
 /*!
-governify-gateway 1.0.0, built on: 2018-03-27
+governify-project-oai-gateway 1.0.0, built on: 2018-03-27
 Copyright (C) 2018 ISA group
 http://www.isa.us.es/
-https://github.com/isa-group/governify-gateway
+https://github.com/isa-group/governify-project-oai-gateway
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
