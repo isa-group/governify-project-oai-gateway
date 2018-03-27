@@ -1,9 +1,9 @@
 {
-  "name": "governify-gateway",
+  "name": "governify-project-oai-gateway",
   "buildOn": "2018-03-27",
   "version": "1.0.0",
   "description": "Configurable gateway for manage OAS-modeled RESTful APIs driven by explicit SLAs",
-  "homepage": "https://github.com/isa-group/governify-gateway",
+  "homepage": "https://github.com/isa-group/governify-project-oai-gateway",
   "main": "index.js",
   "dependencies": {
     "bluebird": "^3.4.6",
@@ -48,7 +48,8 @@
     "webpack-monitor": "^1.0.14"
   },
   "scripts": {
-    "start": "webpack && node index.js",
+    // "start": "webpack && node index.js",
+    "start": "node index.js",
     "dev": "concurrently --kill-others \"yarn run start\" \"grunt watch\"",
     "watch": "grunt watch",
     "test": "grunt test",
@@ -74,10 +75,10 @@
   "license": "GPL-3.0+",
   "repository": {
     "type": "git",
-    "url": "git://github.com/isa-group/governify-gateway.git",
-    "github": "http://github.com/isa-group/governify-gateway"
+    "url": "git://github.com/isa-group/governify-project-oai-gateway.git",
+    "github": "http://github.com/isa-group/governify-project-oai-gateway"
   },
   "docker": {
-    "url": "https://hub.docker.com/r/isa-group/governify-gateway"
+    "url": "https://hub.docker.com/r/isagroup/governify-project-oai-gateway"
   }
 }

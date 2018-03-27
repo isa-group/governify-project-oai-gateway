@@ -1,8 +1,8 @@
 /*!
-governify-gateway 1.0.0, built on: 2018-03-27
+governify-project-oai-gateway 1.0.0, built on: 2018-03-27
 Copyright (C) 2018 ISA group
 http://www.isa.us.es/
-https://github.com/isa-group/governify-gateway
+https://github.com/isa-group/governify-project-oai-gateway
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -28,9 +28,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
  ** DOCKER_HUB_USERNAME
  ** DOCKER_HUB_PASSWORD
  * 
- * CHANGES TO BE PERFORMED
+ * CHANGES TO BE PERFORMED:
  * 
- ** REPLACE "<my-image-name>" by your DockerHub image name
+ ** REPLACE "<my-image-name>" by your DockerHub image (without user)
+ ** REPLACE "<my-github-repo>" by your github repo. Eg isa-group/secret-project
  * 
  */
 
@@ -155,7 +156,7 @@ module.exports = function (grunt) {
                 afterRelease: [],
                 updateVars: ['pkg'],
                 github: {
-                    repo: "isa-group/governify-gateway",
+                    repo: "isa-group/governify-project-oai-gateway",
                     accessTokenVar: "GITHUB_ACCESS_TOKEN",
                     usernameVar: "GITHUB_USERNAME"
                 }
@@ -164,25 +165,25 @@ module.exports = function (grunt) {
 
         //BUILDING AND PUSHING DOCKER IMAGES
         dockerize: {
-            '<my-image-name>-latest': { //CHANGEME: name of the image in dockerhub
+            'governify-project-oai-gateway-latest': { //CHANGEME: name of the image in dockerhub  (without user)
                 options: {
                     auth: {
                         email: "DOCKER_HUB_EMAIL",
                         username: "DOCKER_HUB_USERNAME",
                         password: "DOCKER_HUB_PASSWORD"
                     },
-                    name: '<my-image-name>',
+                    name: 'governify-project-oai-gateway',  //CHANGEME: name of the image in dockerhub (without user)
                     push: true
                 }
             },
-            '<my-image-name>-version': { //CHANGEME: name of the image in dockerhub
+            'governify-project-oai-gateway-version': { //CHANGEME: name of the image in dockerhub (without user)
                 options: {
                     auth: {
                         email: "DOCKER_HUB_EMAIL",
                         username: "DOCKER_HUB_USERNAME",
                         password: "DOCKER_HUB_PASSWORD"
                     },
-                    name: '<my-image-name>', //CHANGEME: name of the image in dockerhub
+                    name: 'governify-project-oai-gateway', //CHANGEME: name of the image in dockerhub (without user)
                     tag: '<%= pkg.version %>',
                     push: true
                 }
