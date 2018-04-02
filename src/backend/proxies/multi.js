@@ -122,11 +122,11 @@ function doProxy(serviceInfo, originalRequest, originalResponse, next) {
                     originalResponse.send(singleProxyResponse.body);
                 }
             } else {
-                logger.error("Error in request: %s", JSON.parse(err, null, 2), requestToSingleProxyOptions);
+                logger.error("Error in request: '%s'. Options: '%s'", err, requestToSingleProxyOptions);
                 originalResponse.status(500).end(err.toString());
             }
         }).on('error', function (err) {
-            logger.error("Error in request: %s", JSON.parse(err, null, 2), requestToSingleProxyOptions);
+            logger.error("Error in request: '%s'. Options: '%s'", err, requestToSingleProxyOptions);
             originalResponse.status(500).end(err.toString());
         });
 
