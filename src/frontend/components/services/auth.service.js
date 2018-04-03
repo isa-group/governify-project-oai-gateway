@@ -1,5 +1,5 @@
 /*!
-governify-project-oai-gateway 1.0.1, built on: 2018-04-03
+governify-project-oai-gateway 1.0.2, built on: 2018-04-03
 Copyright (C) 2018 ISA group
 http://www.isa.us.es/
 https://github.com/isa-group/governify-project-oai-gateway

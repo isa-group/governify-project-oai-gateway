@@ -13,9 +13,9 @@ For technical inquiry please contact to [engineering team](./extra/about.md).
 
 [![Build Status](https://travis-ci.org/isa-group/governify-project-oai-gateway.svg?branch=master)](https://travis-ci.org/http://github.com/isa-group/governify-project-oai-gateway)
 
-The version 1.0.1 is the latest stable version of governify-project-oai-gateway component.
-see [release note](http://github.com/isa-group/governify-project-oai-gateway/releases/tag/1.0.1) for details.
+The version 1.0.2 is the latest stable version of governify-project-oai-gateway component.
+see [release note](http://github.com/isa-group/governify-project-oai-gateway/releases/tag/1.0.2) for details.
 
 For running:
 
-- Download latest version from [1.0.1](http://github.com/isa-group/governify-project-oai-gateway/releases/tag/1.0.1)
+- Download latest version from [1.0.2](http://github.com/isa-group/governify-project-oai-gateway/releases/tag/1.0.2)
