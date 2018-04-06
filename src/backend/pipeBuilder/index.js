@@ -227,12 +227,12 @@ var tweakOAS = (swaggerDoc, serviceName) => {
         Object.keys(swaggerDoc.paths[old_key]).forEach((method) => {
 
             // Adding "apikey" query param
-            let parameters = swaggerDoc.paths[old_key][method].parameters ? swaggerDoc.paths[old_key][method].parameters : [];
-            let existsApikeyParam = parameters.find(parameter => {
+            swaggerDoc.paths[old_key][method].parameters = swaggerDoc.paths[old_key][method].parameters ? swaggerDoc.paths[old_key][method].parameters : [];
+            let existsApikeyParam = swaggerDoc.paths[old_key][method].parameters.find(parameter => {
                 return parameter.name === "apikey";
             });
 
-            if (existsApikeyParam < 1) {
+            if (!existsApikeyParam || existsApikeyParam < 1) {
                 let apikeyParam = {
                     description: "apikey",
                     in: "query",
@@ -247,7 +247,6 @@ var tweakOAS = (swaggerDoc, serviceName) => {
         // Adding serviceName to every path
         let new_key = "/" + serviceName + old_key;
         if (old_key !== new_key) {
-            logger.debug("Modifying OAS ", new_key);
             Object.defineProperty(swaggerDoc.paths, new_key, Object.getOwnPropertyDescriptor(swaggerDoc.paths, old_key));
             delete swaggerDoc.paths[old_key];
         }
