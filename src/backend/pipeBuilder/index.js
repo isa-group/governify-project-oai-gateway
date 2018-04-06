@@ -227,7 +227,7 @@ var tweakOAS = (swaggerDoc, serviceName) => {
         Object.keys(swaggerDoc.paths[old_key]).forEach((method) => {
 
             // Adding "apikey" query param
-            var parameters = swaggerDoc.paths[old_key][method].parameters;
+            let parameters = swaggerDoc.paths[old_key][method].parameters ? swaggerDoc.paths[old_key][method].parameters : [];
             let existsApikeyParam = parameters.find(parameter => {
                 return parameter.name === "apikey";
             });
