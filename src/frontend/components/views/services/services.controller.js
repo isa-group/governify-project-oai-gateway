@@ -70,6 +70,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
                     timer: 3000
                 });
             } else {
+                delete $scope.service._id; // prevent sending _id when editing a previous service
                 $http({
                     method: 'POST',
                     url: '/gateway/api/v1/services',
