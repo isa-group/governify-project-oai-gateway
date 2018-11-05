@@ -3,6 +3,10 @@ production:
     port: 80
     bypassCORS: false
     useHelmet: false
+    timeout: 86400000
+    bodySize: 50mb
+    httpOptionsOK: true
+    servePackageInfo: true
   multiproxy: true
   pipePorts: 30000
   auth0:
@@ -26,6 +30,10 @@ development:
     port: 8888
     bypassCORS: true
     useHelmet: true
+    timeout: 86400000
+    bodySize: 50mb
+    httpOptionsOK: true
+    servePackageInfo: true
   multiproxy: true
   pipePorts: 30000
   database:
@@ -49,6 +57,10 @@ testing:
     port: 8888
     bypassCORS: true
     useHelmet: true
+    timeout: 86400000
+    bodySize: 50mb
+    httpOptionsOK: true
+    servePackageInfo: true
   multiproxy: true
   pipePorts: 30000
   database:
