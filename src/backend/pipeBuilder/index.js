@@ -22,6 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
 const express = require('express');
 const swaggerTools = require('swagger-tools');
+const oasTools = require('oas-tools');
 const bodyParser = require('body-parser');
 const jsyaml = require('js-yaml');
 const request = require('request');
@@ -95,26 +96,52 @@ module.exports.generate = (newServiceInfo, callback) => {
                         app.use(singleProxy);
 
                         // Initialize the Swagger middleware
-                        swaggerTools.initializeMiddleware(swaggerDoc, (middleware) => {
-
-                            // Serve the Swagger documents and Swagger UI
-                            app.use(middleware.swaggerUi({
-                                apiDocs: apiDocsPath,
-                                swaggerUi: docsPath
-                            }));
-
-                            var toSave = newServiceInfo;
-
-                            module.exports.runningPipes[toSave.name] = app.listen(newServiceInfo.port, () => {
-                                logger.pipeBuilder("Service '%s' has been created", newServiceInfo.name);
-                                // logger.debug("Service '%s' has been created with data: '%s'", newServiceInfo.name, JSON.stringify(newServiceInfo, null, 2));
-                                usedPorts.push(newServiceInfo.port);
-                                callback(null, toSave);
+                        if (swaggerDoc.openapi && swaggerDoc.openapi.charAt(0) === '3') {
+                            oasTools.configure({
+                                checkControllers: false,
+                                loglevel: 'none',
+                                docs: {
+                                    apiDocs: apiDocsPath,
+                                    apiDocsPrefix: '',
+                                    swaggerUi: docsPath,
+                                    swaggerUiPrefix: ''
+                                }
                             });
+                            oasTools.initialize(swaggerDoc, app, () => {
+                                var toSave = newServiceInfo;
 
-                            logger.debug("runningPipes has been updated.");
-                            logger.debug(Object.keys(module.exports.runningPipes));
-                        });
+                                module.exports.runningPipes[toSave.name] = app.listen(newServiceInfo.port, () => {
+                                    logger.pipeBuilder("Service '%s' has been created", newServiceInfo.name);
+                                    // logger.debug("Service '%s' has been created with data: '%s'", newServiceInfo.name, JSON.stringify(newServiceInfo, null, 2));
+                                    usedPorts.push(newServiceInfo.port);
+                                    callback(null, toSave);
+                                });
+
+                                logger.debug("runningPipes has been updated.");
+                                logger.debug(Object.keys(module.exports.runningPipes));
+                            });
+                        } else {
+                            swaggerTools.initializeMiddleware(swaggerDoc, (middleware) => {
+
+                                // Serve the Swagger documents and Swagger UI
+                                app.use(middleware.swaggerUi({
+                                    apiDocs: apiDocsPath,
+                                    swaggerUi: docsPath
+                                }));
+
+                                var toSave = newServiceInfo;
+
+                                module.exports.runningPipes[toSave.name] = app.listen(newServiceInfo.port, () => {
+                                    logger.pipeBuilder("Service '%s' has been created", newServiceInfo.name);
+                                    // logger.debug("Service '%s' has been created with data: '%s'", newServiceInfo.name, JSON.stringify(newServiceInfo, null, 2));
+                                    usedPorts.push(newServiceInfo.port);
+                                    callback(null, toSave);
+                                });
+
+                                logger.debug("runningPipes has been updated.");
+                                logger.debug(Object.keys(module.exports.runningPipes));
+                            });
+                        }
                     }
 
                 });
@@ -237,9 +264,15 @@ var tweakOAS = (swaggerDoc, serviceName) => {
                     description: "apikey",
                     in: "query",
                     name: "apikey",
-                    required: true,
-                    type: "string",
+                    required: true
                 };
+                if (swaggerDoc.openapi && swaggerDoc.openapi.charAt(0) === '3') {
+                    apikeyParam.schema = {
+                        type: "string"
+                    };
+                } else {
+                    apikeyParam.type = "string";
+                }
                 swaggerDoc.paths[old_key][method].parameters.push(apikeyParam);
             }
         });
