@@ -14,7 +14,7 @@ production:
     AUTH0_SECRET: 'LvR-XUCEcDYW1KaE_2wRE2fLR6eqBPVJ45akJs4yyYdmXdrIosndsmV4enkzXC94'
     AUTH0_DOMAIN: 'isagroup.eu.auth0.com'
   database:
-    host: mongo
+    host: mongo_oai
     port: 27017
     name:  gateway
   slaManager:
