@@ -20,20 +20,16 @@
                     <tr>
                         <td class="border-right" style="border-top: 0;"></td>
                         <td>
-                            <input class="form-control" data-toggle="tooltip" data-placement="bottom" title="Later, you can reach your service at https://.../petstore"
-                                placeholder="petstore" ng-model="service.name" />
+                            <input class="form-control" data-toggle="tooltip" data-placement="bottom" title="Later, you can reach your service at https://.../petstore" placeholder="petstore" ng-model="service.name" />
                         </td>
                         <td>
-                            <input class="form-control" data-toggle="tooltip" data-placement="bottom" title="This is the real endpoint of the proxied service."
-                                placeholder="https://example.com/petstore" ng-model="service.url" />
+                            <input class="form-control" data-toggle="tooltip" data-placement="bottom" title="This is the real endpoint of the proxied service." placeholder="https://example.com/petstore" ng-model="service.url" />
                         </td>
                         <td>
-                            <input class="form-control" data-toggle="tooltip" data-placement="bottom" title="Enter here the URL pointing to a valid SLA-Driven OAS v2 document."
-                                placeholder="https://example.com/petstore/oai.yaml" ng-model="service.swagger_url" />
+                            <input class="form-control" data-toggle="tooltip" data-placement="bottom" title="Enter here the URL pointing to a valid SLA-Driven OAS v2 or v3 document." placeholder="https://example.com/petstore/oai.yaml" ng-model="service.swagger_url" />
                         </td>
                         <td ng-cloak ng-if="isAdmin">
-                            <input class="form-control" data-toggle="tooltip" data-placement="bottom" title="Transfer the ownership of the service to a certain user."
-                                placeholder="Auth0 user identifier" ng-model="service.userID" />
+                            <input class="form-control" data-toggle="tooltip" data-placement="bottom" title="Transfer the ownership of the service to a certain user." placeholder="Auth0 user identifier" ng-model="service.userID" />
                         </td>
                         <td class="text-center">
                             <button class="btn btn-primary" ng-click="addService()">
@@ -42,8 +38,7 @@
                     </tr>
                     <tr ng-repeat="service in servicelist">
                         <td class="col-xs-1 col-sm-1 col-md-1 col-lg-1 text-center border-right without-border-top">
-                            <button class="btn {{service.status ==='ERROR'? 'btn-danger': 'btn-success'}}" data-placement="bottom" data-toggle="tooltip"
-                                title="{{service.message || 'Running'}}" style="min-width: 0">
+                            <button class="btn {{service.status ==='ERROR'? 'btn-danger': 'btn-success'}}" data-placement="bottom" data-toggle="tooltip" title="{{service.message || 'Running'}}" style="min-width: 0">
                                 <i ng-if="service.status!=='ERROR'" class="fa fa-check" aria-hidden="true"></i>
                                 <i ng-if="service.status==='ERROR'" class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                             </button>
@@ -61,7 +56,7 @@
                             <a target="_blank" href="{{service.url}}">Go to the service URL</a>
                         </td>
                         <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                            <a target="_blank" href="{{service.swagger_url}}">View OAI specification</a>
+                            <a target="_blank" href="{{service.swagger_url.replace('http://repo.designer.governify.io:10880','https://repo.designer.governify.io')}}">View OAS file</a>
                         </td>
                         <td ng-cloak ng-if="isAdmin" class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{service.userID}}</td>
                         <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">
