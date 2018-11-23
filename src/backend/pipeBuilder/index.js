@@ -107,19 +107,24 @@ module.exports.generate = (newServiceInfo, callback) => {
                                     swaggerUiPrefix: ''
                                 }
                             });
-                            oasTools.initialize(swaggerDoc, app, () => {
-                                var toSave = newServiceInfo;
+                            try {
+                                oasTools.initialize(swaggerDoc, app, () => {
+                                    var toSave = newServiceInfo;
 
-                                module.exports.runningPipes[toSave.name] = app.listen(newServiceInfo.port, () => {
-                                    logger.pipeBuilder("Service '%s' has been created", newServiceInfo.name);
-                                    // logger.debug("Service '%s' has been created with data: '%s'", newServiceInfo.name, JSON.stringify(newServiceInfo, null, 2));
-                                    usedPorts.push(newServiceInfo.port);
-                                    callback(null, toSave);
+                                    module.exports.runningPipes[toSave.name] = app.listen(newServiceInfo.port, () => {
+                                        logger.pipeBuilder("Service '%s' has been created", newServiceInfo.name);
+                                        // logger.debug("Service '%s' has been created with data: '%s'", newServiceInfo.name, JSON.stringify(newServiceInfo, null, 2));
+                                        usedPorts.push(newServiceInfo.port);
+                                        callback(null, toSave);
+                                    });
+
+                                    logger.debug("runningPipes has been updated.");
+                                    logger.debug(Object.keys(module.exports.runningPipes));
                                 });
-
-                                logger.debug("runningPipes has been updated.");
-                                logger.debug(Object.keys(module.exports.runningPipes));
-                            });
+                            } catch (e) {
+                                logger.warning("OAS tools cannot be initialized, check the OAS document given: ", JSON.stringify(swaggerDoc));
+                                return callback(e, null);
+                            }
                         } else {
                             swaggerTools.initializeMiddleware(swaggerDoc, (middleware) => {
 
