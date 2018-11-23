@@ -33,12 +33,20 @@ const singleProxy = require('../proxies/single');
 const config = require('../configurations');
 const logger = require('../logger');
 
-var usedPorts = [];
+let usedPorts = [];
+
 module.exports.runningPipes = {};
+module.exports.generate = _generate;
+module.exports.regenerate = _regenerate;
+module.exports.deletePipe = _deletePipe;
+module.exports.deleteAllPipes = _deleteAllPipes;
+module.exports.tweakOAS = _tweakOAS;
 
-module.exports.generate = (newServiceInfo, callback) => {
+let runningPipes = module.exports.runningPipes;
 
-    var app = express();
+function _generate(newServiceInfo, callback) {
+
+    let app = express();
     config.pipePorts++;
     while (usedPorts.indexOf(config.pipePorts) !== -1) {
         config.pipePorts++;
@@ -60,32 +68,32 @@ module.exports.generate = (newServiceInfo, callback) => {
             rejectUnauthorized: false
         }, (err, response, body) => {
             //create the new server using express and sla4oai-tools
-            var slaManager = new SLA4OAITools();
+            let slaManager = new SLA4OAITools();
             slaManager.winston.transports.console.level = config.slaManager.loggerLevel;
 
             if (!err && response.statusCode === 200) {
-                var swaggerDoc = jsyaml.safeLoad(body);
+                let swaggerDoc = jsyaml.safeLoad(body);
                 //prepend the service pathName
 
-                var docsPath = (swaggerDoc.basePath ? swaggerDoc.basePath : '') + '/docs'; //"/" + newServiceInfo.name +
-                var apiDocsPath = (swaggerDoc.basePath ? swaggerDoc.basePath : '') + '/api-docs'; // "/" + newServiceInfo.name +
+                let docsPath = (swaggerDoc.basePath ? swaggerDoc.basePath : '') + '/docs'; //"/" + newServiceInfo.name +
+                let apiDocsPath = (swaggerDoc.basePath ? swaggerDoc.basePath : '') + '/api-docs'; // "/" + newServiceInfo.name +
 
                 if (!swaggerDoc.info || (swaggerDoc.info && !swaggerDoc.info['x-sla'])) {
-                    var error = "Error in swagger specification. The object 'info[x-sla]' is required. Check your OAS document.";
+                    let error = "Error in swagger specification. The object 'info[x-sla]' is required. Check your OAS document.";
                     logger.error(error);
                     return callback(error, null);
                 }
 
                 logger.pipeBuilder("Initializing slaManager for the service '%s' using: %s", newServiceInfo.name, JSON.stringify(swaggerDoc.info['x-sla']));
 
-                var slaManagerConfig = {
+                let slaManagerConfig = {
                     sla4oai: swaggerDoc.info['x-sla'],
                     sla4oaiUI: {
                         portalSuccessRedirect: docsPath
                     }
                 };
 
-                swaggerDoc = tweakOAS(swaggerDoc, newServiceInfo.name);
+                swaggerDoc = _tweakOAS(swaggerDoc, newServiceInfo.name);
 
 
                 slaManager.initialize(app, slaManagerConfig, (slaManager, error) => {
@@ -109,9 +117,9 @@ module.exports.generate = (newServiceInfo, callback) => {
                             });
                             try {
                                 oasTools.initialize(swaggerDoc, app, () => {
-                                    var toSave = newServiceInfo;
+                                    let toSave = newServiceInfo;
 
-                                    module.exports.runningPipes[toSave.name] = app.listen(newServiceInfo.port, () => {
+                                    runningPipes[toSave.name] = app.listen(newServiceInfo.port, () => {
                                         logger.pipeBuilder("Service '%s' has been created", newServiceInfo.name);
                                         // logger.debug("Service '%s' has been created with data: '%s'", newServiceInfo.name, JSON.stringify(newServiceInfo, null, 2));
                                         usedPorts.push(newServiceInfo.port);
@@ -119,7 +127,7 @@ module.exports.generate = (newServiceInfo, callback) => {
                                     });
 
                                     logger.debug("runningPipes has been updated.");
-                                    logger.debug(Object.keys(module.exports.runningPipes));
+                                    logger.debug(Object.keys(runningPipes));
                                 });
                             } catch (e) {
                                 logger.warning("OAS tools cannot be initialized, check the OAS document given: ", JSON.stringify(swaggerDoc));
@@ -134,9 +142,9 @@ module.exports.generate = (newServiceInfo, callback) => {
                                     swaggerUi: docsPath
                                 }));
 
-                                var toSave = newServiceInfo;
+                                let toSave = newServiceInfo;
 
-                                module.exports.runningPipes[toSave.name] = app.listen(newServiceInfo.port, () => {
+                                runningPipes[toSave.name] = app.listen(newServiceInfo.port, () => {
                                     logger.pipeBuilder("Service '%s' has been created", newServiceInfo.name);
                                     // logger.debug("Service '%s' has been created with data: '%s'", newServiceInfo.name, JSON.stringify(newServiceInfo, null, 2));
                                     usedPorts.push(newServiceInfo.port);
@@ -144,7 +152,7 @@ module.exports.generate = (newServiceInfo, callback) => {
                                 });
 
                                 logger.debug("runningPipes has been updated.");
-                                logger.debug(Object.keys(module.exports.runningPipes));
+                                logger.debug(Object.keys(runningPipes));
                             });
                         }
                     }
@@ -152,7 +160,7 @@ module.exports.generate = (newServiceInfo, callback) => {
                 });
 
             } else {
-                var swaggerDocError = "Error while it was retrieving swaggerDoc from " + newServiceInfo.swagger_url;
+                let swaggerDocError = "Error while it was retrieving swaggerDoc from " + newServiceInfo.swagger_url;
                 if (err) {
                     logger.error(swaggerDocError + " " + JSON.stringify(err, null, 2));
                     return callback(swaggerDocError + " " + JSON.stringify(err, null, 2), null);
@@ -173,25 +181,28 @@ module.exports.generate = (newServiceInfo, callback) => {
 
 };
 
-module.exports.deletePipe = (name, callback) => {
-    var runningPipes = this.runningPipes;
+function _deletePipe(name, callback) {
     try {
         logger.pipeBuilder("Removing pipe for '%s'", name);
-        runningPipes[name].close(() => {
-            delete runningPipes[name];
+        if (runningPipes[name]) {
+            runningPipes[name].close(() => {
+                delete runningPipes[name];
+                callback(null);
+            });
+        } else {
+            logger.pipeBuilder("runningPipes does not contain pipe with name: '%s'", name);
             callback(null);
-        });
+        }
     } catch (e) {
         logger.pipeBuilder("Error while removing pipe with name: '%s': %s ", name, e.toString());
         callback(e);
     }
 };
 
-module.exports.deleteAllPipes = (callback) => {
-    var runningPipes = this.runningPipes;
-    var promiseArray = [];
+function _deleteAllPipes(callback) {
+    let promiseArray = [];
     logger.debug("runningPipes before deleteAllPipes");
-    for (var p in runningPipes) {
+    for (let p in runningPipes) {
         runningPipes[p].name = p;
         promiseArray.push(runningPipes[p]);
     }
@@ -217,35 +228,34 @@ module.exports.deleteAllPipes = (callback) => {
     });
 };
 
-module.exports.regenerate = (serviceInfos, callback) => {
+function _regenerate(serviceInfos, callback) {
     logger.pipeBuilder("Creating pipe for the services that already exist in the database");
-    bluebird.each(serviceInfos,
-        (serviceInfo) => {
-            return new Promise((resolve, reject) => {
-                module.exports.generate(serviceInfo, (err, data) => {
-                    if (err) {
-                        return reject(err);
-                    } else {
-                        return resolve(data);
-                    }
-                });
-            }).then(() => {
-                serviceInfo.status = "OK";
-                serviceInfo.message = null;
-                serviceInfo.save();
-            }, (error) => {
-                logger.pipeBuilder("Error with 'serviceInfo': %s", JSON.stringify(serviceInfo, null, 2));
-                serviceInfo.status = "ERROR";
-                serviceInfo.message = JSON.stringify(error);
-                serviceInfo.save();
+    bluebird.each(serviceInfos, (serviceInfo) => {
+        return new Promise((resolve, reject) => {
+            _generate(serviceInfo, (err, data) => {
+                if (err) {
+                    return reject(err);
+                } else {
+                    return resolve(data);
+                }
             });
         }).then(() => {
-            callback(null);
-            logger.pipeBuilder("All the existing services have been created");
+            serviceInfo.status = "OK";
+            serviceInfo.message = null;
+            serviceInfo.save();
         }, (error) => {
-            callback(error);
-            logger.pipeBuilder("Error in recreation of the services that already exist in the database");
+            logger.pipeBuilder("Error with 'serviceInfo': %s. It will not be saved", JSON.stringify(serviceInfo, null, 2));
+            serviceInfo.status = "ERROR";
+            serviceInfo.message = JSON.stringify(error);
+            // serviceInfo.save();
         });
+    }).then(() => {
+        callback(null);
+        logger.pipeBuilder("All the existing services have been created");
+    }, (error) => {
+        callback(error);
+        logger.pipeBuilder("Error in recreation of the services that already exist in the database");
+    });
 };
 
 /**
@@ -254,7 +264,14 @@ module.exports.regenerate = (serviceInfos, callback) => {
  * @param {Object} swaggerDoc 
  * @param {String} serviceName 
  */
-var tweakOAS = (swaggerDoc, serviceName) => {
+function _tweakOAS(swaggerDoc, serviceName) {
+    const repoInternalURL = "http://repo.designer.governify.io:10880";
+    const repoExternalURL = "https://repo.designer.governify.io";
+
+    // Replacing IDEAS repo endpoint by the external one
+    // swaggerDoc.info['x-sla'] = swaggerDoc.info['x-sla'].replace(repoInternalURL, repoExternalURL);
+
+    // For each operation
     Object.keys(swaggerDoc.paths).forEach(old_key => {
         Object.keys(swaggerDoc.paths[old_key]).forEach((method) => {
 
@@ -288,7 +305,6 @@ var tweakOAS = (swaggerDoc, serviceName) => {
             Object.defineProperty(swaggerDoc.paths, new_key, Object.getOwnPropertyDescriptor(swaggerDoc.paths, old_key));
             delete swaggerDoc.paths[old_key];
         }
-
     });
 
     return swaggerDoc;
