@@ -18,7 +18,7 @@
     "jsonwebtoken": "^8.2.0",
     "moment": "^2.22.0",
     "mongoose": "^5.0.12",
-    "newman": "^3.9.3",
+    "newman": "^4.2.0",
     "request": "^2.85.0",
     "sla4oai-tools": "^1.2.8",
     "swagger-tools": "^0.10.3",
