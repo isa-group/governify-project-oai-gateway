@@ -18,11 +18,12 @@
     "jsonwebtoken": "^8.2.0",
     "moment": "^2.22.0",
     "mongoose": "^5.0.12",
-    "newman": "^3.9.3",
+    "newman": "^4.2.0",
     "request": "^2.85.0",
     "sla4oai-tools": "^1.2.8",
     "swagger-tools": "^0.10.3",
-    "winston": "^2.4.1"
+    "winston": "^2.4.1",
+    "snyk": "^1.316.2"
   },
   "devDependencies": {
     "bower": "^1.8.4",
@@ -57,7 +58,9 @@
     "release:patch": "grunt release",
     "release:minor": "grunt release:minor",
     "release:major": "grunt release:major",
-    "deliver": "grunt deliver"
+    "deliver": "grunt deliver",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "keywords": [
     "gateway",
@@ -79,5 +82,6 @@
   },
   "docker": {
     "url": "https://hub.docker.com/r/isagroup/governify-project-oai-gateway"
-  }
+  },
+  "snyk": true
 }
